@@ -1,6 +1,7 @@
+//Importazioni
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./components/HomePage";
 import DefaultLayout from "./layout/DefaultLayout";
+import HomePage from "./components/HomePage";
 import ProductListPage from "./pages/ProductListPage";
 import CartPage from "./pages/CartPage";
 
@@ -8,31 +9,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <DefaultLayout>
-              {" "}
-              <HomePage />{" "}
-            </DefaultLayout>
-          }
-        />
-        <Route
-          path="/products"
-          element={
-            <DefaultLayout>
-              <ProductListPage />
-            </DefaultLayout>
-          }
-        />
-        <Route
-          path="/cart"
-          element={
-            <DefaultLayout>
-              <CartPage />
-            </DefaultLayout>
-          }
-        />
+        <Route element={<DefaultLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="products" element={<ProductListPage />} />
+          <Route path="cart" element={<CartPage />} />
+        </Route>
       </Routes>
     </Router>
   );
