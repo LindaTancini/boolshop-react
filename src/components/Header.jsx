@@ -45,6 +45,24 @@ function Header() {
             <li className="nav-item">
               <NavLink
                 className="nav-link text-white d-flex align-items-center gap-1"
+                to="/artists"
+                onClick={closeMenu}
+              >
+                <i className="bi bi-mic"></i> ARTISTI
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link text-white d-flex align-items-center gap-1"
+                to="/genres"
+                onClick={closeMenu}
+              >
+                <i className="bi bi-music-note-list"></i> GENERE
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink
+                className="nav-link text-white d-flex align-items-center gap-1"
                 to="/cart"
                 onClick={closeMenu}
               >
