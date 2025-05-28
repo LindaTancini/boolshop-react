@@ -7,6 +7,7 @@ function Carousel({albums}){
                     {/* {albums.map(album => <div key={album.id} className="carousel-item active">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5WFH8TOIfRKxUrIgJZoDCs1yvQ4hIcppw&s" className="d-block mx-auto" alt="..." />
                     </div>)} */}
+                    
                     <div className="carousel-item active">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5WFH8TOIfRKxUrIgJZoDCs1yvQ4hIcppw&s" className="d-block mx-auto" alt="..."/>
                     </div>
@@ -17,6 +18,7 @@ function Carousel({albums}){
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5WFH8TOIfRKxUrIgJZoDCs1yvQ4hIcppw&s" className="d-block mx-auto" alt="..."/>
                     </div>
                 </div>
+                
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span className="visually-hidden">Previous</span>

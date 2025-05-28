@@ -6,7 +6,7 @@ import ContextLoader from "../contexts/contextLoader";
 import ContextError from "../contexts/contextError";
 
 function HomePage() {
-    const [albums, setAlbums] = useState();
+    const [albums, setAlbums] = useState([]);
     const api = "http://127.0.0.1:3000/api/album";
 
     const { setIsLoading } = useContext(ContextLoader);
@@ -32,16 +32,16 @@ function HomePage() {
     console.log(albums);
     return (
         <>
-        {/* <div>
-            {albums.map((album) => (<div key={album.id} className="carousel-item">
-                <p>{album.name}</p>
-                <p>{album.price}</p>
-            </div>
+        <ul>
+            {albums.map((album) => (<li key={album.id}>
+                <p>{album.title}</p>
+                <p>{album.price}€</p>
+            </li>
             ))}
-        </div> */}
+        </ul>
 
             <h2 className="text-center">Gli album più venduti</h2>
-            <Carousel />
+            <Carousel albums={albums}/>
             <h2 className="text-center">Gli ultimi arrivi</h2>
             <CarouselBis />
         </>
