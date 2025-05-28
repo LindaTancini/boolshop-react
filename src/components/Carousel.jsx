@@ -1,8 +1,12 @@
-function Carousel(){
+function Carousel({albums}){
+    console.log(albums);
     return(
         <div className="container">
             <div id="carouselExample" className="carousel slide">
                 <div className="carousel-inner">
+                    {/* {albums.map(album => <div key={album.id} className="carousel-item active">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5WFH8TOIfRKxUrIgJZoDCs1yvQ4hIcppw&s" className="d-block mx-auto" alt="..." />
+                    </div>)} */}
                     <div className="carousel-item active">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGh5WFH8TOIfRKxUrIgJZoDCs1yvQ4hIcppw&s" className="d-block mx-auto" alt="..."/>
                     </div>

@@ -1,7 +1,7 @@
 //Importazioni
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layout/DefaultLayout";
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/HomePage";
 import ProductListPage from "./pages/ProductListPage";
 import CartPage from "./pages/CartPage";
 import GenresPage from "./pages/GenresPage";
@@ -9,28 +9,42 @@ import ArtistsPage from "./pages/ArtistsPage";
 import AnArtistPage from "./pages/AnArtistPage";
 import CardCd from "./pages/CardCd";
 import CardVinyl from "./pages/CardVinyl";
+import { useState } from "react";
+import ContextLoader from "./contexts/contextLoader"
+import ContextError from "./contexts/contextError"
 
 function App() {
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<DefaultLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="products" element={<ProductListPage />} />
-          <Route path="products/cd" element={<CardCd />} />
-          <Route path="products/vinyl" element={<CardVinyl />} />
-          <Route path="cart" element={<CartPage />} />
-        </Route>
-        <Route path="/artists" element={<DefaultLayout />}>
-          <Route index element={<ArtistsPage />} />
-          <Route path=":slug" element={<AnArtistPage />} />
-        </Route>
-        <Route path="/genres" element={<DefaultLayout />}>
-          <Route index element={<GenresPage />} />
-          <Route path=":slug" />
-        </Route>
-      </Routes>
-    </Router>
+    <ContextError.Provider value={{ isError, setIsError }}>
+      <ContextLoader.Provider value={{ isLoading, setIsLoading }}>
+        <Router>
+
+          <Routes>
+            <Route path="/" element={<DefaultLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="products" element={<ProductListPage />} />
+              <Route path="products/cd" element={<CardCd />} />
+              <Route path="products/vinyl" element={<CardVinyl />} />
+              <Route path="cart" element={<CartPage />} />
+            </Route>
+            <Route path="/artists" element={<DefaultLayout />}>
+              <Route index element={<ArtistsPage />} />
+              <Route path=":slug" element={<AnArtistPage />} />
+            </Route>
+            <Route path="/genres" element={<DefaultLayout />}>
+              <Route index element={<GenresPage />} />
+              <Route path=":slug" />
+            </Route>
+          </Routes>
+
+        </Router>
+
+      </ContextLoader.Provider>
+    </ContextError.Provider>
   );
 }
 
