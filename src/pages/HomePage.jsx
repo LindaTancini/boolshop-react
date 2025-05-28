@@ -44,6 +44,7 @@ function HomePage() {
                         <p>title: {album.title}</p>
                         <p>price: {album.price}€</p>
                         <p>quantity: {album.quantity}</p>
+                        <img src={album.imagePath} alt={album.title} />
                         <p>release date: {album.date.substring(0, 10)}</p>
                     </li>
                     ))}
