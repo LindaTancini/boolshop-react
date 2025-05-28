@@ -40,7 +40,7 @@ function Header() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i class="bi bi-disc"></i> MUSICA
+                <i className="bi bi-disc"></i> MUSICA
               </span>
               <ul className="dropdown-menu">
                 <li>
