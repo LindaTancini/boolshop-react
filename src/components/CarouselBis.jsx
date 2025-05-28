@@ -2,7 +2,7 @@ function CarouselBis({ albums }) {
   return (
     <div className="container my-5">
       <div
-        id="carouselExample"
+        id="carouselExample-bis"
         className="carousel slide"
         data-bs-ride="carousel"
       >
@@ -30,7 +30,7 @@ function CarouselBis({ albums }) {
         <button
           className="carousel-control-prev"
           type="button"
-          data-bs-target="#carouselExample"
+          data-bs-target="#carouselExample-bis"
           data-bs-slide="prev"
         >
           <span
@@ -42,7 +42,7 @@ function CarouselBis({ albums }) {
         <button
           className="carousel-control-next"
           type="button"
-          data-bs-target="#carouselExample"
+          data-bs-target="#carouselExample-bis"
           data-bs-slide="next"
         >
           <span
