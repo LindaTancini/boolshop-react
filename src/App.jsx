@@ -7,6 +7,8 @@ import CartPage from "./pages/CartPage";
 import GenresPage from "./pages/GenresPage";
 import ArtistsPage from "./pages/ArtistsPage";
 import AnArtistPage from "./pages/AnArtistPage";
+import CardCd from "./pages/CardCd";
+import CardVinyl from "./pages/CardVinyl";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
           <Route path="products" element={<ProductListPage />} />
+          <Route path="products/cd" element={<CardCd />} />
+          <Route path="products/vinyl" element={<CardVinyl />} />
           <Route path="cart" element={<CartPage />} />
         </Route>
         <Route path="/artists" element={<DefaultLayout />}>

@@ -2,7 +2,7 @@ function HomePage() {
     return (
         <div className="container">
             <h1>
-                sono homepage
+                Sono homepage
             </h1>
         </div>
     )
