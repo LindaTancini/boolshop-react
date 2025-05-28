@@ -33,14 +33,35 @@ function Header() {
           id="navbarNav"
         >
           <ul className="navbar-nav ms-auto align-items-center">
-            <li className="nav-item">
-              <NavLink
-                className="nav-link text-white d-flex align-items-center gap-1"
-                to="/products"
-                onClick={closeMenu}
+            <li className="nav-item dropdown">
+              <span
+                className="nav-link dropdown-toggle text-white d-flex align-items-center gap-1"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                <i className="bi bi-basket"></i> PRODOTTI
-              </NavLink>
+                <i class="bi bi-disc"></i> MUSICA
+              </span>
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/products/cd"
+                    onClick={closeMenu}
+                  >
+                    CD
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/products/vinyl"
+                    onClick={closeMenu}
+                  >
+                    Vinili
+                  </NavLink>
+                </li>
+              </ul>
             </li>
             <li className="nav-item">
               <NavLink
