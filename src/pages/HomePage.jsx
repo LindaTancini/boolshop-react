@@ -44,7 +44,7 @@ function HomePage() {
                         <p>title: {album.title}</p>
                         <p>price: {album.price}€</p>
                         <p>quantity: {album.quantity}</p>
-                        <p>release date: {album.date}</p>
+                        <p>release date: {album.date.substring(0, 10)}</p>
                     </li>
                     ))}
                 </ul>
@@ -56,7 +56,7 @@ function HomePage() {
                         <p>title: {album.title}</p>
                         <p>price: {album.price}€</p>
                         <p>quantity: {album.quantity}</p>
-                        <p>release date: {album.date}</p>
+                        <p>release date: {album.date.substring(0, 10)}</p>
                     </li>
                     ))}
                 </ul>
