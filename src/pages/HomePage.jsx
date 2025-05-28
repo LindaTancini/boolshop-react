@@ -41,9 +41,9 @@ function HomePage() {
   console.log(albums);
   return (
     <>
-      <h2 className="text-center">Gli album più venduti</h2>
+      <h2 className="text-center">Album meno costosi:</h2>
       <Carousel albums={albums} />
-      <h2 className="text-center">Gli ultimi arrivi</h2>
+      <h2 className="text-center">Album più recenti:</h2>
       <CarouselBis albums={albums} />
     </>
   );
