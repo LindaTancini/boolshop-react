@@ -3,7 +3,16 @@
 .bg-header-blue {
   background-color: #1b263b;
 }
+
+/* CAROUSEL */
+
 .carousel-control-next-icon,
-.carousel-control-prev-icon{
-  filter:invert(1)
+.carousel-control-prev-icon {
+  filter: invert(1);
+}
+
+/* IMG */
+img {
+  max-height: 500px;
+  object-fit: contain;
 }
