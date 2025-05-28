@@ -1,10 +1,14 @@
+import Carousel from "./Carousel";
+
 function HomePage() {
     return (
-        <div className="container">
-            <h1>
-                Sono homepage
-            </h1>
-        </div>
+        <>
+        <h2 className="text-center">Gli album più venduti</h2>
+        <Carousel/>
+        <h2 className="text-center">Gli ultimi arrivi</h2>
+        <Carousel/>
+        </>
+        
     )
 }
 
