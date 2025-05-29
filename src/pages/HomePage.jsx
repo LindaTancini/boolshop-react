@@ -43,7 +43,7 @@ function HomePage() {
   console.log(albums);
   return (
     <>
-      <h2 className="text-center">Album meno costosi:</h2>
+      <h2 className="text-center">Album più venduti:</h2>
           <Carousel albums={filterAlbumsLowCost} />
       <h2 className="text-center">Album più recenti:</h2>
           <CarouselBis albums={filterAlbumsMoreBuy} />
