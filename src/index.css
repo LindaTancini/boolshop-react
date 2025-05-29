@@ -11,8 +11,21 @@
   filter: invert(1);
 }
 
+/* ALBUM DETAILS */
+
+.bg-album-details-shadow {
+  background-color: #f8f9fa;
+}
+
+.wishlist-button {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+}
+
 /* IMG */
 img {
-  max-height: 500px;
+  max-height: 300px;
+  max-width: 300px;
   object-fit: contain;
 }
