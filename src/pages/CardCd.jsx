@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useContext } from "react";
 import ContextLoader from "../contexts/contextLoader";
@@ -7,14 +6,26 @@ import ContextError from "../contexts/contextError";
 
 function CardCd() {
   const [albums, setAlbums] = useState([]);
-
+  const [search, setSearch] = useState([]);
 
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
 
+  let api = 'http://127.0.0.1:3000/api/album/filter/cd';
+
+  function searchAlbum(e) {
+    e.preventDefault();
+    getAlbums();
+  }
+
   function getAlbums() {
     setIsLoading(true);
-    axios.get('http://127.0.0.1:3000/api/album/filter/cd')
+    axios
+      .get(api, {
+        params: {
+          search
+        }
+      })
       .then((res) => {
         setAlbums(res.data);
       })
@@ -27,24 +38,34 @@ function CardCd() {
       });
   }
 
-  useEffect(getAlbums, []);
+  useEffect(getAlbums, [search]);
   console.log(albums)
 
   return (
     <>
+      <form onSubmit={searchAlbum}>
+        <label htmlFor="searchAlbum" />
+        <input type="text"
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          placeholder="album to search..."
+        />
+        <button className="btn btn-outline-danger mx-2" type="submit">Search</button>
+      </form>
+      
       <div className="row">
         {albums.map(album => (
-          <div className="col-12 col-md-4 gy-3" key={album.id}>
-            <div className="card g-3 h-100">
-              <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name}/>
+            <div className="col-12 col-md-4 gy-3" key={album.id}>
+              <div className="card g-3 h-100">
+                <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
                 <div className="card-body">
                   <p className="card-text">
                     Titolo: <strong>{album.name}</strong>
                     {/* Artista: <strong>{album.artist.name}</strong> */}
                   </p>
                 </div>
+              </div>
             </div>
-          </div>
         ))}
       </div>
     </>
