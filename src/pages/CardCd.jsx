@@ -102,6 +102,9 @@ function CardCd() {
                   <p className='card-text'>
                     Prezzo: <strong>{album.price} €</strong>
                   </p>
+                  <p className='card-text'>
+                    Data: <strong>{new Date(album.date).toLocaleDateString("it-IT")}</strong>
+                  </p>
                 </div>
               </div>
             </Link>
