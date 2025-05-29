@@ -7,7 +7,8 @@ import ContextError from "../contexts/contextError";
 function CardVinyl() {
   const [albums, setAlbums] = useState([]);
   const [search, setSearch] = useState([]);
-
+  const [filter, setFilter] = useState('');
+  
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
 
@@ -39,7 +40,7 @@ function CardVinyl() {
       });
   }
 
-  useEffect(getAlbums, [search]);
+  useEffect(getAlbums, [filter, search]);
   console.log(albums)
 
   return (
@@ -53,7 +54,13 @@ function CardVinyl() {
         />
         <button className="btn btn-outline-danger mx-2" type="submit">Search</button>
       </form>
-
+      <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+        <option value="">---</option>
+        <option>ordine crescente per nome</option>
+        <option>ordine decrescente per nome</option>
+        <option>i più vecchi</option>
+        <option>i più nuovi</option>
+      </select>
       <div className="row">
         {albums.map(album => (
           <div className="col-12 col-md-4 gy-3" key={album.id}>
