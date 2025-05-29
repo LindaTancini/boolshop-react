@@ -67,7 +67,7 @@ function CardVinyl() {
         {albums.map(album => (
           <div className="col-12 col-md-4 gy-3" key={album.id}>
             <Link to={`/album/${album.slug}`} className="text-decoration-none">
-              <div className="card g-3 h-100">
+              <div className="card g-3 h-100 p-2">
                 <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
                 <div className="card-body">
                   <p className="card-text">
