@@ -7,6 +7,7 @@ import ContextError from "../contexts/contextError";
 function CardCd() {
   const [albums, setAlbums] = useState([]);
   const [search, setSearch] = useState([]);
+  const [filter, setFilter] = useState('');
 
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
@@ -38,7 +39,7 @@ function CardCd() {
       });
   }
 
-  useEffect(getAlbums, [search]);
+  useEffect(getAlbums, [filter, search]);
   console.log(albums)
 
   return (
@@ -52,6 +53,16 @@ function CardCd() {
         />
         <button className="btn btn-outline-danger mx-2" type="submit">Search</button>
       </form>
+      <div>
+        <label htmlFor="filterAlbum">Filtra per</label>
+        <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+          <option value="">---</option>
+          <option>ordine crescente per nome</option>
+          <option>ordine decrescente per nome</option>
+          <option>i più vecchi</option>
+          <option>i più nuovi</option>
+        </select>
+      </div>
 
       <div className="row">
         {albums.map(album => (

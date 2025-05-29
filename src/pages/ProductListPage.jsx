@@ -7,6 +7,7 @@ function ProductListPage() {
 
     const [albums, setAlbums] = useState([]);
     // const [query, setQuery] = useState('');
+    const [filter, setFilter] = useState('');
     const [search, setSearch] = useState([]);
     const api = "http://127.0.0.1:3000/api/album/";
 
@@ -23,7 +24,8 @@ function ProductListPage() {
         axios
             .get(api, {
                 params: {
-                    search
+                    search,
+                    filter
                 }
             })
             .then((res) => {
@@ -38,7 +40,7 @@ function ProductListPage() {
             });
     }
 
-    useEffect(getAlbums, [search]);
+    useEffect(getAlbums, [filter, search]);
 
     return <>
 
@@ -51,6 +53,16 @@ function ProductListPage() {
             />
             <button className="btn btn-outline-danger mx-2" type="submit">Search</button>
         </form>
+        <div>
+            <label htmlFor="filterAlbum">Filtra per</label>
+            <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+                <option value="">---</option>
+                <option>ordine crescente per nome</option>
+                <option>ordine decrescente per nome</option>
+                <option>i più vecchi</option>
+                <option>i più nuovi</option>
+            </select>
+        </div>
         <div className="row">
             {albums.map(album => (
                 <div className="col-12 col-md-4 gy-3" key={album.id}>
