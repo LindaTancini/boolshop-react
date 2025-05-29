@@ -42,7 +42,7 @@ function GenresPage() {
                 to={`/genres/${element.slug}`}
                 className="text-decoration-none text-primary fw-bold"
               >
-                {e.name}
+                {element.name}
               </Link>
             </li>
           ))}
