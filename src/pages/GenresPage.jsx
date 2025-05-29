@@ -29,26 +29,31 @@ function GenresPage() {
   }, []);
 
   return (
-    <>
-      <div>
-        <h3>Generi musicali:</h3>
-        <ul className="list-group">
-          {genre.map((element) => (
-            <li
-              key={element.id}
-              className="list-group-item d-flex justify-content-between align-items-center"
+    <div className="container py-4">
+      <h3 className="text-center mb-4">
+        <i className="bi bi-music-note-list"></i> Generi musicali:
+      </h3>
+      <div className="row g-4">
+        {genre.map((element) => (
+          <div key={element.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+            <Link
+              to={`/genres/${element.slug}`}
+              className="card h-100 text-decoration-none text-dark shadow-sm"
             >
-              <Link
-                to={`/genres/${element.slug}`}
-                className="text-decoration-none text-primary fw-bold"
-              >
-                {element.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+              <div className="card-body d-flex flex-column align-items-center">
+                <div className=" d-flex justify-content-center align-items-center mb-3">
+                  <i className="bi bi-music-note text-primary fs-3"></i>
+                </div>
+                <h5 className="card-title text-center">{element.name}</h5>
+                <p className="card-text text-center text-muted">
+                  {element.description}
+                </p>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 
