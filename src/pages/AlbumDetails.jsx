@@ -42,7 +42,7 @@ function AlbumDetails() {
           <img
             src={album.imagePath}
             alt={album.title}
-            className="img-fluid rounded shadow-sm"
+            className="img-fluid rounded shadow-sm img-contain"
           />
         )}
 

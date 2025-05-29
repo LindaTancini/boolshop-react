@@ -19,7 +19,7 @@ function CarouselBis({ albums }) {
               <div className="d-flex justify-content-center">
                 <img
                   src={album.imagePath}
-                  className="img-fluid rounded"
+                  className="img-fluid rounded img-contain"
                   alt={album.title}
                 />
               </div>
