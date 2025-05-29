@@ -51,10 +51,20 @@ function ProductListPage() {
             />
             <button className="btn btn-outline-danger mx-2" type="submit">Search</button>
         </form>
-        <div>
-            {albums.map(album => <div key={album.id}>
-                <p>{album.title}</p>
-            </div>)}
+        <div className="row">
+            {albums.map(album => (
+                <div className="col-12 col-md-4 gy-3" key={album.id}>
+                    <div className="card g-3 h-100">
+                        <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
+                        <div className="card-body">
+                            <p className="card-text">
+                                Titolo: <strong>{album.title}</strong>
+                                {/* Artista: <strong>{album.artist.name}</strong> */}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </div>
     </>
 }
