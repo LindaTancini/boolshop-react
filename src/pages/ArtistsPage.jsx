@@ -33,8 +33,9 @@ const ArtistsPage = () => {
         return <div>Caricamento artisti</div>;
     }
 
+
     if (error) {
-        return <div style={{ color: 'red' }}>Errore: {error}</div>;
+        return <div className="alert alert-danger" role="alert">{error}</div>;
     }
 
     return (
