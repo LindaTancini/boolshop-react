@@ -48,7 +48,7 @@ function CardVinyl() {
         <input type="text"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
-          placeholder="album to search..."
+          placeholder="vinyl to search..."
         />
         <button className="btn btn-outline-danger mx-2" type="submit">Search</button>
       </form>
