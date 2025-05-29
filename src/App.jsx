@@ -13,6 +13,7 @@ import { useState } from "react";
 import ContextLoader from "./contexts/contextLoader";
 import ContextError from "./contexts/contextError";
 import AlbumDetails from "./pages/AlbumDetails";
+import AnGenrePage from "./pages/AnGenrePage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,6 +38,7 @@ function App() {
             </Route>
             <Route path="/genres" element={<DefaultLayout />}>
               <Route index element={<GenresPage />} />
+              <Route path="/genres/:slug" element={<AnGenrePage />} />
               <Route path=":slug" />
             </Route>
           </Routes>
