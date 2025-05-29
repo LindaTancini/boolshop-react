@@ -58,7 +58,7 @@ function CardVinyl() {
             placeholder="Cerca un Vinile..."
             aria-label="Search vinyl"
           />
-          <button className="btn btn-outline-secondary" type="submit">
+          <button className="btn btn-outline-danger" type="submit">
             Cerca
           </button>
         </div>

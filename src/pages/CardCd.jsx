@@ -57,7 +57,7 @@ function CardCd() {
             placeholder="Cerca un CD..."
             aria-label="Search CD"
           />
-          <button className="btn btn-outline-secondary" type="submit">
+          <button className="btn btn-outline-danger" type="submit">
             Cerca
           </button>
         </div>
