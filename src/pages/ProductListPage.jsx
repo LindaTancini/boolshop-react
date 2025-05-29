@@ -67,8 +67,8 @@ function ProductListPage() {
         <div className="row">
             {albums.map(album => (
                 <div className="col-12 col-md-4 gy-3" key={album.id}>
-                    <Link to={`/album/${album.slug}`}>
-                        <div className="card g-3 h-100">
+                    <Link to={`/album/${album.slug}`} className="text-decoration-none">
+                        <div className="card g-3 h-100 ">
                             <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
                             <div className="card-body">
                                 <p className="card-text">

@@ -19,7 +19,7 @@ function Carousel({ albums }) {
               className={`carousel-item ${index === 0 ? "active" : ""}`}
             >
               <div className="d-flex justify-content-center">
-                <Link to={`/album/${album.slug}`}>
+                <Link to={`/album/${album.slug}`} className="text-decoration-none">
                   <img
                     src={album.imagePath}
                     className="img-fluid rounded img-contain"
