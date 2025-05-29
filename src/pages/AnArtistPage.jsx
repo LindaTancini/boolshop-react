@@ -12,6 +12,7 @@ const AnArtistPage = () => {
         if (slug) {
             axios.get(`http://127.0.0.1:3000/api/artists/${slug}`)
                 .then(response => {
+                    console.log(response.data)
                     setArtist(response.data);
                     setLoading(false);
                 })
@@ -39,12 +40,15 @@ const AnArtistPage = () => {
     // Formattazione della data di nascita
     const birthDate = artist.birth_date ? new Date(artist.birth_date).toLocaleDateString() : 'N/D';
 
+    const imageUrl = artist.image_url ? `http://127.0.0.1:3000/${artist.image_url}` : '';
+
     return (
         <div className="container mt-4">
             <h1 className="mb-4">{artist.name}</h1>
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">Informazioni Artista</h5>
+                    <img src={imageUrl} className="img-fluid mb-3" alt={artist.name} />
                     <p className="card-text">
                         <strong>Data di Nascita:</strong> {birthDate}
                     </p>

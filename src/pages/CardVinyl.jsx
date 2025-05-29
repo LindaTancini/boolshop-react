@@ -27,6 +27,7 @@ function CardVinyl() {
         }
       })
       .then((res) => {
+        console.log(res.data)
         setAlbums(res.data);
       })
       .catch((err) => {
