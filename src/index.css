@@ -24,7 +24,7 @@
 }
 
 /* IMG */
-img {
+.img-contain {
   max-height: 300px;
   max-width: 300px;
   object-fit: contain;
