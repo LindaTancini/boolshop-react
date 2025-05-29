@@ -1,60 +1,55 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import ContextLoader from "../contexts/contextLoader";
+import ContextError from "../contexts/contextError";
 
 const ArtistsPage = () => {
-    const [artists, setArtists] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [artists, setArtists] = useState([]);
+  const api = "http://127.0.0.1:3000/api/artists";
+  const { setIsLoading } = useContext(ContextLoader);
+  const { setIsError } = useContext(ContextError);
 
-    useEffect(() => {
+  useEffect(() => {
+    setIsLoading(true);
+    setIsError(false);
 
-        axios.get('http://127.0.0.1:3000/api/artists')
-            .then(response => {
+    axios
+      .get(api)
+      .then((res) => {
+        setArtists(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        setIsError(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [api]);
 
-                setArtists(response.data);
-            })
-            .catch(err => {
+  if (!artists.length) return <p>Caricamento...</p>;
 
-                if (err.response) {
-                    setError(`Errore: ${err.response.status} - ${err.response.data.message || 'Errore del server'}`);
-                } else if (err.request) {
-                    setError("Errore di rete: Nessuna risposta dal server.");
-                } else {
-                    setError(`Errore: ${err.message}`);
-                }
-            })
-            .finally(() => {
-
-                setLoading(false);
-            });
-    }, []);
-    if (loading) {
-        return <div>Caricamento artisti</div>;
-    }
-
-
-    if (error) {
-        return <div className="alert alert-danger" role="alert">{error}</div>;
-    }
-
-    return (
-        <div>
-            <h1>Elenco Artisti</h1>
-            <ul className="list-group">
-                {artists.map((artist) => (
-                    <li key={artist.id} className="list-group-item d-flex justify-content-between align-items-center">
-
-                        <Link to={`/artists/${artist.slug}`} className="text-decoration-none text-primary fw-bold">
-
-                            {artist.name}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-
-        </div>
-    );
+  return (
+    <div>
+      <h1>Elenco Artisti</h1>
+      <ul className="list-group">
+        {artists.map((artist) => (
+          <li
+            key={artist.id}
+            className="list-group-item d-flex justify-content-between align-items-center"
+          >
+            <Link
+              to={`/artists/${artist.slug}`}
+              className="text-decoration-none text-primary fw-bold"
+            >
+              {artist.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default ArtistsPage;
