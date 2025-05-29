@@ -10,10 +10,12 @@ function HomePage() {
   const api = "http://127.0.0.1:3000/api/album";
 
   const filterAlbumsLowCost = albums.filter(
-    (album) => parseFloat(album.price) <= 20
+    (album) => parseFloat(album.price) <= 13
   );
+
+  let data_specifica = new Date(2020, 1, 1);
   const filterAlbumsMoreBuy = albums.filter(
-    (album) => Date.parse(album.date) < Date.now()
+    (album) => Date.parse(album.date) > Date.parse(data_specifica)
   );
   console.log("Costo più basso: ", filterAlbumsLowCost);
   console.log("Più recenti: ", filterAlbumsMoreBuy);
@@ -41,10 +43,10 @@ function HomePage() {
   console.log(albums);
   return (
     <>
-      <h2 className="text-center">Album meno costosi:</h2>
-      <Carousel albums={albums} />
+      <h2 className="text-center">Album più venduti:</h2>
+          <Carousel albums={filterAlbumsLowCost} />
       <h2 className="text-center">Album più recenti:</h2>
-      <CarouselBis albums={albums} />
+          <CarouselBis albums={filterAlbumsMoreBuy} />
     </>
   );
 }
