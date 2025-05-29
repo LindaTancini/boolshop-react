@@ -55,7 +55,7 @@ function ProductListPage() {
             placeholder="Cerca un CD o un Vinile..."
             aria-label="Search cd or vinyl"
           />
-          <button className="btn btn-outline-secondary" type="submit">
+          <button className="btn btn-outline-danger" type="submit">
             Cerca
           </button>
         </div>
