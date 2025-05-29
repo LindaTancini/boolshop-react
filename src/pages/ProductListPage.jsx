@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import ContextLoader from "../contexts/contextLoader";
 import ContextError from "../contexts/contextError";
 
@@ -66,15 +67,17 @@ function ProductListPage() {
         <div className="row">
             {albums.map(album => (
                 <div className="col-12 col-md-4 gy-3" key={album.id}>
-                    <div className="card g-3 h-100">
-                        <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
-                        <div className="card-body">
-                            <p className="card-text">
-                                Titolo: <strong>{album.name}</strong>
-                                {/* Artista: <strong>{album.artist.name}</strong> */}
-                            </p>
+                    <Link to={`/album/${album.slug}`}>
+                        <div className="card g-3 h-100">
+                            <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
+                            <div className="card-body">
+                                <p className="card-text">
+                                    Titolo: <strong>{album.name}</strong>
+                                    {/* Artista: <strong>{album.artist.name}</strong> */}
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </Link>
                 </div>
             ))}
         </div>

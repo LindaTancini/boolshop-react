@@ -1,5 +1,6 @@
 //Importazioni
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 function CarouselBis({ albums }) {
   const navigate = useNavigate();
@@ -17,18 +18,20 @@ function CarouselBis({ albums }) {
               className={`carousel-item ${index === 0 ? "active" : ""}`}
             >
               <div className="d-flex justify-content-center">
-                <img
-                  src={album.imagePath}
-                  className="img-fluid rounded img-contain"
-                  alt={album.title}
-                />
+                <Link to={`/album/${album.slug}`}>
+                  <img
+                    src={album.imagePath}
+                    className="img-fluid rounded img-contain"
+                    alt={album.title}
+                  />
+                </Link>
               </div>
               <div className="text-black  p-3 mt-2 rounded w-100 text-center">
                 <h5>{album.title}</h5>
                 <p>{album.price} €</p>
                 <button
                   type="button"
-                  class="btn btn-outline-secondary"
+                  className="btn btn-outline-secondary"
                   onClick={() => navigate(`/album/${album.slug}`)}
                 >
                   Più Dettagli

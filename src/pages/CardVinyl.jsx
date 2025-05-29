@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import ContextLoader from "../contexts/contextLoader";
 import ContextError from "../contexts/contextError";
@@ -8,7 +9,7 @@ function CardVinyl() {
   const [albums, setAlbums] = useState([]);
   const [search, setSearch] = useState([]);
   const [filter, setFilter] = useState('');
-  
+
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
 
@@ -65,15 +66,17 @@ function CardVinyl() {
       <div className="row">
         {albums.map(album => (
           <div className="col-12 col-md-4 gy-3" key={album.id}>
-            <div className="card g-3 h-100">
-              <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
-              <div className="card-body">
-                <p className="card-text">
-                  Titolo: <strong>{album.name}</strong>
-                  {/* Artista: <strong>{album.artist.name}</strong> */}
-                </p>
+            <Link to={`/album/${album.slug}`}>
+              <div className="card g-3 h-100">
+                <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
+                <div className="card-body">
+                  <p className="card-text">
+                    Titolo: <strong>{album.name}</strong>
+                    {/* Artista: <strong>{album.artist.name}</strong> */}
+                  </p>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>
