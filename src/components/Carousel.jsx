@@ -30,7 +30,7 @@ function Carousel({ albums }) {
                 <button
                   type="button"
                   class="btn btn-outline-secondary"
-                  onClick={() => navigate(`/album/${album.id}`)}
+                  onClick={() => navigate(`/album/${album.slug}`)}
                 >
                   Più Dettagli
                 </button>

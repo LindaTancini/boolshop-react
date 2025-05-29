@@ -10,11 +10,11 @@ import AnArtistPage from "./pages/AnArtistPage";
 import CardCd from "./pages/CardCd";
 import CardVinyl from "./pages/CardVinyl";
 import { useState } from "react";
-import ContextLoader from "./contexts/contextLoader"
-import ContextError from "./contexts/contextError"
+import ContextLoader from "./contexts/contextLoader";
+import ContextError from "./contexts/contextError";
+import AlbumDetails from "./pages/AlbumDetails";
 
 function App() {
-
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -22,13 +22,13 @@ function App() {
     <ContextError.Provider value={{ isError, setIsError }}>
       <ContextLoader.Provider value={{ isLoading, setIsLoading }}>
         <Router>
-
           <Routes>
             <Route path="/" element={<DefaultLayout />}>
               <Route index element={<HomePage />} />
               <Route path="products" element={<ProductListPage />} />
               <Route path="products/cd" element={<CardCd />} />
               <Route path="products/vinyl" element={<CardVinyl />} />
+              <Route path="album/:slug" element={<AlbumDetails />} />
               <Route path="cart" element={<CartPage />} />
             </Route>
             <Route path="/artists" element={<DefaultLayout />}>
@@ -40,9 +40,7 @@ function App() {
               <Route path=":slug" />
             </Route>
           </Routes>
-
         </Router>
-
       </ContextLoader.Provider>
     </ContextError.Provider>
   );
