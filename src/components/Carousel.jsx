@@ -20,7 +20,7 @@ function Carousel({ albums }) {
               <div className="d-flex justify-content-center">
                 <img
                   src={album.imagePath}
-                  className="d-block w-100 mx-auto"
+                  className="img-fluid rounded"
                   alt={album.title}
                 />
               </div>
