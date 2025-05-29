@@ -24,7 +24,8 @@ function CardVinyl() {
     axios
       .get(api, {
         params: {
-          search
+          search,
+          filter
         }
       })
       .then((res) => {
