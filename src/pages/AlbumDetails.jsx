@@ -63,7 +63,8 @@ function AlbumDetails() {
             <strong>Formato:</strong> {album.format}
           </p>
           <p className="fs-5 mb-4">
-            <strong>Data di rilascio:</strong> {album.date}
+            <strong>Data di rilascio:</strong>
+            {new Date(album.date).toLocaleDateString("it-IT")}
           </p>
 
           <div className="d-flex justify-content-center  gap-3">
