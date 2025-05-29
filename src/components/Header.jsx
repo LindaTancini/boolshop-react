@@ -46,6 +46,15 @@ function Header() {
                 <li>
                   <NavLink
                     className="dropdown-item"
+                    to="/products"
+                    onClick={closeMenu}
+                  >
+                    Tutti i prodotti
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
                     to="/products/cd"
                     onClick={closeMenu}
                   >
