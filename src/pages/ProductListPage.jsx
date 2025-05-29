@@ -13,7 +13,7 @@ function ProductListPage() {
     const { setIsLoading } = useContext(ContextLoader);
     const { setIsError } = useContext(ContextError);
 
-    function searchAlbum(e){
+    function searchAlbum(e) {
         e.preventDefault();
         getAlbums();
     }
@@ -58,7 +58,7 @@ function ProductListPage() {
                         <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
                         <div className="card-body">
                             <p className="card-text">
-                                Titolo: <strong>{album.title}</strong>
+                                Titolo: <strong>{album.name}</strong>
                                 {/* Artista: <strong>{album.artist.name}</strong> */}
                             </p>
                         </div>
