@@ -75,6 +75,7 @@ function CardCd() {
                 <div className="card-body">
                   <p className="card-text">Titolo: <strong>{album.name}</strong></p>
                   <p className='card-text'>Artista: <strong>{album.artist.name}</strong></p>
+                  <p className='card-text'>Prezzo: <strong>{album.price}</strong></p>
                 </div>
               </div>
             </Link>

@@ -70,10 +70,9 @@ function CardVinyl() {
               <div className="card g-3 h-100 p-2">
                 <img src={album.imagePath} className="card-img-top img-fluid rounded img-filter-album" alt={album.name} />
                 <div className="card-body">
-                  <p className="card-text">
-                    Titolo: <strong>{album.name}</strong>
-                    {/* Artista: <strong>{album.artist.name}</strong> */}
-                  </p>
+                  <p className="card-text">Titolo: <strong>{album.name}</strong></p>
+                  <p className='card-text'>Artista: <strong>{album.artist.name}</strong></p>
+                  <p className='card-text'>Prezzo: <strong>{album.price}</strong></p>
                 </div>
               </div>
             </Link>
