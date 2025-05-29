@@ -1,4 +1,8 @@
+//Importazioni
+import { useNavigate } from "react-router-dom";
+
 function CarouselBis({ albums }) {
+  const navigate = useNavigate();
   return (
     <div className="container my-5">
       <div
@@ -22,6 +26,13 @@ function CarouselBis({ albums }) {
               <div className="text-black  p-3 mt-2 rounded w-100 text-center">
                 <h5>{album.title}</h5>
                 <p>{album.price} €</p>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary"
+                  onClick={() => navigate(`/album/${album.id}`)}
+                >
+                  Più Dettagli
+                </button>
               </div>
             </div>
           ))}
