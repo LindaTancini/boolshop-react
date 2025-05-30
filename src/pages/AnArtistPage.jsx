@@ -12,7 +12,6 @@ const AnArtistPage = () => {
         if (slug) {
             axios.get(`http://127.0.0.1:3000/api/artists/${slug}`)
                 .then(response => {
-                    console.log(response.data)
                     setArtist(response.data);
                     setLoading(false);
                 })

@@ -17,7 +17,6 @@ function AlbumDetails() {
     axios
       .get(api)
       .then((res) => {
-        console.log(res.data);
         setAlbum(res.data);
       })
       .catch((err) => {

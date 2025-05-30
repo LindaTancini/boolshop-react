@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function Carousel({ albums }) {
   const navigate = useNavigate();
-  console.log(albums);
   return (
     <div className="container my-5">
       <div

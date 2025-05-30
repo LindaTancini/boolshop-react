@@ -17,8 +17,6 @@ function HomePage() {
   const filterAlbumsMoreBuy = albums.filter(
     (album) => Date.parse(album.date) > Date.parse(data_specifica)
   );
-  console.log("Costo più basso: ", filterAlbumsLowCost);
-  console.log("Più recenti: ", filterAlbumsMoreBuy);
 
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
@@ -40,13 +38,12 @@ function HomePage() {
   }
 
   useEffect(getAlbums, []);
-  console.log(albums);
   return (
     <>
       <h2 className="text-center">Album più venduti:</h2>
-          <Carousel albums={filterAlbumsLowCost} />
+      <Carousel albums={filterAlbumsLowCost} />
       <h2 className="text-center">Album più recenti:</h2>
-          <CarouselBis albums={filterAlbumsMoreBuy} />
+      <CarouselBis albums={filterAlbumsMoreBuy} />
     </>
   );
 }

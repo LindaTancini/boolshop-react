@@ -2,13 +2,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layout/DefaultLayout";
 import HomePage from "./pages/HomePage";
-import ProductListPage from "./pages/ProductListPage";
+import AlbumListPage from "./pages/AlbumListPage";
 import CartPage from "./pages/CartPage";
 import GenresPage from "./pages/GenresPage";
 import ArtistsPage from "./pages/ArtistsPage";
 import AnArtistPage from "./pages/AnArtistPage";
-import CardCd from "./pages/CardCd";
-import CardVinyl from "./pages/CardVinyl";
 import { useState } from "react";
 import ContextLoader from "./contexts/contextLoader";
 import ContextError from "./contexts/contextError";
@@ -26,9 +24,9 @@ function App() {
           <Routes>
             <Route path="/" element={<DefaultLayout />}>
               <Route index element={<HomePage />} />
-              <Route path="products" element={<ProductListPage />} />
-              <Route path="products/cd" element={<CardCd />} />
-              <Route path="products/vinyl" element={<CardVinyl />} />
+              <Route path="products" element={<AlbumListPage />} />
+              <Route path="products/cd" element={<AlbumListPage format="cd" />} />
+              <Route path="products/vinyl" element={<AlbumListPage format="vinyl" />} />
               <Route path="album/:slug" element={<AlbumDetails />} />
               <Route path="cart" element={<CartPage />} />
             </Route>

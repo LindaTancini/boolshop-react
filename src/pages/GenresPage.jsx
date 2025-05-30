@@ -16,7 +16,6 @@ function GenresPage() {
     axios
       .get(api)
       .then((res) => {
-        console.log(res.data);
         setGenre(res.data);
       })
       .catch((err) => {
