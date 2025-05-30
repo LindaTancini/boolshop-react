@@ -25,8 +25,6 @@ function App() {
             <Route path="/" element={<DefaultLayout />}>
               <Route index element={<HomePage />} />
               <Route path="products" element={<AlbumListPage />} />
-              <Route path="products/cd" element={<AlbumListPage format="cd" />} />
-              <Route path="products/vinyl" element={<AlbumListPage format="vinyl" />} />
               <Route path="album/:slug" element={<AlbumDetails />} />
               <Route path="cart" element={<CartPage />} />
             </Route>
