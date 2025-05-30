@@ -42,7 +42,8 @@ function AlbumListPageContent({ format = '' }) {
     setSelectedFormat(params.get("format") || "");
     setSelectedGenre(params.get("genre") || "");
     setSelectedArtist(params.get("artist") || "");
-    setPriceRange(params.get("price-range").split(',') ?? "");
+    const priceRangeParam = params.get("price-range");
+    setPriceRange(priceRangeParam ? priceRangeParam.split(",") : minMaxPrice);
     setSearch(params.get("search") || "");
     setFilter(params.get("filter") || "");
   }, []);
