@@ -11,7 +11,7 @@ function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="navbar navbar-expand-sm navbar-dark bg-header-blue shadow-sm">
+    <header className="navbar navbar-expand-sm navbar-dark bg-header-violet shadow-sm">
       <div className="container">
         {/* LOGO */}
         <Link className="navbar-brand fw-bold fs-4 text-white" to="/">
@@ -33,45 +33,16 @@ function Header() {
           id="navbarNav"
         >
           <ul className="navbar-nav ms-auto align-items-center">
-            <li className="nav-item dropdown">
-              <span
-                className="nav-link dropdown-toggle text-white d-flex align-items-center gap-1"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
+            <li className="nav-item">
+              <NavLink
+                className="nav-link text-white d-flex align-items-center gap-1"
+                to="/products"
+                onClick={closeMenu}
               >
-                <i className="bi bi-disc"></i> MUSICA
-              </span>
-              <ul className="dropdown-menu">
-                <li>
-                  <NavLink
-                    className="dropdown-item"
-                    to="/products"
-                    onClick={closeMenu}
-                  >
-                    Tutti i prodotti
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="dropdown-item"
-                    to="/products/cd"
-                    onClick={closeMenu}
-                  >
-                    CD
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className="dropdown-item"
-                    to="/products/vinyl"
-                    onClick={closeMenu}
-                  >
-                    Vinili
-                  </NavLink>
-                </li>
-              </ul>
+                <i className="bi bi-shop"></i> NEGOZIO
+              </NavLink>
             </li>
+
             <li className="nav-item">
               <NavLink
                 className="nav-link text-white d-flex align-items-center gap-1"

@@ -23,9 +23,24 @@ export default function AlbumCard({ album }) {
             <p className="card-text mb-1">
               <span className="fw-semibold">Prezzo:</span> {album.price} €
             </p>
-            <p className="card-text mb-1">
-              <span className="fw-semibold">Data:</span> {new Date(album.date).toLocaleDateString('it-IT')}
+            <p className="card-text mb-3">
+              <span className="fw-semibold">Data di uscita:</span> {new Date(album.date).toLocaleDateString('it-IT')}
             </p>
+            <div className="d-flex justify-content-end gap-3 align-items-center">
+            <button
+              type="button"
+              title="Aggiungi al carrello"
+              className="btn btn-outline-secondary cart-button-card"
+            >
+              <i className="bi bi-cart-plus"></i>
+            </button>
+            <button
+              className="btn btn-sm btn-outline-danger rounded-circle wishlist-button-card"
+              title="Aggiungi alla wishlist"
+            >
+              <i className="fas fa-heart"></i>
+            </button>
+          </div>
           </div>
         </div>
       </Link>
