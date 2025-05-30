@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FilterProvider, useFilter } from '../contexts/FilterContext';
 import useAlbums from '../hooks/useAlbums';
 import useGenres from '../hooks/useGenres';
@@ -11,7 +11,6 @@ import PriceRangeFilter from '../components/filters/PriceRangeFilter';
 import SearchInput from '../components/filters/SearchInput';
 import AlbumGrid from '../components/albums/AlbumGrid';
 import ErrorMessage from '../components/ErrorMessage';
-import { useNavigate, useLocation } from "react-router-dom";
 
 // Componente principale per la pagina di listing album (tutti, cd, vinili)
 function AlbumListPageContent({ format = '' }) {
@@ -24,8 +23,8 @@ function AlbumListPageContent({ format = '' }) {
   const minMaxPrice = usePriceRange();
   // Stato e azioni filtri dal context centralizzato (FilterContext)
   const {
-    filter, setFilter,                 // ordinamento
-    search, setSearch,                 // ricerca testuale
+    filter, setFilter, // ordinamento
+    search, setSearch, // ricerca testuale
     selectedFormat, setSelectedFormat, // filtro formato
     selectedGenre, setSelectedGenre,   // filtro genere
     selectedArtist, setSelectedArtist, // filtro artista
@@ -89,7 +88,7 @@ function AlbumListPageContent({ format = '' }) {
   }
 
   // Aggiorna la lista filtrata ogni volta che cambia un filtro (eccetto ricerca testuale)
-  useEffect(() => {
+  React.useEffect(() => {
     setFiltered(filterAlbums(''));
     // eslint-disable-next-line
   }, [albums, filter, selectedFormat, selectedGenre, selectedArtist, priceRange]);
@@ -104,40 +103,40 @@ function AlbumListPageContent({ format = '' }) {
 
   return (
     <>
-    <div className='d-flex justify-content-between'>
-      <div className='d-flex align-items-start'>
-        <div className='me-2'>
-        <FormatSelect formats={[...new Set(albums.map(a => a.format))]} value={selectedFormat} onChange={e => setSelectedFormat(e.target.value)} />
+      <div className='d-flex justify-content-between'>
+        <div className='d-flex align-items-start'>
+          <div className='me-2'>
+            <FormatSelect formats={[...new Set(albums.map(a => a.format))]} value={selectedFormat} onChange={e => setSelectedFormat(e.target.value)} />
+          </div>
+          <div className='me-2'>
+            <GenreSelect genres={genres} value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)} />
+          </div>
+          <div className='me-2'>
+            <ArtistSelect artists={artists} value={selectedArtist} onChange={e => setSelectedArtist(e.target.value)} />
+          </div>
         </div>
-        <div className='me-2'>
-        <GenreSelect genres={genres} value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)} />
-        </div>
-        <div className='me-2'>
-        <ArtistSelect artists={artists} value={selectedArtist} onChange={e => setSelectedArtist(e.target.value)} />
+        <div className='d-flex flex-column'>
+          <SearchInput value={search} onChange={e => setSearch(e.target.value)} onSubmit={handleSearchSubmit} />
+          <div className="d-flex justify-content-end align-items-center mb-4 gap-2">
+            <span className="fw-semibold">Ordina per:</span>
+            <select
+              id="filterAlbum"
+              className="form-select w-auto d-inline-block"
+              value={filter}
+              onChange={e => setFilter(e.target.value)}
+            >
+              <option value="">Predefinito</option>
+              <option>Alfabetio, A-Z</option>
+              <option>Alfabetio, Z-A</option>
+              <option>Data, Dal Più Nuovo</option>
+              <option>Data, Dal Più Vecchio</option>
+            </select>
+          </div>
         </div>
       </div>
-      <div className='d-flex flex-column'>
-        <SearchInput value={search} onChange={e => setSearch(e.target.value)} onSubmit={handleSearchSubmit} />
-        <div className="d-flex justify-content-end align-items-center mb-4 gap-2">
-          <span className="fw-semibold">Ordina per:</span>
-          <select
-            id="filterAlbum"
-            className="form-select w-auto d-inline-block"
-            value={filter}
-            onChange={e => setFilter(e.target.value)}
-          >
-            <option value="">Predefinito</option>
-            <option>Alfabetio, A-Z</option>
-            <option>Alfabetio, Z-A</option>
-            <option>Data, Dal Più Nuovo</option>
-            <option>Data, Dal Più Vecchio</option>
-          </select>
-        </div>
+      <div className='container-filter-price'>
+        <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
       </div>
-    </div>
-    <div className='container-filter-price'>
-     <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
-    </div>
       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
       <AlbumGrid albums={filtered} />
     </>
@@ -151,56 +150,3 @@ export default function AlbumListPage({ format = '' }) {
     </FilterProvider>
   );
 }
-
-
-
-// {/* Filtri principali: ogni filtro è un componente atomico e riutilizzabile */}
-//       <div className="mb-4 row g-2">
-//         <div className="col-md-2">
-//           {/* Select formato: aggiorna istantaneamente il filtro */}
-
-//           <FormatSelect formats={[...new Set(albums.map(a => a.format))]} value={selectedFormat} onChange={e => setSelectedFormat(e.target.value)} />
-
-//         </div>
-//         <div className="col-md-2">
-//           {/* Select genere: aggiorna istantaneamente il filtro */}
-
-//           <GenreSelect genres={genres} value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)} />
-//         </div>
-
-//         <div className="col-md-2">
-//           {/* Select artista: aggiorna istantaneamente il filtro */}
-
-//           <ArtistSelect artists={artists} value={selectedArtist} onChange={e => setSelectedArtist(e.target.value)} />
-//         </div>
-
-//       </div>
-//         <div className="col-md-3">
-//           {/* Slider prezzo: applica il filtro solo su rilascio (UX ottimale) */}
-//           <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
-//         </div>
-//         <div className="col-md-3">
-//           {/* Ricerca testuale: applica il filtro solo al submit */}
-//           <SearchInput value={search} onChange={e => setSearch(e.target.value)} onSubmit={handleSearchSubmit} />
-//           </div>
-//         {/* Ordinamento: select istantaneo */}
-//         <div className="d-flex justify-content-end align-items-center mb-4 gap-2">
-          
-//           <span className="fw-semibold">Ordina per:</span>
-//           <select
-//             id="filterAlbum"
-//             className="form-select w-auto d-inline-block"
-//             value={filter}
-//             onChange={e => setFilter(e.target.value)}
-//           >
-//             <option value="">Predefinito</option>
-//             <option>Alfabetio, A-Z</option>
-//             <option>Alfabetio, Z-A</option>
-//             <option>Data, Dal Più Nuovo</option>
-//             <option>Data, Dal Più Vecchio</option>
-//           </select>
-//         </div>
-      
-//       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
-//       <AlbumGrid albums={filtered} />
-//     </>
