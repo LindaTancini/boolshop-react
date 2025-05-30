@@ -33,6 +33,31 @@ function AlbumListPageContent({ format = '' }) {
   // Stato locale per la lista filtrata (aggiornata istantaneamente tranne che per la ricerca testuale)
   const [filtered, setFiltered] = useState([]);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setSelectedFormat(params.get("format") || "");
+    setSelectedGenre(params.get("genre") || "");
+    setSelectedArtist(params.get("artist") || "");
+    const priceRangeParam = params.get("price-range");
+    setPriceRange(priceRangeParam ? priceRangeParam.split(",") : minMaxPrice);
+    setSearch(params.get("search") || "");
+    setFilter(params.get("filter") || "");
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (selectedFormat) params.set("format", selectedFormat);
+    if (selectedGenre) params.set("genre", selectedGenre);
+    if (selectedArtist) params.set("artist", selectedArtist);
+    if (priceRange) params.set("price-range", priceRange);
+    if (search) params.set("search", search);
+    if (filter) params.set("filter", filter);
+    navigate({ search: params.toString() }, { replace: true });
+  }, [selectedFormat, selectedGenre, selectedArtist, priceRange, search, filter]);
+
   // Funzione di filtraggio locale: applica tutti i filtri istantanei (formato, genere, artista, prezzo, ordinamento)
   // La ricerca testuale viene applicata solo al submit
   function filterAlbums(searchText = '') {
@@ -79,18 +104,15 @@ function AlbumListPageContent({ format = '' }) {
   return (
     <>
       <div className='d-flex justify-content-between'>
-        <div className='row'>
-          <div className='col-4'>
+        <div className='d-flex align-items-start'>
+          <div className='me-2'>
             <FormatSelect formats={[...new Set(albums.map(a => a.format))]} value={selectedFormat} onChange={e => setSelectedFormat(e.target.value)} />
           </div>
-          <div className='col-4'>
+          <div className='me-2'>
             <GenreSelect genres={genres} value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)} />
           </div>
-          <div className='col-4'>
+          <div className='me-2'>
             <ArtistSelect artists={artists} value={selectedArtist} onChange={e => setSelectedArtist(e.target.value)} />
-          </div>
-          <div className='col-12'>
-            <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
           </div>
         </div>
         <div className='d-flex flex-column'>
@@ -111,6 +133,9 @@ function AlbumListPageContent({ format = '' }) {
             </select>
           </div>
         </div>
+      </div>
+      <div className='container-filter-price'>
+        <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
       </div>
       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
       <AlbumGrid albums={filtered} />
