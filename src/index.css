@@ -1,11 +1,7 @@
 /* COLOR */
 
-body{
-  background-color: #DEE2E6;
-}
-
-.bg-header-blue {
-  background-color: #1b263b;
+body {
+  background-color: #dee2e6;
 }
 
 /* CAROUSEL */
@@ -29,13 +25,13 @@ body{
 
 /* ALBUM CARD */
 
-.wishlist-button-card{
+.wishlist-button-card {
   width: 25px;
   height: 25px;
   padding: 0;
 }
 
-.cart-button-card{
+.cart-button-card {
   width: 25px;
   height: 25px;
   padding: 0;
@@ -47,8 +43,25 @@ body{
   max-width: 300px;
   object-fit: contain;
 }
-.img-filter-album{
+.img-filter-album {
   max-height: 300px;
   max-width: 300px;
   margin: auto;
+}
+
+/* HEADER */
+
+.bg-header-blue {
+  background-color: #4b0082;
+}
+.nav-link.text-white:hover {
+  color: #ff6f61;
+}
+.navbar-brand {
+  color: #89cff0 !important;
+}
+
+.nav-link.active {
+  border-bottom: 2px solid #ff6f61;
+  color: #ff6f61 !important;
 }

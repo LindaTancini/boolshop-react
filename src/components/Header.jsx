@@ -39,7 +39,7 @@ function Header() {
                 to="/products"
                 onClick={closeMenu}
               >
-                <i class="bi bi-shop"></i> NEGOZIO
+                <i className="bi bi-shop"></i> NEGOZIO
               </NavLink>
             </li>
 
