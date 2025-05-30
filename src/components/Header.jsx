@@ -11,7 +11,7 @@ function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="navbar navbar-expand-sm navbar-dark bg-header-blue shadow-sm">
+    <header className="navbar navbar-expand-sm navbar-dark bg-header-violet shadow-sm">
       <div className="container">
         {/* LOGO */}
         <Link className="navbar-brand fw-bold fs-4 text-white" to="/">

@@ -24,14 +24,14 @@ function Carousel({ albums }) {
                 >
                   <img
                     src={album.imagePath}
-                    className="img-fluid rounded img-contain"
+                    className="img-fluid rounded img-contain img-hover-effect"
                     alt={album.title}
                   />
                 </Link>
               </div>
               <div className="text-black  p-3 mt-2 rounded w-100 text-center">
                 <h5>{album.title}</h5>
-                <p>{album.price} €</p>
+                <p className="album-price">{album.price} €</p>
                 <button
                   type="button"
                   className="btn btn-outline-danger"
