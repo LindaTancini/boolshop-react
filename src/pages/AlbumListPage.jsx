@@ -104,7 +104,7 @@ function AlbumListPageContent({ format = '' }) {
 
   return (
     <>
-      <div className='d-flex justify-content-between'>
+      <div className='d-flex justify-content-between mt-4'>
         <div className='row'>
           <div className='col-4'>
             <FormatSelect formats={[...new Set(albums.map(a => a.format))]} value={selectedFormat} onChange={e => setSelectedFormat(e.target.value)} />
