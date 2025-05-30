@@ -105,15 +105,18 @@ function AlbumListPageContent({ format = '' }) {
   return (
     <>
       <div className='d-flex justify-content-between'>
-        <div className='d-flex align-items-start'>
-          <div className='me-2'>
+        <div className='row'>
+          <div className='col-4'>
             <FormatSelect formats={[...new Set(albums.map(a => a.format))]} value={selectedFormat} onChange={e => setSelectedFormat(e.target.value)} />
           </div>
-          <div className='me-2'>
+          <div className='col-4'>
             <GenreSelect genres={genres} value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)} />
           </div>
-          <div className='me-2'>
+          <div className='col-4'>
             <ArtistSelect artists={artists} value={selectedArtist} onChange={e => setSelectedArtist(e.target.value)} />
+          </div>
+          <div className='col-12'>
+            <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
           </div>
         </div>
         <div className='d-flex flex-column'>
@@ -134,9 +137,6 @@ function AlbumListPageContent({ format = '' }) {
             </select>
           </div>
         </div>
-      </div>
-      <div className='container-filter-price'>
-        <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
       </div>
       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
       <AlbumGrid albums={filtered} />
