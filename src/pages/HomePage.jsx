@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import ContextLoader from "../contexts/contextLoader";
 import ContextError from "../contexts/contextError";
+import Jumbotron from "../components/Jumbotron";
 
 function HomePage() {
   const [albums, setAlbums] = useState([]);
@@ -40,6 +41,7 @@ function HomePage() {
   useEffect(getAlbums, []);
   return (
     <>
+      <Jumbotron />
       <h2 className="text-center h2-homepage">Album più venduti</h2>
       <Carousel albums={filterAlbumsLowCost} />
       <h2 className="text-center h2-homepage">Album più recenti</h2>
