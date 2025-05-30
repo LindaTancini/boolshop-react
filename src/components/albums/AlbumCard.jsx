@@ -24,7 +24,7 @@ export default function AlbumCard({ album }) {
               <span className="fw-semibold">Prezzo:</span> {album.price} €
             </p>
             <p className="card-text mb-1">
-              <span className="fw-semibold">Data:</span> {new Date(album.date).toLocaleDateString('it-IT')}
+              <span className="fw-semibold">Data di uscita:</span> {new Date(album.date).toLocaleDateString('it-IT')}
             </p>
           </div>
         </div>
