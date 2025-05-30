@@ -18,7 +18,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
       connect: true,
       range: { min, max },
       step: 0.01,
-      tooltips: [true, true],
+      tooltips: true,
       format: {
         to: v => Number(v).toFixed(2),
         from: v => Number(v)

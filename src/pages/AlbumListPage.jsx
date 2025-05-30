@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FilterProvider, useFilter } from '../contexts/FilterContext';
 import useAlbums from '../hooks/useAlbums';
 import useGenres from '../hooks/useGenres';
@@ -11,6 +11,7 @@ import PriceRangeFilter from '../components/filters/PriceRangeFilter';
 import SearchInput from '../components/filters/SearchInput';
 import AlbumGrid from '../components/albums/AlbumGrid';
 import ErrorMessage from '../components/ErrorMessage';
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Componente principale per la pagina di listing album (tutti, cd, vinili)
 function AlbumListPageContent({ format = '' }) {
@@ -23,8 +24,8 @@ function AlbumListPageContent({ format = '' }) {
   const minMaxPrice = usePriceRange();
   // Stato e azioni filtri dal context centralizzato (FilterContext)
   const {
-    filter, setFilter, // ordinamento
-    search, setSearch, // ricerca testuale
+    filter, setFilter,                 // ordinamento
+    search, setSearch,                 // ricerca testuale
     selectedFormat, setSelectedFormat, // filtro formato
     selectedGenre, setSelectedGenre,   // filtro genere
     selectedArtist, setSelectedArtist, // filtro artista
@@ -32,6 +33,30 @@ function AlbumListPageContent({ format = '' }) {
   } = useFilter();
   // Stato locale per la lista filtrata (aggiornata istantaneamente tranne che per la ricerca testuale)
   const [filtered, setFiltered] = useState([]);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setSelectedFormat(params.get("format") || "");
+    setSelectedGenre(params.get("genre") || "");
+    setSelectedArtist(params.get("artist") || "");
+    setPriceRange(params.get("price-range").split(',') ?? "");
+    setSearch(params.get("search") || "");
+    setFilter(params.get("filter") || "");
+  }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (selectedFormat) params.set("format", selectedFormat);
+    if (selectedGenre) params.set("genre", selectedGenre);
+    if (selectedArtist) params.set("artist", selectedArtist);
+    if (priceRange) params.set("price-range", priceRange);
+    if (search) params.set("search", search);
+    if (filter) params.set("filter", filter);
+    navigate({ search: params.toString() }, { replace: true });
+  }, [selectedFormat, selectedGenre, selectedArtist, priceRange, search, filter]);
 
   // Funzione di filtraggio locale: applica tutti i filtri istantanei (formato, genere, artista, prezzo, ordinamento)
   // La ricerca testuale viene applicata solo al submit
@@ -63,7 +88,7 @@ function AlbumListPageContent({ format = '' }) {
   }
 
   // Aggiorna la lista filtrata ogni volta che cambia un filtro (eccetto ricerca testuale)
-  React.useEffect(() => {
+  useEffect(() => {
     setFiltered(filterAlbums(''));
     // eslint-disable-next-line
   }, [albums, filter, selectedFormat, selectedGenre, selectedArtist, priceRange]);
