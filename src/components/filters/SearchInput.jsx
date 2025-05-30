@@ -1,6 +1,6 @@
 export default function SearchInput({ value, onChange, onSubmit }) {
   return (
-    <form onSubmit={onSubmit} className="input-group">
+    <form onSubmit={onSubmit} className="input-group mb-2">
       <input
         type="text"
         className="form-control"

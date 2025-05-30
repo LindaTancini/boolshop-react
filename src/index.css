@@ -49,19 +49,7 @@ body {
   margin: auto;
 }
 
-/* HEADER */
 
-.bg-header-blue {
-  background-color: #4b0082;
-}
-.nav-link.text-white:hover {
-  color: #ff6f61;
-}
-.navbar-brand {
-  color: #89cff0 !important;
-}
-
-.nav-link.active {
-  border-bottom: 2px solid #ff6f61;
-  color: #ff6f61 !important;
+.container-filter-price{
+  max-width: 300px;
 }
