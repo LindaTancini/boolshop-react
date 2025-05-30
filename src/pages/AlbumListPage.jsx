@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FilterProvider, useFilter } from '../contexts/FilterContext';
 import useAlbums from '../hooks/useAlbums';
 import useGenres from '../hooks/useGenres';
@@ -11,6 +11,7 @@ import PriceRangeFilter from '../components/filters/PriceRangeFilter';
 import SearchInput from '../components/filters/SearchInput';
 import AlbumGrid from '../components/albums/AlbumGrid';
 import ErrorMessage from '../components/ErrorMessage';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Componente principale per la pagina di listing album (tutti, cd, vinili)
 function AlbumListPageContent({ format = '' }) {
@@ -88,7 +89,7 @@ function AlbumListPageContent({ format = '' }) {
   }
 
   // Aggiorna la lista filtrata ogni volta che cambia un filtro (eccetto ricerca testuale)
-  React.useEffect(() => {
+  useEffect(() => {
     setFiltered(filterAlbums(''));
     // eslint-disable-next-line
   }, [albums, filter, selectedFormat, selectedGenre, selectedArtist, priceRange]);
