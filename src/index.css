@@ -27,6 +27,20 @@ body{
   padding: 0;
 }
 
+/* ALBUM CARD */
+
+.wishlist-button-card{
+  width: 25px;
+  height: 25px;
+  padding: 0;
+}
+
+.cart-button-card{
+  width: 25px;
+  height: 25px;
+  padding: 0;
+}
+
 /* IMG */
 .img-contain {
   max-height: 300px;
