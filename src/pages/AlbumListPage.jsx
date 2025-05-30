@@ -78,40 +78,40 @@ function AlbumListPageContent({ format = '' }) {
 
   return (
     <>
-    <div className='d-flex justify-content-between'>
-      <div className='d-flex align-items-start'>
-        <div className='me-2'>
-        <FormatSelect formats={[...new Set(albums.map(a => a.format))]} value={selectedFormat} onChange={e => setSelectedFormat(e.target.value)} />
+      <div className='d-flex justify-content-between'>
+        <div className='row'>
+          <div className='col-4'>
+            <FormatSelect formats={[...new Set(albums.map(a => a.format))]} value={selectedFormat} onChange={e => setSelectedFormat(e.target.value)} />
+          </div>
+          <div className='col-4'>
+            <GenreSelect genres={genres} value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)} />
+          </div>
+          <div className='col-4'>
+            <ArtistSelect artists={artists} value={selectedArtist} onChange={e => setSelectedArtist(e.target.value)} />
+          </div>
+          <div className='col-12'>
+            <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
+          </div>
         </div>
-        <div className='me-2'>
-        <GenreSelect genres={genres} value={selectedGenre} onChange={e => setSelectedGenre(e.target.value)} />
-        </div>
-        <div className='me-2'>
-        <ArtistSelect artists={artists} value={selectedArtist} onChange={e => setSelectedArtist(e.target.value)} />
+        <div className='d-flex flex-column'>
+          <SearchInput value={search} onChange={e => setSearch(e.target.value)} onSubmit={handleSearchSubmit} />
+          <div className="d-flex justify-content-end align-items-center mb-4 gap-2">
+            <span className="fw-semibold">Ordina per:</span>
+            <select
+              id="filterAlbum"
+              className="form-select w-auto d-inline-block"
+              value={filter}
+              onChange={e => setFilter(e.target.value)}
+            >
+              <option value="">Predefinito</option>
+              <option>Alfabetio, A-Z</option>
+              <option>Alfabetio, Z-A</option>
+              <option>Data, Dal Più Nuovo</option>
+              <option>Data, Dal Più Vecchio</option>
+            </select>
+          </div>
         </div>
       </div>
-      <div className='d-flex flex-column'>
-        <SearchInput value={search} onChange={e => setSearch(e.target.value)} onSubmit={handleSearchSubmit} />
-        <div className="d-flex justify-content-end align-items-center mb-4 gap-2">
-          <span className="fw-semibold">Ordina per:</span>
-          <select
-            id="filterAlbum"
-            className="form-select w-auto d-inline-block"
-            value={filter}
-            onChange={e => setFilter(e.target.value)}
-          >
-            <option value="">Predefinito</option>
-            <option>Alfabetio, A-Z</option>
-            <option>Alfabetio, Z-A</option>
-            <option>Data, Dal Più Nuovo</option>
-            <option>Data, Dal Più Vecchio</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div className='container-filter-price'>
-     <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
-    </div>
       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
       <AlbumGrid albums={filtered} />
     </>
