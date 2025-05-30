@@ -171,8 +171,8 @@ button:focus {
 
 /* IMG */
 .img-contain {
-  max-height: 300px;
-  max-width: 300px;
+  max-height: 400px;
+  max-width: 400px;
   object-fit: contain;
 }
 .img-filter-album {
