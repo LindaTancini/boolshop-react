@@ -4,6 +4,7 @@ import ContextLoader from "../contexts/contextLoader";
 import ContextError from "../contexts/contextError";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import CartContext from "../contexts/CartContext";
 
 function AlbumDetails() {
   const { slug } = useParams();
@@ -11,6 +12,11 @@ function AlbumDetails() {
   const api = `http://127.0.0.1:3000/api/album/${slug}`;
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
+  const {cart, setCart} = useContext(CartContext);
+  function addToCart() {
+    setCart([...cart, album]);
+    console.log(cart);
+  }
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,6 +33,10 @@ function AlbumDetails() {
         setIsLoading(false);
       });
   }, [slug]);
+
+  useEffect(() => {
+    localStorage.setItem(slug, JSON.stringify(cart));
+  }, [cart]);
 
   if (!album) {
     return <p>Caricamento...</p>;
@@ -71,6 +81,7 @@ function AlbumDetails() {
               type="button"
               title="Aggiungi al carrello"
               className="btn btn-outline-secondary"
+              onClick={addToCart}
             >
               Aggiungi al carrello
             </button>

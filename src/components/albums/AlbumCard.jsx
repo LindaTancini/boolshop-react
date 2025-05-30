@@ -1,6 +1,16 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+export default function AlbumCard({ album, cart, setCart }) {
 
-export default function AlbumCard({ album }) {
+  function addToCart() {
+    setCart([...cart, album]);
+    console.log(cart);
+  }
+
+  useEffect(() => {
+    localStorage.setItem(album.slug, JSON.stringify(cart));
+  }, [cart]);
+
   return (
     <div className="col-12 col-md-4 gy-3">
       <Link to={`/album/${album.slug}`} className="text-decoration-none">
@@ -31,6 +41,7 @@ export default function AlbumCard({ album }) {
               type="button"
               title="Aggiungi al carrello"
               className="btn btn-outline-secondary cart-button-card"
+              onClick={addToCart}
             >
               <i className="bi bi-cart-plus"></i>
             </button>

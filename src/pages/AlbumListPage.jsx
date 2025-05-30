@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { FilterProvider, useFilter } from '../contexts/FilterContext';
 import useAlbums from '../hooks/useAlbums';
 import useGenres from '../hooks/useGenres';
@@ -12,9 +12,13 @@ import SearchInput from '../components/filters/SearchInput';
 import AlbumGrid from '../components/albums/AlbumGrid';
 import ErrorMessage from '../components/ErrorMessage';
 import { useNavigate, useLocation } from 'react-router-dom';
+import CartContext from '../contexts/CartContext';
+
 
 // Componente principale per la pagina di listing album (tutti, cd, vinili)
 function AlbumListPageContent({ format = '' }) {
+  const { cart, setCart } = useContext(CartContext);
+  
   // Custom hook per fetch degli album dal backend (con supporto a filtri e loading/error globali)
   const { albums, loading, error } = useAlbums(format);
   // Custom hook per fetch generi e artisti (dati per i select)
@@ -139,7 +143,7 @@ function AlbumListPageContent({ format = '' }) {
         <PriceRangeFilter min={minMaxPrice[0]} max={minMaxPrice[1]} value={priceRange} onChange={setPriceRange} />
       </div>
       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
-      <AlbumGrid albums={filtered} />
+      <AlbumGrid albums={filtered} cart={cart} setCart={setCart} />
     </>
   );
 }
@@ -147,7 +151,7 @@ function AlbumListPageContent({ format = '' }) {
 export default function AlbumListPage({ format = '' }) {
   return (
     <FilterProvider>
-      <AlbumListPageContent format={format} />
+      <AlbumListPageContent format={format}/>
     </FilterProvider>
   );
 }
