@@ -1,6 +1,7 @@
 //Importazioni
 import { useContext } from "react";
 import CartContext from "../contexts/CartContext";
+import { Link } from "react-router-dom";
 
 function CartPage() {
   const { cart, setCart } = useContext(CartContext);
@@ -56,9 +57,9 @@ function CartPage() {
             <h4 className="text-orange text-shadow-orange mb-3">
               Totale: € {total.toFixed(2)}
             </h4>
-            <button className="search-button-filter">
+            <Link to="/payment" className="search-button-filter">
               Procedi al pagamento
-            </button>
+            </Link>
           </div>
         </>
       )}

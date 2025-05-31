@@ -15,7 +15,7 @@ function AlbumDetails() {
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
   const { cart, setCart } = useContext(CartContext);
-  const { wish, setWish} = useContext(WishContext);
+  let { wish, setWish} = useContext(WishContext);
   function addToCart() {
     setCart([...cart, album]);
     console.log(cart);
@@ -41,9 +41,8 @@ function AlbumDetails() {
     const wishElementExist = wish.find(w => w.id === album.id);
     console.log(wishElementExist);
     if (wishElementExist) {
-      const newWish = wish.filter((w) => w.id !== album.id);
-      console.log(newWish);
-      setWish(newWish);
+      wish = wish.filter((w) => w.id !== album.id);
+      setWish(wish);
     } else {
       setWish([...wish, album]);
     }

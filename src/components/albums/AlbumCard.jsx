@@ -10,9 +10,8 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
     const wishElementExist = wish.find(w => w.id === album.id);
     console.log(wishElementExist);
     if (wishElementExist) {
-      const newWish = wish.filter((w) => w.id !== album.id);
-      console.log(newWish);
-      setWish(newWish);
+      wish = wish.filter((w) => w.id !== album.id);
+      setWish(wish);
     }else{
       setWish([...wish, album]);
     }
