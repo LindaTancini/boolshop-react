@@ -45,7 +45,7 @@ const ArtistsPage = () => {
 
   return (
     <div>
-      <form onSubmit={searchArtist} className="mb-4 d-flex justify-content-end">
+      <form onSubmit={searchArtist} className="mb-4 d-flex justify-content-end mt-4">
         <div className="input-group w-50">
           <input
             id="searchAlbum"
