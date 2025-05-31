@@ -310,3 +310,18 @@ input:focus {
 .container-filter-price {
   max-width: 300px;
 }
+
+.img-cart {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: #4a4f7a;
+  box-shadow: 0 4px 10px rgba(106, 71, 209, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-cart:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(247, 143, 69, 0.4);
+}
