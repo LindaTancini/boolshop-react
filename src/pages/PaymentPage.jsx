@@ -26,7 +26,7 @@ const PaymentPage = ()=>{
     function handlePayment(e){
         e.preventDefault();
         setCart([]);
-        navigate("/");
+        navigate("/payment/details");
         console.log("pagamento avvenuto con successo")
     }
 
@@ -45,8 +45,7 @@ const PaymentPage = ()=>{
                 <input type="text" name="indirizzo" value={payment.indirizzo} onChange={HandleForm} required/>
             </div>
 
-            <button>Paga</button>
-            {/* <Link to="/" >Paga</Link> */}
+            <button>Dettagli ordine</button>
         </form>
     </>
 }
