@@ -146,7 +146,82 @@ body {
   color: #e2e4f0;
 }
 
-/* BOTTONI: WISHLIST E CARRELLO */
+/* CARD ALBUM */
+
+.custom-album-card {
+  background: linear-gradient(145deg, #4a4f7a, #323a6d);
+  color: #e2e4f0;
+  border: 1px solid #f78f45;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(106, 71, 209, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-album-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 32px rgba(247, 143, 69, 0.4);
+}
+
+.text-orange {
+  color: #f78f45;
+  text-shadow: 0 0 4px rgba(247, 143, 69, 0.4);
+}
+
+.cart-button-card,
+.wishlist-button-card {
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.cart-button-card:hover i,
+.wishlist-button-card:hover i {
+  filter: brightness(1.3) drop-shadow(0 0 6px #f78f45);
+}
+
+/* BARRA FILTRI E RICERCA DETTAGLI ALBUM */
+
+.form-select,
+input[type="text"],
+input[type="range"] {
+  background-color: #4a4f7a;
+  color: #e2e4f0;
+  border: 1px solid #f78f45;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(247, 143, 69, 0.3);
+}
+
+.form-select:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #f78f45;
+  border-color: #f78f45;
+}
+
+.custom-select-filter {
+  background-color: #4a4f7a;
+  color: #e2e4f0;
+  border: 1px solid #f78f45;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 6px rgba(247, 143, 69, 0.3);
+  transition: all 0.3s ease;
+}
+
+.custom-select-filter:focus {
+  outline: none;
+  border-color: #f78f45;
+  box-shadow: 0 0 12px #f78f45;
+  background-color: #3a3f72;
+}
+
+.text-shadow-orange {
+  text-shadow: 0 0 6px rgba(247, 143, 69, 0.8);
+}
+
+/* BOTTONI: WISHLIST, CARRELLO e FILTRO */
 
 .wishlist-button,
 .wishlist-button-card,
@@ -174,6 +249,25 @@ body {
   width: 25px;
   height: 25px;
   padding: 0;
+}
+
+.search-button-filter {
+  border: 2px solid #f78f45;
+  color: #f78f45;
+  background: transparent;
+  font-weight: 700;
+  padding: 0.4rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.search-button-filter:hover,
+.search-button-filter:focus {
+  background-color: #f78f45;
+  color: #fff;
+  box-shadow: 0 0 12px #f78f45;
+  outline: none;
 }
 
 /* IMG */
