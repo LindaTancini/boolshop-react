@@ -12,6 +12,7 @@ import ContextError from "./contexts/contextError";
 import AlbumDetails from "./pages/AlbumDetails";
 import CartContext from "./contexts/CartContext";
 import WishContext from "./contexts/WhishContext";
+import WishListPage from "./pages/WishListPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +37,7 @@ function App() {
                 <Route path="products" element={<AlbumListPage />} />
                 <Route path="album/:slug" element={<AlbumDetails />} />
                 <Route path="cart" element={<CartPage />} />
+                <Route path="wishlist" element={<WishListPage />} />
               </Route>
               <Route path="/artists" element={<DefaultLayout />}>
                 <Route index element={<ArtistsPage />} />

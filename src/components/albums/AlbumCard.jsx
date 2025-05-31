@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
-export default function AlbumCard({ album, cart, setCart }) {
+export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
   function addToCart() {
     setCart([...cart, album]);
     console.log(cart);
   }
 
+  function addToWish(){
+    const wishElementExist = wish.find(w => w.id === album.id);
+    console.log(wishElementExist);
+    if (wishElementExist) {
+      const newWish = wish.filter((w) => w.id !== album.id);
+      console.log(newWish);
+      setWish(newWish);
+    }else{
+      setWish([...wish, album]);
+    }
+  }
+
   useEffect(() => {
     localStorage.setItem(album.slug, JSON.stringify(cart));
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem(album.slug, JSON.stringify(wish));
+  }, [wish]);
 
   return (
     <div className="col-12 col-md-4 gy-3">
@@ -52,6 +68,7 @@ export default function AlbumCard({ album, cart, setCart }) {
               <button
                 className="btn wishlist-button-card"
                 title="Aggiungi alla wishlist"
+                onClick={addToWish}
               >
                 <i className="fas fa-heart text-orange"></i>
               </button>

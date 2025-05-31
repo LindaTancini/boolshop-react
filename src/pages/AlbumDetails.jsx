@@ -5,14 +5,17 @@ import ContextError from "../contexts/contextError";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import CartContext from "../contexts/CartContext";
+import WishContext from "../contexts/WhishContext";
 
 function AlbumDetails() {
+
   const { slug } = useParams();
   const [album, setAlbum] = useState(null);
   const api = `http://127.0.0.1:3000/api/album/${slug}`;
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
   const { cart, setCart } = useContext(CartContext);
+  const { wish, setWish} = useContext(WishContext);
   function addToCart() {
     setCart([...cart, album]);
     console.log(cart);
@@ -33,6 +36,22 @@ function AlbumDetails() {
         setIsLoading(false);
       });
   }, [slug]);
+
+  function addToWish() {
+    const wishElementExist = wish.find(w => w.id === album.id);
+    console.log(wishElementExist);
+    if (wishElementExist) {
+      const newWish = wish.filter((w) => w.id !== album.id);
+      console.log(newWish);
+      setWish(newWish);
+    } else {
+      setWish([...wish, album]);
+    }
+  }
+
+  useEffect(() => {
+    localStorage.setItem(slug, JSON.stringify(wish));
+  }, [wish]);
 
   useEffect(() => {
     localStorage.setItem(slug, JSON.stringify(cart));
@@ -93,6 +112,7 @@ function AlbumDetails() {
             <button
               className="btn btn-outline-danger rounded-circle wishlist-button"
               title="Aggiungi alla wishlist"
+              onClick={addToWish}
             >
               <i className="fas fa-heart"></i>
             </button>

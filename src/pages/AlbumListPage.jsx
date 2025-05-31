@@ -13,10 +13,12 @@ import AlbumGrid from "../components/albums/AlbumGrid";
 import ErrorMessage from "../components/ErrorMessage";
 import { useNavigate, useLocation } from "react-router-dom";
 import CartContext from "../contexts/CartContext";
+import WishContext from "../contexts/WhishContext";
 
 // Componente principale per la pagina di listing album (tutti, cd, vinili)
 function AlbumListPageContent({ format = "" }) {
   const { cart, setCart } = useContext(CartContext);
+  const { wish, setWish} = useContext(WishContext);
 
   // Custom hook per fetch degli album dal backend (con supporto a filtri e loading/error globali)
   const { albums, loading, error } = useAlbums(format);
@@ -198,7 +200,7 @@ function AlbumListPageContent({ format = "" }) {
       </div>
 
       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
-      <AlbumGrid albums={filtered} cart={cart} setCart={setCart} />
+      <AlbumGrid albums={filtered} cart={cart} setCart={setCart} wish={wish} setWish={setWish}/>
     </>
   );
 }
