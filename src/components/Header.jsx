@@ -61,6 +61,16 @@ function Header() {
                 <i className="bi bi-cart"></i> CARRELLO
               </NavLink>
             </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link text-white d-flex align-items-center gap-1"
+                to="/products?price-range=0%2C100"
+                onClick={closeMenu}
+              >
+                <i className="bi bi-search"></i> CERCA
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
