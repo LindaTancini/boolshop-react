@@ -9,7 +9,12 @@ export default function SearchInput({ value, onChange, onSubmit }) {
         placeholder="Cerca album, artista o genere..."
         aria-label="Cerca album, artista o genere"
       />
-      <button className="btn btn-danger" type="submit">Cerca</button>
+      <button
+        className="btn btn-outline-danger search-button-filter"
+        type="submit"
+      >
+        Cerca
+      </button>
     </form>
   );
 }
