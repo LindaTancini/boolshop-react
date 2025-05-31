@@ -18,7 +18,7 @@ import WishContext from "../contexts/WhishContext";
 // Componente principale per la pagina di listing album (tutti, cd, vinili)
 function AlbumListPageContent({ format = "" }) {
   const { cart, setCart } = useContext(CartContext);
-  const { wish, setWish} = useContext(WishContext);
+  let { wish, setWish} = useContext(WishContext);
 
   // Custom hook per fetch degli album dal backend (con supporto a filtri e loading/error globali)
   const { albums, loading, error } = useAlbums(format);
