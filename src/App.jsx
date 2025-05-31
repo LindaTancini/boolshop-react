@@ -11,6 +11,7 @@ import ContextLoader from "./contexts/contextLoader";
 import ContextError from "./contexts/contextError";
 import AlbumDetails from "./pages/AlbumDetails";
 import CartContext from "./contexts/CartContext";
+import WishContext from "./contexts/WhishContext";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -19,10 +20,15 @@ function App() {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
+  const [wish, setWish] = useState(() => {
+    const saved = localStorage.getItem("wish");
+    return saved ? JSON.parse(saved) : [];
+  });
   return (
     <ContextError.Provider value={{ isError, setIsError }}>
       <ContextLoader.Provider value={{ isLoading, setIsLoading }}>
         <CartContext.Provider value={{ cart, setCart }}>
+          <WishContext.Provider value={{ wish, setWish}}>
           <Router>
             <Routes>
               <Route path="/" element={<DefaultLayout />}>
@@ -37,6 +43,7 @@ function App() {
               </Route>
             </Routes>
           </Router>
+          </WishContext.Provider>
         </CartContext.Provider>
       </ContextLoader.Provider>
     </ContextError.Provider>
