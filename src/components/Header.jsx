@@ -71,6 +71,16 @@ function Header() {
                 <i className="bi bi-search"></i> CERCA
               </NavLink>
             </li>
+
+            <li className="nav-item">
+              <NavLink
+                className="nav-link text-white d-flex align-items-center gap-1"
+                to="/wishlist"
+                onClick={closeMenu}
+              >
+                <i className="bi bi-heart"></i> WISHLIST
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>
