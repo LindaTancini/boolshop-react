@@ -12,7 +12,7 @@ function AlbumDetails() {
   const api = `http://127.0.0.1:3000/api/album/${slug}`;
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
-  const {cart, setCart} = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   function addToCart() {
     setCart([...cart, album]);
     console.log(cart);
@@ -44,7 +44,9 @@ function AlbumDetails() {
 
   return (
     <div className="container mt-5">
-      <h2 className="mb-4 text-center fw-bold">{album.title}</h2>
+      <h2 className="mb-4 text-center fw-bold text-orange text-shadow-orange">
+        {album.title}
+      </h2>
 
       <div className="d-flex flex-column flex-md-row align-items-center justify-content-center gap-4 text-center p-4 rounded shadow-lg bg-album-details-shadow">
         {album.imagePath && (
@@ -57,30 +59,33 @@ function AlbumDetails() {
 
         <div className="text-center text-md-start">
           <p className="fs-5 mb-3">
-            <strong>Prezzo:</strong> {album.price} €
+            <span className="album-detail-label">Prezzo:</span> {album.price} €
           </p>
           <p className="fs-5 mb-3">
-            <strong>Artista:</strong> {album.artist.name}
+            <span className="album-detail-label">Artista:</span>{" "}
+            {album.artist.name}
           </p>
           <p className="fs-5 mb-3">
-            <strong>Genere:</strong> {album.genre.name}
+            <span className="album-detail-label">Genere:</span>{" "}
+            {album.genre.name}
           </p>
           <p className="fs-5 mb-3">
-            <strong>Quantità disponibile:</strong> {album.quantity}
+            <span className="album-detail-label">Quantità disponibile:</span>{" "}
+            {album.quantity}
           </p>
           <p className="fs-5 mb-3">
-            <strong>Formato:</strong> {album.format}
+            <span className="album-detail-label">Formato:</span> {album.format}
           </p>
           <p className="fs-5 mb-4">
-            <strong>Data di rilascio:</strong>
+            <span className="album-detail-label">Data di rilascio:</span>{" "}
             {new Date(album.date).toLocaleDateString("it-IT")}
           </p>
 
-          <div className="d-flex justify-content-center  gap-3">
+          <div className="d-flex justify-content-center gap-3">
             <button
               type="button"
               title="Aggiungi al carrello"
-              className="btn btn-outline-secondary"
+              className="button-orange-outline"
               onClick={addToCart}
             >
               Aggiungi al carrello

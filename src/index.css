@@ -146,6 +146,31 @@ body {
   color: #e2e4f0;
 }
 
+.button-orange-outline {
+  border: 2px solid #f78f45;
+  color: #f78f45;
+  background: transparent;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.button-orange-outline:hover,
+.button-orange-outline:focus {
+  background-color: #f78f45;
+  color: #fff;
+  box-shadow: 0 0 12px #f78f45;
+  outline: none;
+}
+
+.album-detail-label {
+  font-weight: 700;
+  color: #f78f45;
+  text-shadow: 0 0 5px rgba(247, 143, 69, 0.5);
+}
+
 /* CARD ALBUM */
 
 .custom-album-card {
