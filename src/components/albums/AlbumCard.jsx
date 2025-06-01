@@ -1,20 +1,33 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Toast from "../Toast";
+
 export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
-  function addToCart() {
+  const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+
+  function addToCart(e) {
+    e.stopPropagation();
+    e.preventDefault();
     setCart([...cart, album]);
     console.log(cart);
+    setToastMessage("Elemento aggiunto al carrello!");
+    setToastVisible(true);
   }
 
-  function addToWish(){
-    const wishElementExist = wish.find(w => w.id === album.id);
+  function addToWish(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    const wishElementExist = wish.find((w) => w.id === album.id);
     console.log(wishElementExist);
     if (wishElementExist) {
-      wish = wish.filter((w) => w.id !== album.id);
-      setWish(wish);
-    }else{
+      setWish(wish.filter((w) => w.id !== album.id));
+      setToastMessage("Elemento rimosso dalla wishlist!");
+    } else {
       setWish([...wish, album]);
+      setToastMessage("Elemento aggiunto alla wishlist!");
     }
+    setToastVisible(true);
   }
 
   useEffect(() => {
@@ -36,23 +49,23 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
           />
           <div className="card-body">
             <p className="card-text mb-1">
-              <span className="fw-semibold text-orange">Titolo:</span>{" "}
+              <span className="fw-semibold text-orange">Titolo:</span>
               {album.name}
             </p>
             <p className="card-text mb-1">
-              <span className="fw-semibold text-orange">Artista:</span>{" "}
+              <span className="fw-semibold text-orange">Artista:</span>
               {album.artist.name}
             </p>
             <p className="card-text mb-1">
-              <span className="fw-semibold text-orange">Genere:</span>{" "}
+              <span className="fw-semibold text-orange">Genere:</span>
               {album.genre.name}
             </p>
             <p className="card-text mb-1 album-price">
-              <span className="fw-semibold text-orange">Prezzo:</span>{" "}
+              <span className="fw-semibold text-orange">Prezzo:</span>
               {album.price} €
             </p>
             <p className="card-text mb-3">
-              <span className="fw-semibold text-orange">Data di uscita:</span>{" "}
+              <span className="fw-semibold text-orange">Data di uscita:</span>
               {new Date(album.date).toLocaleDateString("it-IT")}
             </p>
             <div className="d-flex justify-content-end gap-3 align-items-center">
@@ -75,6 +88,13 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
           </div>
         </div>
       </Link>
+
+      <Toast
+        message={toastMessage}
+        type="success"
+        show={toastVisible}
+        onClose={() => setToastVisible(false)}
+      />
     </div>
   );
 }
