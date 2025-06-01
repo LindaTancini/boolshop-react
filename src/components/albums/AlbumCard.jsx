@@ -7,10 +7,22 @@ export default function AlbumCard({ album, cart, setCart/*, wish, setWish  */}) 
   const [toastMessage, setToastMessage] = useState("");
 
   function addToCart(e) {
-    e.stopPropagation();
+    // e.stopPropagation();
     e.preventDefault();
-    setCart([...cart, album]);
-    console.log(cart);
+    const existingIndex = cart.findIndex((c) => c.id === album.id);
+    let newCart;
+
+    if (existingIndex !== -1) {
+      newCart = cart.map((c, index) =>
+        index === existingIndex
+          ? { ...c, quantity: c.quantity + 1 }
+          : c
+      );
+    } else {
+      newCart = [...cart, { ...album, quantity: 1}];
+    }
+
+    setCart(newCart);
     setToastMessage("Elemento aggiunto al carrello!");
     setToastVisible(true);
   }

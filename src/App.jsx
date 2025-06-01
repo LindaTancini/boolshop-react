@@ -12,7 +12,7 @@ import ContextError from "./contexts/contextError";
 import AlbumDetails from "./pages/AlbumDetails";
 import CartContext from "./contexts/CartContext";
 import WishContext from "./contexts/WhishContext";
-import WishListPage from "./pages/WishListPage";
+// import WishListPage from "./pages/WishListPage";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentDetails from "./pages/PaymentDetails";
 import PaymentContext from "./contexts/paymentContext";
@@ -27,8 +27,18 @@ function App() {
   // });
 
   const [cart, setCart] = useLocalStorageState('cart', {
-    defaultValue: ['buy avocado', 'do 50 push up']
-  })
+    defaultValue: [],
+    parse: (str) => {
+      try {
+        const parsed = JSON.parse(str);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    },
+  });
+  console.log(cart);
+
 
   const [wish, setWish] = useState(() => {
     const saved = localStorage.getItem("wish");
