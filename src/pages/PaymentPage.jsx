@@ -1,12 +1,9 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import CartContext from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import PaymentContext from "../contexts/paymentContext";
 
 const PaymentPage = () => {
-
-    const { setCart } = useContext(CartContext);
 
     const {payment, setPayment} = useContext(PaymentContext);
 
@@ -22,7 +19,6 @@ const PaymentPage = () => {
 
     function handlePayment(e) {
         e.preventDefault();
-        setCart([]);
         navigate("/payment/details");
         console.log("pagamento avvenuto con successo")
     }
