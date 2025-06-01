@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Toast from "../Toast";
 
-export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
+export default function AlbumCard({ album, cart, setCart/*, wish, setWish  */}) {
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
@@ -15,28 +15,28 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
     setToastVisible(true);
   }
 
-  function addToWish(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    const wishElementExist = wish.find((w) => w.id === album.id);
-    console.log(wishElementExist);
-    if (wishElementExist) {
-      setWish(wish.filter((w) => w.id !== album.id));
-      setToastMessage("Elemento rimosso dalla wishlist!");
-    } else {
-      setWish([...wish, album]);
-      setToastMessage("Elemento aggiunto alla wishlist!");
-    }
-    setToastVisible(true);
-  }
+  // function addToWish(e) {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   const wishElementExist = wish.find((w) => w.id === album.id);
+  //   console.log(wishElementExist);
+  //   if (wishElementExist) {
+  //     setWish(wish.filter((w) => w.id !== album.id));
+  //     setToastMessage("Elemento rimosso dalla wishlist!");
+  //   } else {
+  //     setWish([...wish, album]);
+  //     setToastMessage("Elemento aggiunto alla wishlist!");
+  //   }
+  //   setToastVisible(true);
+  // }
 
   useEffect(() => {
     localStorage.setItem(album.slug, JSON.stringify(cart));
   }, [cart]);
 
-  useEffect(() => {
-    localStorage.setItem(album.slug, JSON.stringify(wish));
-  }, [wish]);
+  // useEffect(() => {
+  //   localStorage.setItem(album.slug, JSON.stringify(wish));
+  // }, [wish]);
 
   return (
     <div className="col-12 col-md-4 gy-3">
@@ -77,13 +77,13 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
               >
                 <i className="bi bi-cart-plus text-orange"></i>
               </button>
-              <button
+              {/* <button
                 className="btn wishlist-button-card"
                 title="Aggiungi alla wishlist"
                 onClick={addToWish}
               >
-                {/* <i className="fas fa-heart text-orange"></i> */}
-              </button>
+                <i className="fas fa-heart text-orange"></i>
+              </button> */}
             </div>
           </div>
         </div>

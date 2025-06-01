@@ -5,7 +5,7 @@ import ContextError from "../contexts/contextError";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import CartContext from "../contexts/CartContext";
-import WishContext from "../contexts/WhishContext";
+// import WishContext from "../contexts/WhishContext";
 import Toast from "../components/Toast";
 
 function AlbumDetails() {
@@ -16,7 +16,7 @@ function AlbumDetails() {
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
   const { cart, setCart } = useContext(CartContext);
-  let { wish, setWish } = useContext(WishContext);
+  // let { wish, setWish } = useContext(WishContext);
   function addToCart() {
     setCart([...cart, album]);
     console.log(cart);
@@ -39,20 +39,20 @@ function AlbumDetails() {
       });
   }, [slug]);
 
-  function addToWish() {
-    const wishElementExist = wish.find((w) => w.id === album.id);
-    console.log(wishElementExist);
-    if (wishElementExist) {
-      wish = wish.filter((w) => w.id !== album.id);
-      setWish(wish);
-    } else {
-      setWish([...wish, album]);
-    }
-  }
+  // function addToWish() {
+  //   const wishElementExist = wish.find((w) => w.id === album.id);
+  //   console.log(wishElementExist);
+  //   if (wishElementExist) {
+  //     wish = wish.filter((w) => w.id !== album.id);
+  //     setWish(wish);
+  //   } else {
+  //     setWish([...wish, album]);
+  //   }
+  // }
 
-  useEffect(() => {
-    localStorage.setItem(slug, JSON.stringify(wish));
-  }, [wish]);
+  // useEffect(() => {
+  //   localStorage.setItem(slug, JSON.stringify(wish));
+  // }, [wish]);
 
   useEffect(() => {
     localStorage.setItem(slug, JSON.stringify(cart));
@@ -112,13 +112,13 @@ function AlbumDetails() {
               >
                 Aggiungi al carrello
               </button>
-              <button
+              {/* <button
                 className="btn btn-outline-danger rounded-circle wishlist-button"
                 title="Aggiungi alla wishlist"
                 onClick={addToWish}
               >
                 <i className="fas fa-heart"></i>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
