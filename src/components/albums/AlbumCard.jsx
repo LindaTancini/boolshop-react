@@ -69,7 +69,7 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
                 title="Aggiungi alla wishlist"
                 onClick={addToWish}
               >
-                <i className="fas fa-heart text-orange"></i>
+                {/* <i className="fas fa-heart text-orange"></i> */}
               </button>
             </div>
           </div>

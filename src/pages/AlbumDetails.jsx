@@ -113,7 +113,7 @@ function AlbumDetails() {
               title="Aggiungi alla wishlist"
               onClick={addToWish}
             >
-              <i className="fas fa-heart"></i>
+              {/* <i className="fas fa-heart"></i> */}
             </button>
           </div>
         </div>
