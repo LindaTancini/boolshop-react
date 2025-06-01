@@ -1,17 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import CartContext from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
+import PaymentContext from "../contexts/paymentContext";
 
 const PaymentPage = ()=>{
 
     const{ setCart} = useContext(CartContext);
 
-    const [payment, setPayment] = useState({
-        nome: "",
-        cognome: "",
-        indirizzo: ""
-    })
+    const {payment, setPayment} = useContext(PaymentContext);
 
     const navigate = useNavigate();
     function HandleForm(e){
