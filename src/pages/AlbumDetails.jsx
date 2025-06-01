@@ -54,10 +54,6 @@ function AlbumDetails() {
   //   localStorage.setItem(slug, JSON.stringify(wish));
   // }, [wish]);
 
-  useEffect(() => {
-    localStorage.setItem(slug, JSON.stringify(cart));
-  }, [cart]);
-
   if (!album) {
     return <p>Caricamento...</p>;
   }

@@ -16,14 +16,19 @@ import WishListPage from "./pages/WishListPage";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentDetails from "./pages/PaymentDetails";
 import PaymentContext from "./contexts/paymentContext";
+import useLocalStorageState from 'use-local-storage-state'
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem("cart");
-    return saved ? JSON.parse(saved) : [];
-  });
+  // const [cart, setCart] = useState(() => {
+  //   const saved = localStorage.getItem("cart");
+  //   return saved ? JSON.parse(saved) : [];
+  // });
+
+  const [cart, setCart] = useLocalStorageState('cart', {
+    defaultValue: ['buy avocado', 'do 50 push up']
+  })
 
   const [wish, setWish] = useState(() => {
     const saved = localStorage.getItem("wish");

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Toast from "../Toast";
 
 export default function AlbumCard({ album, cart, setCart/*, wish, setWish  */}) {
@@ -30,9 +30,9 @@ export default function AlbumCard({ album, cart, setCart/*, wish, setWish  */}) 
   //   setToastVisible(true);
   // }
 
-  useEffect(() => {
-    localStorage.setItem(album.slug, JSON.stringify(cart));
-  }, [cart]);
+  // useEffect(() => {
+  //   localStorage.setItem(album.slug, JSON.stringify(cart));
+  // }, [cart]);
 
   // useEffect(() => {
   //   localStorage.setItem(album.slug, JSON.stringify(wish));
