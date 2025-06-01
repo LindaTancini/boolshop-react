@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import CartContext from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 
-const PaymentPage = ()=>{
+const PaymentPage = () => {
 
-    const{ setCart} = useContext(CartContext);
+    const { setCart } = useContext(CartContext);
 
     const [payment, setPayment] = useState({
         nome: "",
@@ -14,16 +14,16 @@ const PaymentPage = ()=>{
     })
 
     const navigate = useNavigate();
-    function HandleForm(e){
-        const {name, value} = e.target;
-        
+    function HandleForm(e) {
+        const { name, value } = e.target;
+
         setPayment((payment) => ({
             ...payment,
             [name]: value
         }));
     }
 
-    function handlePayment(e){
+    function handlePayment(e) {
         e.preventDefault();
         setCart([]);
         navigate("/payment/details");
@@ -31,22 +31,58 @@ const PaymentPage = ()=>{
     }
 
     return <>
-        <form onSubmit={handlePayment}>
-            <div>
-                <label htmlFor="nome">Name:</label>
-                <input type="text" name="nome" value={payment.nome} onChange={HandleForm} required/>
-            </div>
-            <div>
-                <label htmlFor="cognome">Cognome:</label>
-                <input type="text" name="cognome" value={payment.cognome} onChange={HandleForm} required/>
-            </div>
-            <div>
-                <label htmlFor="indirizzo">Indirizzo:</label>
-                <input type="text" name="indirizzo" value={payment.indirizzo} onChange={HandleForm} required/>
-            </div>
+        <div className="container my-4">
 
-            <button>Dettagli ordine</button>
-        </form>
+            <form onSubmit={handlePayment}>
+                <div className="row">
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="nome">Nome</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="nome"
+                            name="nome"
+                            placeholder="Mario"
+                            value={payment.nome}
+                            onChange={HandleForm}
+                        />
+                    </div>
+                    <div className="col-md-6 mb-3">
+                        <label htmlFor="cognome">Cognome</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="cognome"
+                            name="cognome"
+                            placeholder="Rossi"
+                            value={payment.cognome}
+                            onChange={HandleForm}
+                        />
+                    </div>
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="indirizzo">Indirizzo</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="indirizzo"
+                        name="indirizzo"
+                        placeholder="Via Roma 123"
+                        value={payment.indirizzo}
+                        onChange={HandleForm}
+                    />
+                </div>
+
+                <hr className="mb-4" />
+                <button
+                    className="btn btn-primary btn-lg w-100"
+                    type="submit"
+                >
+                    Procedi al Pagamento
+                </button>
+            </form>
+        </div>
     </>
 }
 
