@@ -44,7 +44,7 @@ const AnArtistPage = () => {
     return (
         <div className="container mt-4">
             <h1 className="mb-4">{artist.name}</h1>
-            <div className="card">
+            <div className="custom-artist-card card mb-4">
                 <div className="card-body">
                     <h5 className="card-title">Informazioni Artista</h5>
                     <img src={imageUrl} className="img-fluid mb-3" alt={artist.name} />
