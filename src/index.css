@@ -206,11 +206,13 @@ body {
   filter: brightness(1.3) drop-shadow(0 0 6px #f78f45);
 }
 
-/* BARRA FILTRI E RICERCA DETTAGLI ALBUM */
+/* BARRA FILTRI , RICERCA DETTAGLI ALBUM, DETTAGLI PAGAMENTO */
 
 .form-select,
 input[type="text"],
 input[type="range"],
+input[type="email"],
+input[type="tel"],
 .filter-slider-price {
   background-color: #4a4f7a;
   color: #e2e4f0;
@@ -219,7 +221,7 @@ input[type="range"],
   box-shadow: 0 0 6px rgba(247, 143, 69, 0.3);
 }
 
-.color-input::placeholder{
+.color-input::placeholder {
   color: #e2e4f0;
 }
 
@@ -332,7 +334,6 @@ input:focus {
   box-shadow: 0 6px 14px rgba(247, 143, 69, 0.4);
 }
 
-
 /* ARTIST PAGE */
 .custom-artist-card {
   background: linear-gradient(145deg, #4a4f7a, #323a6d);
@@ -345,8 +346,6 @@ input:focus {
 .artists {
   background: linear-gradient(145deg, #4a4f7a, #323a6d);
   color: #e2e4f0;
-
-
 }
 
 .no-link-color {
