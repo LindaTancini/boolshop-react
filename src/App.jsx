@@ -12,11 +12,11 @@ import ContextError from "./contexts/contextError";
 import AlbumDetails from "./pages/AlbumDetails";
 import CartContext from "./contexts/CartContext";
 import WishContext from "./contexts/WhishContext";
-// import WishListPage from "./pages/WishListPage";
+import WishListPage from "./pages/WishListPage";
 import PaymentPage from "./pages/PaymentPage";
 import PaymentDetails from "./pages/PaymentDetails";
 import PaymentContext from "./contexts/paymentContext";
-import useLocalStorageState from 'use-local-storage-state'
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,7 @@ function App() {
   //   return saved ? JSON.parse(saved) : [];
   // });
 
-  const [cart, setCart] = useLocalStorageState('cart', {
+  const [cart, setCart] = useLocalStorageState("cart", {
     defaultValue: [],
     parse: (str) => {
       try {
@@ -39,7 +39,6 @@ function App() {
   });
   console.log(cart);
 
-
   const [wish, setWish] = useState(() => {
     const saved = localStorage.getItem("wish");
     return saved ? JSON.parse(saved) : [];
@@ -48,36 +47,34 @@ function App() {
   const [payment, setPayment] = useState({
     nome: "",
     cognome: "",
-    indirizzo: ""
-  })
+    indirizzo: "",
+  });
   return (
     <ContextError.Provider value={{ isError, setIsError }}>
       <ContextLoader.Provider value={{ isLoading, setIsLoading }}>
         <CartContext.Provider value={{ cart, setCart }}>
-          <WishContext.Provider value={{ wish, setWish}}>
-            <PaymentContext.Provider value={{payment, setPayment}}>
-          <Router>
-            <Routes>
-              <Route path="/" element={<DefaultLayout />}>
-                <Route index element={<HomePage />} />
-                <Route path="products" element={<AlbumListPage />} />
-                <Route path="album/:slug" element={<AlbumDetails />} />
-                {/* <Route path="wishlist" element={<WishListPage />} /> */}
-                <Route path="cart" element={<CartPage />} />
+          <WishContext.Provider value={{ wish, setWish }}>
+            <PaymentContext.Provider value={{ payment, setPayment }}>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<DefaultLayout />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="products" element={<AlbumListPage />} />
+                    <Route path="album/:slug" element={<AlbumDetails />} />
+                    <Route path="wishlist" element={<WishListPage />} />
+                    <Route path="cart" element={<CartPage />} />
+                  </Route>
+                  <Route path="payment">
+                    <Route index element={<PaymentPage />} />
+                    <Route path="details" element={<PaymentDetails />} />
+                  </Route>
 
-              </Route>
-              <Route path="payment" >
-                <Route index element={<PaymentPage />}/>
-                <Route path="details" element={<PaymentDetails />}/>
-              </Route>
-
-              <Route path="/artists" element={<DefaultLayout />}>
-                <Route index element={<ArtistsPage />} />
-                <Route path=":slug" element={<AnArtistPage />} />
-              </Route>
-            </Routes>
-          </Router>
-
+                  <Route path="/artists" element={<DefaultLayout />}>
+                    <Route index element={<ArtistsPage />} />
+                    <Route path=":slug" element={<AnArtistPage />} />
+                  </Route>
+                </Routes>
+              </Router>
             </PaymentContext.Provider>
           </WishContext.Provider>
         </CartContext.Provider>
