@@ -3,7 +3,7 @@ export default function SearchInput({ value, onChange, onSubmit }) {
     <form onSubmit={onSubmit} className="input-group mb-2">
       <input
         type="text"
-        className="form-control"
+        className="form-control color-input"
         value={value}
         onChange={onChange}
         placeholder="Cerca album, artista o genere..."
