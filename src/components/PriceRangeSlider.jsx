@@ -9,9 +9,9 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
 
   return (
     <div>
-      <div>
+      <div className='d-flex justify-content-center'>
         <input
-          className="form-control form-control-sm"
+          className="form-control form-control-sm filter-slider-price mb-2"
           type="number"
           aria-label="Prezzo minimo"
           value={value[0]}
@@ -26,7 +26,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
         />
         <span className="mx-2">-</span>
         <input
-          className="form-control form-control-sm"
+          className="form-control form-control-sm filter-slider-price mb-2"
           type="number"
           aria-label="Prezzo massimo"
           value={value[1]}

@@ -210,7 +210,8 @@ body {
 
 .form-select,
 input[type="text"],
-input[type="range"] {
+input[type="range"],
+.filter-slider-price {
   background-color: #4a4f7a;
   color: #e2e4f0;
   border: 1px solid #f78f45;
