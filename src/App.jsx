@@ -14,7 +14,6 @@ import CartContext from "./contexts/CartContext";
 import WishContext from "./contexts/WhishContext";
 import WishListPage from "./pages/WishListPage";
 import PaymentPage from "./pages/PaymentPage";
-import PaymentDetails from "./pages/PaymentDetails";
 import PaymentContext from "./contexts/paymentContext";
 import useLocalStorageState from "use-local-storage-state";
 
@@ -66,7 +65,6 @@ function App() {
                   </Route>
                   <Route path="payment">
                     <Route index element={<PaymentPage />} />
-                    <Route path="details" element={<PaymentDetails />} />
                   </Route>
 
                   <Route path="/artists" element={<DefaultLayout />}>
