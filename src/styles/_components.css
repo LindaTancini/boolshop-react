@@ -1,0 +1,96 @@
+/* Bottoni, wishlist, carrello, utility, effetti hover */
+.button-orange-outline {
+  border: 2px solid #f78f45;
+  color: #f78f45;
+  background: transparent;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.button-orange-outline:hover,
+.button-orange-outline:focus {
+  background-color: #f78f45;
+  color: #fff;
+  box-shadow: 0 0 12px #f78f45;
+  outline: none;
+}
+
+.wishlist-button,
+.wishlist-button-card,
+.cart-button-card {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: filter 0.3s ease;
+}
+
+.wishlist-button:hover,
+.wishlist-button-card:hover,
+.cart-button-card:hover {
+  filter: brightness(1.3) drop-shadow(0 0 6px #f78f45);
+}
+
+.wishlist-button {
+  width: 50px;
+  height: 50px;
+}
+
+.wishlist-button-card,
+.cart-button-card {
+  width: 25px;
+  height: 25px;
+  padding: 0;
+}
+
+.img-hover-effect {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.img-hover-effect:hover,
+.img-hover-effect:focus {
+  box-shadow: 0 12px 28px rgba(247, 143, 69, 0.5);
+  outline: none;
+  filter: drop-shadow(0 2px 6px rgba(106, 71, 209, 0.4));
+}
+
+/* Quantità input per carrello, pagamento, dettaglio album */
+.cart-quantity-input,
+.pay-quantity-input,
+.album-quantity-input {
+  width: 70px;
+  min-width: 60px;
+  max-width: 100px;
+  display: inline-block;
+}
+
+/* Wishlist card max width */
+.wishlist-card {
+  max-width: 600px;
+}
+
+/* Slider input min/max */
+.price-input-min,
+.price-input-max {
+  width: 70px;
+  display: inline-block;
+}
+
+.slider-container {
+  margin: 0 10px;
+}
+
+/* Header search bar visibilità */
+.search-bar-form-visible {
+  opacity: 1 !important;
+  transition: opacity 0.3s 0.1s;
+}
+
+.no-box-shadow {
+  box-shadow: none !important;
+}

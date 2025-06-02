@@ -7,12 +7,18 @@ import axios from "axios";
 import CartContext from "../contexts/CartContext";
 import WishContext from "../contexts/WhishContext";
 import Toast from "../components/Toast";
+import PropTypes from 'prop-types';
 
+/**
+ * Pagina di dettaglio album.
+ * Mostra dettagli, selettore quantità, aggiunta a carrello/wishlist.
+ */
 function AlbumDetails() {
   const { slug } = useParams();
   const [album, setAlbum] = useState(null);
   const api = `http://127.0.0.1:3000/api/album/${slug}`;
   const [toastVisible, setToastVisible] = useState(false);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
   const { cart, setCart } = useContext(CartContext);
@@ -20,17 +26,16 @@ function AlbumDetails() {
   function addToCart() {
     const existingIndex = cart.findIndex((c) => c.id === album.id);
     let newCart;
-
     if (existingIndex !== -1) {
       newCart = cart.map((c, index) =>
-        index === existingIndex ? { ...c, quantity: c.quantity + 1 } : c
+        index === existingIndex
+          ? { ...c, quantity: c.quantity + selectedQuantity }
+          : c
       );
     } else {
-      newCart = [...cart, { ...album, quantity: 1 }];
+      newCart = [...cart, { ...album, quantity: selectedQuantity }];
     }
-
     setCart(newCart);
-    console.log(cart);
     setToastVisible(true);
   }
 
@@ -110,6 +115,29 @@ function AlbumDetails() {
               {new Date(album.date).toLocaleDateString("it-IT")}
             </p>
 
+            {/* Selettore quantità */}
+            <div className="mb-3">
+              <label htmlFor="quantity" className="form-label">
+                Quantità:
+              </label>
+              <input
+                id="quantity"
+                type="number"
+                min={1}
+                max={album.quantity}
+                value={selectedQuantity}
+                onChange={(e) =>
+                  setSelectedQuantity(
+                    Math.max(
+                      1,
+                      Math.min(album.quantity, Number(e.target.value))
+                    )
+                  )
+                }
+                className="form-control w-auto d-inline-block ms-2 album-quantity-input"
+              />
+            </div>
+
             <div className="d-flex justify-content-center gap-3">
               <button
                 type="button"
@@ -139,5 +167,7 @@ function AlbumDetails() {
     </>
   );
 }
+
+AlbumDetails.propTypes = {};
 
 export default AlbumDetails;

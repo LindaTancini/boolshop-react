@@ -1,7 +1,16 @@
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Toast from "../Toast";
 
+/**
+ * Card singolo album con azioni carrello/wishlist.
+ * @param {Object} album - Dati album
+ * @param {Array} cart - Carrello
+ * @param {function} setCart - Setter carrello
+ * @param {Array} wish - Wishlist
+ * @param {function} setWish - Setter wishlist
+ */
 export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
@@ -108,3 +117,11 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
     </div>
   );
 }
+
+AlbumCard.propTypes = {
+  album: PropTypes.object.isRequired,
+  cart: PropTypes.array.isRequired,
+  setCart: PropTypes.func.isRequired,
+  wish: PropTypes.array.isRequired,
+  setWish: PropTypes.func.isRequired,
+};

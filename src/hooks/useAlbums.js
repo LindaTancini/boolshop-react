@@ -3,6 +3,13 @@ import axios from 'axios';
 import ContextLoader from '../contexts/contextLoader';
 import ContextError from '../contexts/contextError';
 
+/**
+ * Hook per recuperare la lista album dal backend con filtri opzionali.
+ * Gestisce loading/error globali e locali.
+ * @param {string} format - Formato album (opzionale)
+ * @param {object} filter - Oggetto filtri aggiuntivi (opzionale)
+ * @returns {{ albums: Array, loading: boolean, error: boolean }}
+ */
 export default function useAlbums(format = '', filter = {}) {
   // Stato locale per lista album, loading, errori
   const [albums, setAlbums] = useState([]);

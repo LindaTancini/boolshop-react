@@ -18,7 +18,7 @@ import WishContext from "../contexts/WhishContext";
 // Componente principale per la pagina di listing album (tutti, cd, vinili)
 function AlbumListPageContent({ format = "" }) {
   const { cart, setCart } = useContext(CartContext);
-  let { wish, setWish} = useContext(WishContext);
+  let { wish, setWish } = useContext(WishContext);
 
   // Custom hook per fetch degli album dal backend (con supporto a filtri e loading/error globali)
   const { albums, loading, error } = useAlbums(format);
@@ -99,10 +99,10 @@ function AlbumListPageContent({ format = "" }) {
         // La ricerca testuale viene applicata solo al submit
         const matchSearch = searchText
           ? album.name.toLowerCase().includes(searchText.toLowerCase()) ||
-            album.artist.name
-              .toLowerCase()
-              .includes(searchText.toLowerCase()) ||
-            album.genre.name.toLowerCase().includes(searchText.toLowerCase())
+          album.artist.name
+            .toLowerCase()
+            .includes(searchText.toLowerCase()) ||
+          album.genre.name.toLowerCase().includes(searchText.toLowerCase())
           : true;
         return (
           matchFormat && matchGenre && matchArtist && matchPrice && matchSearch
@@ -120,9 +120,9 @@ function AlbumListPageContent({ format = "" }) {
       });
   }
 
-  // Aggiorna la lista filtrata ogni volta che cambia un filtro (eccetto ricerca testuale)
+  // Aggiorna la lista filtrata ogni volta che cambia un filtro o la ricerca
   useEffect(() => {
-    setFiltered(filterAlbums(""));
+    setFiltered(filterAlbums(search));
     // eslint-disable-next-line
   }, [
     albums,
@@ -131,6 +131,7 @@ function AlbumListPageContent({ format = "" }) {
     selectedGenre,
     selectedArtist,
     priceRange,
+    search,
   ]);
 
   // Applica la ricerca testuale solo al submit (UX professionale)
@@ -200,7 +201,7 @@ function AlbumListPageContent({ format = "" }) {
       </div>
 
       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
-      <AlbumGrid albums={filtered} cart={cart} setCart={setCart} wish={wish} setWish={setWish}/>
+      <AlbumGrid albums={filtered} cart={cart} setCart={setCart} wish={wish} setWish={setWish} />
     </>
   );
 }

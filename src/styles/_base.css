@@ -1,0 +1,66 @@
+/* Palette, font, reset, body, utility classes */
+body {
+  background: linear-gradient(135deg, #1e254d 0%, #3a3f72 100%);
+  color: #e2e4f0;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.h2-homepage {
+  color: #f78f45;
+  font-weight: 900;
+  margin-top: 40px;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(247, 143, 69, 0.7);
+}
+
+.text-orange {
+  color: #f78f45;
+  text-shadow: 0 0 4px rgba(247, 143, 69, 0.4);
+}
+
+.text-shadow-orange {
+  text-shadow: 0 0 6px rgba(247, 143, 69, 0.8);
+}
+
+.no-link-color {
+  color: inherit !important;
+}
+
+/* Utility classes */
+.img-contain {
+  max-height: 400px;
+  max-width: 400px;
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #4a4f7a, #323a6d);
+}
+
+.img-cart {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: #4a4f7a;
+  box-shadow: 0 4px 10px rgba(106, 71, 209, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-cart:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(247, 143, 69, 0.4);
+}
+
+.img-filter-album {
+  max-height: 300px;
+  max-width: 300px;
+  margin: auto;
+}
+
+.container-filter-price {
+  max-width: 300px;
+}

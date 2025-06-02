@@ -2,7 +2,11 @@ import { useContext, useState } from "react";
 import CartContext from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 import Toast from "../components/Toast";
+import PropTypes from 'prop-types';
 
+/**
+ * Pagina carrello. Mostra lista prodotti, modifica quantità, rimozione.
+ */
 function CartPage() {
   const { cart, setCart } = useContext(CartContext);
   const [toastVisible, setToastVisible] = useState(false);
@@ -12,7 +16,26 @@ function CartPage() {
     setToastVisible(true);
   };
   //Logica totale ordine
-  const total = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+  const total = cart.reduce(
+    (sum, item) => sum + parseFloat(item.price) * (item.quantity || 1),
+    0
+  );
+
+  // Gestione modifica quantità
+  const handleQuantityChange = (index, value) => {
+    const newCart = cart.map((item, i) =>
+      i === index
+        ? {
+          ...item,
+          quantity: Math.max(
+            1,
+            Math.min(item.maxQuantity || item.quantityDisponibile || 99, Number(value))
+          ),
+        }
+        : item
+    );
+    setCart(newCart);
+  };
 
   return (
     <>
@@ -42,6 +65,26 @@ function CartPage() {
                     <div>
                       <h6 className="mb-1 text-orange">{c.name}</h6>
                       <p className="album-price mb-0">€ {c.price}</p>
+                      {/* Selettore quantità */}
+                      <div className="d-flex align-items-center mt-2">
+                        <label
+                          htmlFor={`cart-qty-${i}`}
+                          className="me-2 mb-0"
+                        >
+                          Quantità:
+                        </label>
+                        <input
+                          id={`cart-qty-${i}`}
+                          type="number"
+                          min={1}
+                          max={c.quantity || 99}
+                          value={c.quantity || 1}
+                          onChange={(e) =>
+                            handleQuantityChange(i, e.target.value)
+                          }
+                          className="form-control w-auto d-inline-block cart-quantity-input"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -76,5 +119,7 @@ function CartPage() {
     </>
   );
 }
+
+CartPage.propTypes = {};
 
 export default CartPage;

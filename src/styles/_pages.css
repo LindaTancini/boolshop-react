@@ -1,0 +1,49 @@
+/* Carousel, homepage, and page-specific styles */
+.carousel-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 32px rgba(106, 71, 209, 0.4),
+    0 4px 12px rgba(247, 143, 69, 0.4);
+  border-color: #f78f45;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  transition: filter 0.3s ease;
+}
+
+.carousel-control-next-icon:hover,
+.carousel-control-prev-icon:hover {
+  filter: invert(0.7);
+}
+
+.carousel-item button {
+  border: 2px solid #f78f45;
+  color: #f78f45;
+  background: transparent;
+  font-weight: 700;
+  padding: 0.4rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.carousel-item button:hover,
+.carousel-item button:focus {
+  background-color: #f78f45;
+  color: #fff;
+  box-shadow: 0 0 12px #f78f45;
+  outline: none;
+}
+
+.h2-homepage {
+  color: #f78f45;
+  font-weight: 900;
+  margin-top: 40px;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(247, 143, 69, 0.7);
+}
+
+.artists {
+  background: linear-gradient(145deg, #4a4f7a, #323a6d);
+  color: #e2e4f0;
+}

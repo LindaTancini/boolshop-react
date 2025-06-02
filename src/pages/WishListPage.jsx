@@ -1,7 +1,11 @@
 import { useContext } from "react";
 import WishContext from "../contexts/WhishContext";
 import CartContext from "../contexts/CartContext";
+import PropTypes from 'prop-types';
 
+/**
+ * Pagina wishlist. Mostra lista desideri e azioni su prodotti.
+ */
 const WishListPage = () => {
   const { cart, setCart } = useContext(CartContext);
   const { wish, setWish } = useContext(WishContext);
@@ -19,8 +23,7 @@ const WishListPage = () => {
   return (
     <div className="container my-5">
       <div
-        className="card p-4 shadow-lg bg-album-details-shadow mx-auto"
-        style={{ maxWidth: "600px" }}
+        className="card p-4 shadow-lg bg-album-details-shadow mx-auto wishlist-card"
       >
         <h2 className="mb-4 text-center fw-bold text-orange text-shadow-orange">
           Lista Desideri
@@ -72,5 +75,7 @@ const WishListPage = () => {
     </div>
   );
 };
+
+WishListPage.propTypes = {};
 
 export default WishListPage;

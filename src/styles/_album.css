@@ -1,0 +1,49 @@
+/* Album card, album grid, wishlist, cart, artist card */
+.custom-album-card {
+  background: linear-gradient(145deg, #4a4f7a, #323a6d);
+  color: #e2e4f0;
+  border: 1px solid #f78f45;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(106, 71, 209, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.custom-album-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 32px rgba(247, 143, 69, 0.4);
+}
+
+.album-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f78f45;
+  text-shadow: 0 0 4px rgba(247, 143, 69, 0.6);
+  margin-top: 0.25rem;
+}
+
+.bg-album-details-shadow {
+  background-color: #4a4f7a;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 20px rgba(106, 71, 209, 0.3);
+  color: #e2e4f0;
+}
+
+.album-detail-label {
+  font-weight: 700;
+  color: #f78f45;
+  text-shadow: 0 0 5px rgba(247, 143, 69, 0.5);
+}
+
+.custom-artist-card {
+  background: linear-gradient(145deg, #4a4f7a, #323a6d);
+  color: #e2e4f0;
+  border: 1px solid #f78f45;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(106, 71, 209, 0.2);
+}
+
+.artists {
+  background: linear-gradient(145deg, #4a4f7a, #323a6d);
+  color: #e2e4f0;
+}

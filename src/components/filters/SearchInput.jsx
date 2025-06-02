@@ -1,3 +1,11 @@
+import PropTypes from 'prop-types';
+
+/**
+ * Input di ricerca testuale per album, artista o genere.
+ * @param {string} value - Valore attuale dell'input
+ * @param {function} onChange - Callback per cambio valore
+ * @param {function} onSubmit - Callback per submit
+ */
 export default function SearchInput({ value, onChange, onSubmit }) {
   return (
     <form onSubmit={onSubmit} className="input-group mb-2">
@@ -18,3 +26,9 @@ export default function SearchInput({ value, onChange, onSubmit }) {
     </form>
   );
 }
+
+SearchInput.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};

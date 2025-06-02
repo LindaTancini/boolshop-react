@@ -1,0 +1,58 @@
+/* Filtri, select, input, slider, search button */
+.form-select,
+input[type="text"],
+input[type="range"],
+.filter-slider-price {
+  background-color: #4a4f7a;
+  color: #e2e4f0;
+  border: 1px solid #f78f45;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(247, 143, 69, 0.3);
+}
+
+.color-input::placeholder {
+  color: #e2e4f0;
+}
+
+.form-select:focus,
+input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #f78f45;
+  border-color: #f78f45;
+}
+
+.custom-select-filter {
+  background-color: #4a4f7a;
+  color: #e2e4f0;
+  border: 1px solid #f78f45;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 6px rgba(247, 143, 69, 0.3);
+  transition: all 0.3s ease;
+}
+
+.custom-select-filter:focus {
+  outline: none;
+  border-color: #f78f45;
+  box-shadow: 0 0 12px #f78f45;
+  background-color: #3a3f72;
+}
+
+.search-button-filter {
+  border: 2px solid #f78f45;
+  color: #f78f45;
+  background: transparent;
+  font-weight: 700;
+  padding: 0.4rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.search-button-filter:hover,
+.search-button-filter:focus {
+  background-color: #f78f45;
+  color: #fff;
+  box-shadow: 0 0 12px #f78f45;
+  outline: none;
+}

@@ -3,6 +3,11 @@ import axios from 'axios';
 import ContextLoader from '../contexts/contextLoader';
 import ContextError from '../contexts/contextError';
 
+/**
+ * Hook per recuperare la lista degli artisti dal backend.
+ * Gestisce loading/error globali.
+ * @returns {Array} Lista artisti
+ */
 export default function useArtists() {
   const [artists, setArtists] = useState([]);
   const { setIsLoading } = useContext(ContextLoader);

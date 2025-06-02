@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Hook per ottenere il range di prezzo minimo/massimo dagli album
+/**
+ * Hook per ottenere il range di prezzo minimo/massimo dagli album.
+ * @returns {[number, number]} Array [min, max]
+ */
 export default function usePriceRange() {
   const [range, setRange] = useState([0, 100]); // Stato locale: [min, max]
   useEffect(() => {
