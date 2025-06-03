@@ -32,8 +32,6 @@ const PaymentPage = () => {
     }));
   }
 
-  console.log(payment);
-
   const sendOrderEmails = async () => {
     // Prepara i dati per il template
     const order_id = Math.floor(Math.random() * 1000000); // oppure genera come preferisci
@@ -349,7 +347,7 @@ function OrderSummary({ cart, total }) {
               <div>
                 <h4 className="mb-1 text-orange fw-bold">{c.name}</h4>
                 <p className="album-price mb-0">
-                  Totale: <span >€ {(Number(c.price) * (c.quantity || 1)).toFixed(2)}</span>
+                  Totale: <span className="fw-bold">€ {(Number(c.price) * (c.quantity || 1)).toFixed(2)}</span>
                 </p>
                 <p className="mb-0">Quantità: <span className="fw-bold">{c.quantity || 1}</span></p>
               </div>
@@ -360,7 +358,7 @@ function OrderSummary({ cart, total }) {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <span className="fw-bold">Totale:</span>
         <span className="fw-bold text-orange fs-5">
-          € {total.toFixed(2)}
+          € {cart.reduce((sum, c) => sum + Number(c.price) * (c.quantity || 1), 0).toFixed(2)}
         </span>
       </div>
     </>
