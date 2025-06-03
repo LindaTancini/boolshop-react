@@ -5,3 +5,10 @@
     display: none;
   }
 }
+/* DESKTOP */
+
+@media (min-width: 768px) {
+  .icon-responsive {
+    font-size: 1.8rem;
+  }
+}
