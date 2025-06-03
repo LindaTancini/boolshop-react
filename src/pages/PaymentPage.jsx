@@ -159,7 +159,7 @@ const PaymentPage = () => {
               <div className="mb-3">
                 <label htmlFor="email">Email</label>
                 <input
-                  type="email"
+                  type="text"
                   className="form-control"
                   id="email"
                   name="email"
@@ -172,7 +172,7 @@ const PaymentPage = () => {
               <div className="mb-3">
                 <label htmlFor="telefono">Telefono</label>
                 <input
-                  type="tel"
+                  type="text"
                   className="form-control"
                   id="telefono"
                   name="telefono"
@@ -194,6 +194,35 @@ const PaymentPage = () => {
                   required
                 />
               </div>
+
+              <div className="mb-3">
+                <label htmlFor="cap">CAP</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="cap"
+                  name="cap"
+                  placeholder="10023"
+                  value={payment.cap || ""}
+                  onChange={handleForm}
+                  required
+                />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="città">Città</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="città"
+                  name="città"
+                  placeholder="Milano"
+                  value={payment.city || ""}
+                  onChange={handleForm}
+                  required
+                />
+              </div>
+
               <div className="mb-4">
                 <label htmlFor="metodo">Metodo di pagamento</label>
                 <select
@@ -212,7 +241,7 @@ const PaymentPage = () => {
               </div>
               {/* Se serve, mostra i campi carta */}
               {payment.metodo === "Credit Card" && (
-                <div className="border rounded p-3 mb-4 bg-light">
+                <div className="border rounded p-3 mb-4 ">
                   <h6 className="mb-3">Dati carta di credito</h6>
                   <div className="mb-2">
                     <input
@@ -249,7 +278,7 @@ const PaymentPage = () => {
                     </div>
                     <div className="col">
                       <input
-                        type="password"
+                        type="text"
                         className="form-control"
                         placeholder="CVV"
                         value={cvv}
