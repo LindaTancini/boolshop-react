@@ -5,6 +5,21 @@
   border-color: #f78f45;
 }
 
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+  left: -70px;
+}
+
+.carousel-control-next {
+  right: -70px;
+}
+
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
   transition: filter 0.3s ease;

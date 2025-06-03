@@ -40,6 +40,17 @@ body {
   background: linear-gradient(145deg, #4a4f7a, #323a6d);
 }
 
+.img-contain-carousel {
+  max-height: 210px;
+  max-width: 210px;
+  object-fit: contain;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #4a4f7a, #323a6d);
+}
+
 .img-cart {
   width: 60px;
   height: 60px;

@@ -1,0 +1,7 @@
+/* MOBILE */
+@media (max-width: 768px) {
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none;
+  }
+}
