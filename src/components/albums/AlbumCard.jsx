@@ -35,18 +35,32 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
   }
 
   function addToWish(e) {
-    e.stopPropagation();
+    // e.stopPropagation();
     e.preventDefault();
-    const wishElementExist = wish.find((w) => w.id === album.id);
-    console.log(wishElementExist);
-    if (wishElementExist) {
-      setWish(wish.filter((w) => w.id !== album.id));
-      setToastMessage("Elemento rimosso dalla wishlist!");
-    } else {
-      setWish([...wish, album]);
-      setToastMessage("Elemento aggiunto alla wishlist!");
-    }
+    // const existingIndex = cart.findIndex((c) => c.id === album.id);
+    let newWish;
+
+    // if (existingIndex !== -1) {
+    //   newWish = wish.map((w, index) =>
+    //     index === existingIndex ? { ...w, quantity: w.quantity + 1 } : c
+    //   );
+    // } else {
+      newWish = [...wish];
+    // }
+
+    setWish(newWish);
+    setToastMessage("Elemento aggiunto alla wishlist!");
     setToastVisible(true);
+    // const wishElementExist = wish.find((w) => w.id === album.id);
+    // console.log(wishElementExist);
+    // if (wishElementExist) {
+    //   setWish(wish.filter((w) => w.id !== album.id));
+    //   setToastMessage("Elemento rimosso dalla wishlist!");
+    // } else {
+    //   setWish([...wish, album]);
+    //   setToastMessage("Elemento aggiunto alla wishlist!");
+    // }
+    // setToastVisible(true);
   }
 
   useEffect(() => {

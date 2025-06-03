@@ -38,9 +38,16 @@ function App() {
   });
   console.log(cart);
 
-  const [wish, setWish] = useState(() => {
-    const saved = localStorage.getItem("wish");
-    return saved ? JSON.parse(saved) : [];
+  const [wish, setWish] = useState("cart", {
+    defaultValue: [],
+      parse: (str) => {
+        try {
+          const parsed = JSON.parse(str);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch {
+          return [];
+        }
+      },
   });
 
   const [payment, setPayment] = useState({
