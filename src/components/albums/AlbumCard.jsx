@@ -79,21 +79,34 @@ export default function AlbumCard({
     localStorage.setItem(album.slug, JSON.stringify(wish));
   }, [wish]);
 
+  const isInCart = cart.some((c) => c.id === album.id);
+  const isInWish = wish.some((w) => w.id === album.id);
+
+  function handleWishClick(e) {
+    e.preventDefault();
+    if (isInWish) {
+      setWish(wish.filter((w) => w.id !== album.id));
+      setToastMessage("Elemento rimosso dalla wishlist!");
+    } else {
+      setWish([...wish, album]);
+      setToastMessage("Elemento aggiunto alla wishlist!");
+    }
+    setToastVisible(true);
+  }
+
   return (
     <div className={`gy-3 ${isList ? "col-12 mb-3" : "col-12 col-md-4"}`}>
       <Link to={`/album/${album.slug}`} className="text-decoration-none">
         <div
-          className={`card custom-album-card ${
-            isList
+          className={`card custom-album-card ${isList
               ? "flex-row align-items-center p-2 small-card-list"
               : "h-100 p-3"
-          }`}
+            }`}
         >
           <img
             src={album.imagePath}
-            className={`img-fluid rounded img-filter-album ${
-              isList ? "me-3 album-list-small" : "card-img-top"
-            }`}
+            className={`img-fluid rounded img-filter-album ${isList ? "me-3 album-list-small" : "card-img-top"
+              }`}
             alt={album.name}
           />
           <div className={`card-body ${isList ? "py-1 px-2 small-font" : ""}`}>
@@ -125,9 +138,8 @@ export default function AlbumCard({
             </p>
 
             <div
-              className={`d-flex ${
-                isList ? "gap-4 mt-2" : "justify-content-between gap-3"
-              }`}
+              className={`d-flex ${isList ? "gap-4 mt-2" : "justify-content-between gap-3"
+                }`}
             >
               <button
                 type="button"
@@ -135,14 +147,14 @@ export default function AlbumCard({
                 className="btn cart-button-card"
                 onClick={addToCart}
               >
-                <i className="bi bi-cart-plus text-orange icon-responsive"></i>
+                <i className={`bi bi-cart-plus icon-responsive ${isInCart ? "text-success" : "text-orange"}`}></i>
               </button>
               <button
                 className="btn wishlist-button-card"
-                title="Aggiungi alla wishlist"
-                onClick={addToWish}
+                title={isInWish ? "Rimuovi dalla wishlist" : "Aggiungi alla wishlist"}
+                onClick={handleWishClick}
               >
-                <i className="bi bi-suit-heart-fill text-orange icon-responsive"></i>
+                <i className={`bi ${isInWish ? "bi-suit-heart-fill" : "bi-suit-heart"} icon-responsive ${isInWish ? "text-danger" : "text-orange"}`}></i>
               </button>
             </div>
           </div>
