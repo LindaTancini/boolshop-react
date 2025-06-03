@@ -56,7 +56,7 @@ const ArtistsPage = () => {
             placeholder="Cerca un Artista..."
             aria-label="Search Artist"
           />
-          <button className="btn btn-outline-danger" type="submit">
+          <button className="btn btn-outline-danger search-button-filter" type="submit">
             Cerca
           </button>
         </div>
