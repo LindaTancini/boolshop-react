@@ -28,7 +28,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
           allowCross={false}
         />
       </div>
-      <div className='d-flex justify-content-between'>
+      <div className='d-flex justify-content-center align-items-baseline'>
         <input
           className="slider-range-min form-control form-control-sm filter-slider-price mb-2 price-input-min"
           type="text"
