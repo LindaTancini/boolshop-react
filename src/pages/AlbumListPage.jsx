@@ -145,7 +145,7 @@ function AlbumListPageContent({ format = "" }) {
     <>
       <div className="row g-4 align-items-start my-4 bg-dark bg-opacity-25 p-4 rounded shadow-sm border border-light-subtle">
         <div className="col-md-3">
-          <label htmlFor="format-select">Formato</label>
+          <label htmlFor="format-select" className="label-filter">Formato</label>
           <FormatSelect
             formats={[...new Set(albums.map((a) => a.format))]}
             value={selectedFormat}
@@ -153,7 +153,7 @@ function AlbumListPageContent({ format = "" }) {
           />
         </div>
         <div className="col-md-3">
-          <label htmlFor="genre-select">Genere</label>
+          <label htmlFor="genre-select" className="label-filter">Genere</label>
           <GenreSelect
             genres={genres}
             value={selectedGenre}
@@ -197,8 +197,8 @@ function AlbumListPageContent({ format = "" }) {
             onChange={(e) => setFilter(e.target.value)}
           >
             <option value="">Predefinito</option>
-            <option>Alfabetio, A-Z</option>
-            <option>Alfabetio, Z-A</option>
+            <option>Alfabeto, A-Z</option>
+            <option>Alfabeto, Z-A</option>
             <option>Data, Dal Più Nuovo</option>
             <option>Data, Dal Più Vecchio</option>
           </select>
