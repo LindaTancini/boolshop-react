@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 
 function CarouselBis({ albums }) {
   const navigate = useNavigate();
+  //Funzione per avere più album nella slide del carosello
+  const moreAlbums = [];
+  for (let i = 0; i < albums.length; i += 3) {
+    moreAlbums.push(albums.slice(i, i + 3));
+  }
   return (
     <div className="container my-5">
       <div
@@ -12,38 +17,41 @@ function CarouselBis({ albums }) {
         data-bs-ride="carousel"
       >
         <div className="carousel-inner">
-          {albums.map((album, index) => (
+          {moreAlbums.map((group, groupIndex) => (
             <div
-              key={album.id}
-              className={`carousel-item ${index === 0 ? "active" : ""}`}
+              key={groupIndex}
+              className={`carousel-item ${groupIndex === 0 ? "active" : ""}`}
             >
-              <div className="d-flex justify-content-center p-3">
-                <Link
-                  to={`/album/${album.slug}`}
-                  className="text-decoration-none"
-                >
-                  <img
-                    src={album.imagePath}
-                    className="img-fluid rounded img-contain img-hover-effect"
-                    alt={album.title}
-                  />
-                </Link>
-              </div>
-              <div className="text-black  p-3 mt-2 rounded w-100 text-center">
-                <h5>{album.title}</h5>
-                <p className="album-price">{album.price} €</p>
-                <button
-                  type="button"
-                  className="btn btn-outline-danger"
-                  onClick={() => navigate(`/album/${album.slug}`)}
-                >
-                  Più Dettagli
-                </button>
+              <div className="row justify-content-center g-3">
+                {group.map((album) => (
+                  <div key={album.id} className="col-12 col-sm-6 col-md-4 px-2">
+                    <Link
+                      to={`/album/${album.slug}`}
+                      className="text-decoration-none"
+                    >
+                      <img
+                        src={album.imagePath}
+                        className="img-fluid rounded img-contain-carousel img-hover-effect"
+                        alt={album.title}
+                      />
+                    </Link>
+                    <div className="text-black p-3 mt-2 rounded text-center">
+                      <h5>{album.title}</h5>
+                      <p className="album-price">{album.price} €</p>
+                      <button
+                        type="button"
+                        className="btn btn-outline-danger"
+                        onClick={() => navigate(`/album/${album.slug}`)}
+                      >
+                        Più Dettagli
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ))}
         </div>
-
         <button
           className="carousel-control-prev"
           type="button"
