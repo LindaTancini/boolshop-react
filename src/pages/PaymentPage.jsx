@@ -40,7 +40,7 @@ const PaymentPage = () => {
     const orders = cart.map(item => ({
       name: item.name,
       units: item.quantity || 1,
-      price: Number(item.price).toFixed(2),
+      price: (Number(item.price) * (item.quantity || 1)).toFixed(2),
     }));
     const cost = {
       shipping: "0.00", // Modifica se hai il costo spedizione
@@ -320,8 +320,9 @@ function OrderSummary({ cart, total }) {
               <div>
                 <h6 className="mb-1 text-orange">{c.name}</h6>
                 <p className="album-price mb-0">
-                  € {Number(c.price).toFixed(2)}
+                  Totale: <span className="fw-bold">€ {(Number(c.price) * (c.quantity || 1)).toFixed(2)}</span>
                 </p>
+                <p className="mb-0">Quantità: <span className="fw-bold">{c.quantity || 1}</span></p>
               </div>
             </div>
           </li>
