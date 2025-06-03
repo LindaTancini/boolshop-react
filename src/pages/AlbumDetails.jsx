@@ -7,7 +7,6 @@ import axios from "axios";
 import CartContext from "../contexts/CartContext";
 import WishContext from "../contexts/WhishContext";
 import Toast from "../components/Toast";
-import PropTypes from 'prop-types';
 
 /**
  * Pagina di dettaglio album.

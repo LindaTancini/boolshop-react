@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import CartContext from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 import Toast from "../components/Toast";
-import PropTypes from 'prop-types';
 
 /**
  * Pagina carrello. Mostra lista prodotti, modifica quantità, rimozione.

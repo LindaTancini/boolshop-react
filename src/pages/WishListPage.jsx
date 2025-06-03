@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import WishContext from "../contexts/WhishContext";
 import CartContext from "../contexts/CartContext";
-import PropTypes from 'prop-types';
 
 /**
  * Pagina wishlist. Mostra lista desideri e azioni su prodotti.
