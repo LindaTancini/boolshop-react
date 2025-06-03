@@ -201,6 +201,11 @@ function AlbumListPageContent({ format = "" }) {
       </div>
 
       {/* Griglia album filtrati: UI modulare e riutilizzabile */}
+      <div className="d-flex justify-content-end align-items-center mb-2">
+        <span className="fw-bold text-orange">
+          Totale album visualizzati: {filtered.length}
+        </span>
+      </div>
       <AlbumGrid albums={filtered} cart={cart} setCart={setCart} wish={wish} setWish={setWish} />
     </>
   );
