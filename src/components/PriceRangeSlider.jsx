@@ -17,7 +17,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
 
   return (
     <div>
-      <div className="slider-container">
+      <div className="slider-container mb-2">
         <Slider
           range
           min={min}
@@ -28,7 +28,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
           allowCross={false}
         />
       </div>
-      <div className='d-flex justify-content-between'>
+      <div className='d-flex justify-content-center align-items-baseline'>
         <input
           className="slider-range-min form-control form-control-sm filter-slider-price mb-2 price-input-min"
           type="text"
@@ -58,6 +58,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
             if (!isNaN(v)) onChange([value[0], v]);
           }}
         />
+        <span className="mx-2"><b>€</b></span>
       </div>
     </div>
   );
