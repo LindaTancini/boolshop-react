@@ -14,7 +14,21 @@ const WishListPage = () => {
   }
 
   function addToCart(index) {
-    setCart([...cart, wish[index]]);
+    const album = wish[index];
+    const existingIndex = cart.findIndex((c) => c.id === album.id);
+    let newCart;
+    if (existingIndex !== -1) {
+      // Se già presente, aumenta la quantità
+      newCart = cart.map((c, i) =>
+        i === existingIndex
+          ? { ...c, quantity: (c.quantity || 1) + 1 }
+          : c
+      );
+    } else {
+      // Se non presente, aggiungi con quantità 1
+      newCart = [...cart, { ...album, quantity: 1 }];
+    }
+    setCart(newCart);
     removeItemWish(index);
   }
 
