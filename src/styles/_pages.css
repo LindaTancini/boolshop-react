@@ -1,6 +1,5 @@
 /* Carousel, homepage, and page-specific styles */
 .carousel-item:hover {
-  transform: scale(1.05);
   box-shadow: 0 12px 32px rgba(106, 71, 209, 0.4),
     0 4px 12px rgba(247, 143, 69, 0.4);
   border-color: #f78f45;

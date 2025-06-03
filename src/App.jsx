@@ -69,11 +69,8 @@ function App() {
                     <Route path="album/:slug" element={<AlbumDetails />} />
                     <Route path="wishlist" element={<WishListPage />} />
                     <Route path="cart" element={<CartPage />} />
+                    <Route path="payment" element={<PaymentPage />} />
                   </Route>
-                  <Route path="payment">
-                    <Route index element={<PaymentPage />} />
-                  </Route>
-
                   <Route path="/artists" element={<DefaultLayout />}>
                     <Route index element={<ArtistsPage />} />
                     <Route path=":slug" element={<AnArtistPage />} />

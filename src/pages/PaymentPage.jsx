@@ -343,13 +343,13 @@ function OrderSummary({ cart, total }) {
                   className="img-cart me-3 rounded"
                   src={c.imagePath}
                   alt={c.name}
-                  style={{ width: 60, height: 60, objectFit: "cover" }}
+                  style={{ width: 80, height: 80, objectFit: "cover" }}
                 />
               )}
               <div>
-                <h6 className="mb-1 text-orange">{c.name}</h6>
+                <h4 className="mb-1 text-orange fw-bold">{c.name}</h4>
                 <p className="album-price mb-0">
-                  Totale: <span className="fw-bold">€ {(Number(c.price) * (c.quantity || 1)).toFixed(2)}</span>
+                  Totale: <span >€ {(Number(c.price) * (c.quantity || 1)).toFixed(2)}</span>
                 </p>
                 <p className="mb-0">Quantità: <span className="fw-bold">{c.quantity || 1}</span></p>
               </div>

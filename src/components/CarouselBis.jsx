@@ -17,7 +17,7 @@ function CarouselBis({ albums }) {
               key={album.id}
               className={`carousel-item ${index === 0 ? "active" : ""}`}
             >
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center p-3">
                 <Link
                   to={`/album/${album.slug}`}
                   className="text-decoration-none"
