@@ -145,6 +145,7 @@ function AlbumListPageContent({ format = "" }) {
     <>
       <div className="row g-4 align-items-start my-4 bg-dark bg-opacity-25 p-4 rounded shadow-sm border border-light-subtle">
         <div className="col-md-3">
+          <label htmlFor="format-select">Formato</label>
           <FormatSelect
             formats={[...new Set(albums.map((a) => a.format))]}
             value={selectedFormat}
@@ -152,6 +153,7 @@ function AlbumListPageContent({ format = "" }) {
           />
         </div>
         <div className="col-md-3">
+          <label htmlFor="genre-select">Genere</label>
           <GenreSelect
             genres={genres}
             value={selectedGenre}
@@ -168,6 +170,7 @@ function AlbumListPageContent({ format = "" }) {
         </div>
         */}
         <div className="col-md-6">
+          <label htmlFor="search">Ricerca</label>
           <SearchInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -175,6 +178,7 @@ function AlbumListPageContent({ format = "" }) {
           />
         </div>
         <div className="col-md-6">
+          <label htmlFor="price">Prezzo</label>
           <PriceRangeFilter
             min={minMaxPrice[0]}
             max={minMaxPrice[1]}
