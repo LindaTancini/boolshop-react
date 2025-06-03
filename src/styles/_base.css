@@ -61,6 +61,19 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.album-list-small {
+  width: 200px;
+  height: auto;
+}
+
+.small-font {
+  font-size: 0.95rem;
+}
+
+.small-card-list {
+  min-height: 100px;
+}
+
 .img-cart:hover {
   transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(247, 143, 69, 0.4);
@@ -76,6 +89,6 @@ body {
   max-width: 300px;
 }
 
-.label-filter{
+.label-filter {
   margin-bottom: 7px;
 }

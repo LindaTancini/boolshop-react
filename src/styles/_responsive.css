@@ -4,6 +4,9 @@
   .carousel-control-next {
     display: none;
   }
+  .small-font {
+    font-size: 0.8rem;
+  }
 }
 /* DESKTOP */
 
