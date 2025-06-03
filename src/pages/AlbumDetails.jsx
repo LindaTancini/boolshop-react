@@ -65,7 +65,7 @@ function AlbumDetails() {
     //     index === existingIndex ? { ...w, quantity: w.quantity + 1 } : c
     //   );
     // } else {
-    newWish = [...wish];
+    newWish = [...wish, album];
     // }
 
     setWish(newWish);

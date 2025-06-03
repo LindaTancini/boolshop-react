@@ -38,7 +38,7 @@ function App() {
   });
   console.log(cart);
 
-  const [wish, setWish] = useState("cart", {
+  const [wish, setWish] = useState("wish", {
     defaultValue: [],
       parse: (str) => {
         try {
