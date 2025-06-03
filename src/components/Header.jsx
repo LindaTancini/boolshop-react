@@ -28,7 +28,7 @@ function Header() {
 
   return (
     <>
-      <header className={`navbar navbar-expand-sm navbar-dark bg-header-violet position-relative w-100 p-0${showSearch ? " expanded-header" : ""} no-box-shadow`}
+      <header className={`navbar navbar-expand-sm navbar-dark bg-header-violet w-100 p-0${showSearch ? " expanded-header" : ""} no-box-shadow header-fixed`}
       >
         <div className="container">
           <div className="d-flex justify-content-between align-items-center w-100">
