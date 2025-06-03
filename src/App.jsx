@@ -36,18 +36,17 @@ function App() {
       }
     },
   });
-  console.log(cart);
 
-  const [wish, setWish] = useState("wish", {
+  const [wish, setWish] = useLocalStorageState("wish", {
     defaultValue: [],
-      parse: (str) => {
-        try {
-          const parsed = JSON.parse(str);
-          return Array.isArray(parsed) ? parsed : [];
-        } catch {
-          return [];
-        }
-      },
+    parse: (str) => {
+      try {
+        const parsed = JSON.parse(str);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    },
   });
 
   const [payment, setPayment] = useState({

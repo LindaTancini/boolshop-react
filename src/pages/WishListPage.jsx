@@ -15,7 +15,6 @@ const WishListPage = () => {
 
   function addToCart(index) {
     setCart([...cart, wish[index]]);
-    console.log(cart);
     removeItemWish(index);
   }
 
