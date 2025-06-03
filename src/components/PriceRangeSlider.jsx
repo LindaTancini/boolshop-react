@@ -43,7 +43,6 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
             if (!isNaN(v)) onChange([v, value[1]]);
           }}
         />
-        <span className="mx-2"><b>€</b></span>
         <span className="mx-2"><b>-</b></span>
         <input
           className="slider-range-max form-control form-control-sm filter-slider-price mb-2 price-input-max"
