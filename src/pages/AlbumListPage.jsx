@@ -14,11 +14,14 @@ import ErrorMessage from "../components/ErrorMessage";
 import { useNavigate, useLocation } from "react-router-dom";
 import CartContext from "../contexts/CartContext";
 import WishContext from "../contexts/WhishContext";
+import ViewToggle from "../components/ViewToggle";
 
 // Componente principale per la pagina di listing album (tutti, cd, vinili)
 function AlbumListPageContent({ format = "" }) {
   const { cart, setCart } = useContext(CartContext);
   let { wish, setWish } = useContext(WishContext);
+  //Doppia visualizzazione
+  const [viewMode, setViewMode] = useState("grid");
 
   // Custom hook per fetch degli album dal backend (con supporto a filtri e loading/error globali)
   const { albums, loading, error } = useAlbums(format);
@@ -99,13 +102,9 @@ function AlbumListPageContent({ format = "" }) {
         // La ricerca testuale viene applicata solo al submit
         const matchSearch = searchText
           ? album.name.toLowerCase().includes(searchText.toLowerCase()) ||
-          album.artist.name
-            .toLowerCase()
-            .includes(searchText.toLowerCase())
+            album.artist.name.toLowerCase().includes(searchText.toLowerCase())
           : true;
-        return (
-          matchFormat && matchGenre && matchPrice && matchSearch
-        );
+        return matchFormat && matchGenre && matchPrice && matchSearch;
       })
       .sort((a, b) => {
         // Ordinamento istantaneo
@@ -145,7 +144,9 @@ function AlbumListPageContent({ format = "" }) {
     <>
       <div className="row g-4 align-items-start my-4 bg-dark bg-opacity-25 p-4 rounded shadow-sm border border-light-subtle">
         <div className="col-md-3">
-          <label htmlFor="format-select" className="label-filter">Formato</label>
+          <label htmlFor="format-select" className="label-filter">
+            Formato
+          </label>
           <FormatSelect
             formats={[...new Set(albums.map((a) => a.format))]}
             value={selectedFormat}
@@ -153,7 +154,9 @@ function AlbumListPageContent({ format = "" }) {
           />
         </div>
         <div className="col-md-3">
-          <label htmlFor="genre-select" className="label-filter">Genere</label>
+          <label htmlFor="genre-select" className="label-filter">
+            Genere
+          </label>
           <GenreSelect
             genres={genres}
             value={selectedGenre}
@@ -211,7 +214,15 @@ function AlbumListPageContent({ format = "" }) {
           Totale album visualizzati: {filtered.length}
         </span>
       </div>
-      <AlbumGrid albums={filtered} cart={cart} setCart={setCart} wish={wish} setWish={setWish} />
+      <ViewToggle viewMode={viewMode} setViewMode={setViewMode} />
+      <AlbumGrid
+        albums={filtered}
+        cart={cart}
+        setCart={setCart}
+        wish={wish}
+        setWish={setWish}
+        viewMode={viewMode}
+      />
     </>
   );
 }

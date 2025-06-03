@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import AlbumCard from './AlbumCard';
+import PropTypes from "prop-types";
+import AlbumCard from "./AlbumCard";
 
 /**
  * Griglia di card album.
@@ -9,12 +9,29 @@ import AlbumCard from './AlbumCard';
  * @param {Array} wish - Wishlist
  * @param {function} setWish - Setter wishlist
  */
-export default function AlbumGrid({ albums, cart, setCart, wish, setWish }) {
-  if (!albums.length) return <div className="text-center py-5">Nessun album trovato.</div>;
+export default function AlbumGrid({
+  albums,
+  cart,
+  setCart,
+  wish,
+  setWish,
+  viewMode,
+}) {
+  if (!albums.length)
+    return <div className="text-center py-5">Nessun album trovato.</div>;
+  const isGrid = viewMode === "grid";
   return (
-    <div className="row">
-      {albums.map(album => (
-        <AlbumCard key={album.id} album={album} cart={cart} setCart={setCart} wish={wish} setWish={setWish} />
+    <div className={isGrid ? "row" : "list-group"}>
+      {albums.map((album) => (
+        <AlbumCard
+          key={album.id}
+          album={album}
+          cart={cart}
+          setCart={setCart}
+          wish={wish}
+          setWish={setWish}
+          viewMode={viewMode}
+        />
       ))}
     </div>
   );
@@ -26,4 +43,5 @@ AlbumGrid.propTypes = {
   setCart: PropTypes.func.isRequired,
   wish: PropTypes.array.isRequired,
   setWish: PropTypes.func.isRequired,
+  viewMode: PropTypes.string.isRequired,
 };
