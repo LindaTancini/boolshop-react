@@ -45,7 +45,7 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
     //     index === existingIndex ? { ...w, quantity: w.quantity + 1 } : c
     //   );
     // } else {
-      newWish = [...wish, album];
+    newWish = [...wish, album];
     // }
 
     setWish(newWish);
@@ -82,20 +82,20 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
           />
           <div className="card-body">
             <p className="card-text mb-1">
-              <span className="fw-semibold text-orange">Titolo: </span> 
+              <span className="fw-semibold text-orange">Titolo: </span>
               {album.name}
             </p>
             <p className="card-text mb-1">
-              <span className="fw-semibold text-orange">Artista: </span> 
+              <span className="fw-semibold text-orange">Artista: </span>
               {album.artist.name}
             </p>
             <p className="card-text mb-1">
-              <span className="fw-semibold text-orange">Genere: </span> 
+              <span className="fw-semibold text-orange">Genere: </span>
               {album.genre.name}
             </p>
 
             <p className="card-text mb-1">
-              <span className="fw-semibold text-orange">Formato: </span> 
+              <span className="fw-semibold text-orange">Formato: </span>
               {album.format}
             </p>
 
@@ -107,21 +107,21 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
               <span className="fw-semibold text-orange">Data di uscita: </span>
               {new Date(album.date).toLocaleDateString("it-IT")}
             </p>
-            <div className="d-flex justify-content-end gap-3 align-items-center">
+            <div className="d-flex justify-content-between gap-3 ">
               <button
                 type="button"
                 title="Aggiungi al carrello"
                 className="btn cart-button-card"
                 onClick={addToCart}
               >
-                <i className="bi bi-cart-plus text-orange"></i>
+                <i className="bi bi-cart-plus text-orange icon-responsive"></i>
               </button>
               <button
                 className="btn wishlist-button-card"
                 title="Aggiungi alla wishlist"
                 onClick={addToWish}
               >
-                <i className="fas fa-heart text-orange"></i>
+                <i class="bi bi-suit-heart-fill text-orange icon-responsive"></i>
               </button>
             </div>
           </div>
