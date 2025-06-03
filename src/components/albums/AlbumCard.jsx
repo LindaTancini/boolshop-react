@@ -11,7 +11,15 @@ import Toast from "../Toast";
  * @param {Array} wish - Wishlist
  * @param {function} setWish - Setter wishlist
  */
-export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
+export default function AlbumCard({
+  album,
+  cart,
+  setCart,
+  wish,
+  setWish,
+  viewMode = "grid",
+}) {
+  const isList = viewMode === "list";
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
@@ -72,15 +80,23 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
   }, [wish]);
 
   return (
-    <div className="col-12 col-md-4 gy-3">
+    <div className={`gy-3 ${isList ? "col-12 mb-3" : "col-12 col-md-4"}`}>
       <Link to={`/album/${album.slug}`} className="text-decoration-none">
-        <div className="card custom-album-card h-100 p-3">
+        <div
+          className={`card custom-album-card ${
+            isList
+              ? "flex-row align-items-center p-2 small-card-list"
+              : "h-100 p-3"
+          }`}
+        >
           <img
             src={album.imagePath}
-            className="card-img-top img-fluid rounded img-filter-album"
+            className={`img-fluid rounded img-filter-album ${
+              isList ? "me-3 album-list-small" : "card-img-top"
+            }`}
             alt={album.name}
           />
-          <div className="card-body">
+          <div className={`card-body ${isList ? "py-1 px-2 small-font" : ""}`}>
             <p className="card-text mb-1">
               <span className="fw-semibold text-orange">Titolo: </span>
               {album.name}
@@ -93,21 +109,26 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
               <span className="fw-semibold text-orange">Genere: </span>
               {album.genre.name}
             </p>
-
             <p className="card-text mb-1">
               <span className="fw-semibold text-orange">Formato: </span>
               {album.format}
             </p>
-
+            {!isList && (
+              <p className="card-text mb-3">
+                <span className="fw-semibold text-orange">Data di uscita:</span>
+                {new Date(album.date).toLocaleDateString("it-IT")}
+              </p>
+            )}
             <p className="card-text mb-1 album-price">
               <span className="fw-semibold text-orange">Prezzo: </span>
               {album.price} €
             </p>
-            <p className="card-text mb-3">
-              <span className="fw-semibold text-orange">Data di uscita: </span>
-              {new Date(album.date).toLocaleDateString("it-IT")}
-            </p>
-            <div className="d-flex justify-content-between gap-3 ">
+
+            <div
+              className={`d-flex ${
+                isList ? "gap-4 mt-2" : "justify-content-between gap-3"
+              }`}
+            >
               <button
                 type="button"
                 title="Aggiungi al carrello"
@@ -121,7 +142,7 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
                 title="Aggiungi alla wishlist"
                 onClick={addToWish}
               >
-                <i class="bi bi-suit-heart-fill text-orange icon-responsive"></i>
+                <i className="bi bi-suit-heart-fill text-orange icon-responsive"></i>
               </button>
             </div>
           </div>
@@ -144,4 +165,5 @@ AlbumCard.propTypes = {
   setCart: PropTypes.func.isRequired,
   wish: PropTypes.array.isRequired,
   setWish: PropTypes.func.isRequired,
+  viewMode: PropTypes.string,
 };
