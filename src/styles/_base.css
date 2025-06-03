@@ -75,3 +75,7 @@ body {
 .container-filter-price {
   max-width: 300px;
 }
+
+.label-filter{
+  margin-bottom: 7px;
+}
