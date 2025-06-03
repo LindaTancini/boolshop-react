@@ -1,6 +1,7 @@
-@import './styles/_base.css';
-@import './styles/_header.css';
-@import './styles/_album.css';
-@import './styles/_filters.css';
-@import './styles/_components.css';
-@import './styles/_pages.css';
+@import "./styles/_base.css";
+@import "./styles/_header.css";
+@import "./styles/_album.css";
+@import "./styles/_filters.css";
+@import "./styles/_components.css";
+@import "./styles/_pages.css";
+@import "./styles/_responsive.css";
