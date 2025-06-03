@@ -2,11 +2,11 @@ import { useState, useEffect, useContext } from "react";
 import { FilterProvider, useFilter } from "../contexts/FilterContext";
 import useAlbums from "../hooks/useAlbums";
 import useGenres from "../hooks/useGenres";
-import useArtists from "../hooks/useArtists";
+// import useArtists from "../hooks/useArtists";
 import usePriceRange from "../hooks/usePriceRange";
 import FormatSelect from "../components/filters/FormatSelect";
 import GenreSelect from "../components/filters/GenreSelect";
-import ArtistSelect from "../components/filters/ArtistSelect";
+// import ArtistSelect from "../components/filters/ArtistSelect";
 import PriceRangeFilter from "../components/filters/PriceRangeFilter";
 import SearchInput from "../components/filters/SearchInput";
 import AlbumGrid from "../components/albums/AlbumGrid";
@@ -24,7 +24,7 @@ function AlbumListPageContent({ format = "" }) {
   const { albums, loading, error } = useAlbums(format);
   // Custom hook per fetch generi e artisti (dati per i select)
   const genres = useGenres();
-  const artists = useArtists();
+  // const artists = useArtists();
   // Custom hook per ottenere il range di prezzo (slider)
   const minMaxPrice = usePriceRange();
   // Stato e azioni filtri dal context centralizzato (FilterContext)
@@ -37,8 +37,8 @@ function AlbumListPageContent({ format = "" }) {
     setSelectedFormat, // filtro formato
     selectedGenre,
     setSelectedGenre, // filtro genere
-    selectedArtist,
-    setSelectedArtist, // filtro artista
+    // selectedArtist,
+    // setSelectedArtist, // filtro artista
     priceRange,
     setPriceRange, // filtro prezzo (slider)
   } = useFilter();
@@ -52,7 +52,7 @@ function AlbumListPageContent({ format = "" }) {
     const params = new URLSearchParams(location.search);
     setSelectedFormat(params.get("format") || "");
     setSelectedGenre(params.get("genre") || "");
-    setSelectedArtist(params.get("artist") || "");
+    // setSelectedArtist(params.get("artist") || "");
     const priceRangeParam = params.get("price-range");
     setPriceRange(priceRangeParam ? priceRangeParam.split(",") : minMaxPrice);
     setSearch(params.get("search") || "");
@@ -63,7 +63,7 @@ function AlbumListPageContent({ format = "" }) {
     const params = new URLSearchParams();
     if (selectedFormat) params.set("format", selectedFormat);
     if (selectedGenre) params.set("genre", selectedGenre);
-    if (selectedArtist) params.set("artist", selectedArtist);
+    // if (selectedArtist) params.set("artist", selectedArtist);
     if (priceRange) params.set("price-range", priceRange);
     if (search) params.set("search", search);
     if (filter) params.set("filter", filter);
@@ -71,7 +71,7 @@ function AlbumListPageContent({ format = "" }) {
   }, [
     selectedFormat,
     selectedGenre,
-    selectedArtist,
+    // selectedArtist,
     priceRange,
     search,
     filter,
@@ -89,9 +89,9 @@ function AlbumListPageContent({ format = "" }) {
         const matchGenre = selectedGenre
           ? album.genre.name === selectedGenre
           : true;
-        const matchArtist = selectedArtist
-          ? album.artist.name === selectedArtist
-          : true;
+        // const matchArtist = selectedArtist
+        //   ? album.artist.name === selectedArtist
+        //   : true;
         // Lo slider prezzo applica il filtro solo su rilascio (evento change)
         const matchPrice =
           Number(album.price) >= priceRange[0] &&
@@ -101,11 +101,10 @@ function AlbumListPageContent({ format = "" }) {
           ? album.name.toLowerCase().includes(searchText.toLowerCase()) ||
           album.artist.name
             .toLowerCase()
-            .includes(searchText.toLowerCase()) ||
-          album.genre.name.toLowerCase().includes(searchText.toLowerCase())
+            .includes(searchText.toLowerCase())
           : true;
         return (
-          matchFormat && matchGenre && matchArtist && matchPrice && matchSearch
+          matchFormat && matchGenre && matchPrice && matchSearch
         );
       })
       .sort((a, b) => {
@@ -129,7 +128,7 @@ function AlbumListPageContent({ format = "" }) {
     filter,
     selectedFormat,
     selectedGenre,
-    selectedArtist,
+    // selectedArtist,
     priceRange,
     search,
   ]);
@@ -159,6 +158,7 @@ function AlbumListPageContent({ format = "" }) {
             onChange={(e) => setSelectedGenre(e.target.value)}
           />
         </div>
+        {/*
         <div className="col-md-3">
           <ArtistSelect
             artists={artists}
@@ -166,7 +166,8 @@ function AlbumListPageContent({ format = "" }) {
             onChange={(e) => setSelectedArtist(e.target.value)}
           />
         </div>
-        <div className="col-md-3">
+        */}
+        <div className="col-md-6">
           <SearchInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}
