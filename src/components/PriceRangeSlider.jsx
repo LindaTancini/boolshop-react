@@ -17,10 +17,22 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
 
   return (
     <div>
-      <div className='d-flex justify-content-center'>
+      <div className="slider-container">
+        <Slider
+          range
+          min={min}
+          max={max}
+          step={0.01}
+          value={value}
+          onChange={handleChange}
+          allowCross={false}
+        />
+      </div>
+      <div className='d-flex justify-content-between'>
         <input
-          className="form-control form-control-sm filter-slider-price mb-2 price-input-min"
-          type="number"
+          className="slider-range-min form-control form-control-sm filter-slider-price mb-2 price-input-min"
+          type="text"
+          inputmode="numeric"
           aria-label="Prezzo minimo"
           value={value[0]}
           min={min}
@@ -31,10 +43,11 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
             if (!isNaN(v)) onChange([v, value[1]]);
           }}
         />
-        <span className="mx-2">-</span>
+        <span className="mx-2"><b>-</b></span>
         <input
-          className="form-control form-control-sm filter-slider-price mb-2 price-input-max"
-          type="number"
+          className="slider-range-max form-control form-control-sm filter-slider-price mb-2 price-input-max"
+          type="text"
+          inputmode="numeric"
           aria-label="Prezzo massimo"
           value={value[1]}
           min={value[0]}
@@ -44,17 +57,6 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
             const v = Number(e.target.value);
             if (!isNaN(v)) onChange([value[0], v]);
           }}
-        />
-      </div>
-      <div className="slider-container">
-        <Slider
-          range
-          min={min}
-          max={max}
-          step={0.01}
-          value={value}
-          onChange={handleChange}
-          allowCross={false}
         />
       </div>
     </div>

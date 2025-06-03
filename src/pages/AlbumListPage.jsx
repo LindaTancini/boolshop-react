@@ -169,15 +169,7 @@ function AlbumListPageContent({ format = "" }) {
           />
         </div>
         */}
-        <div className="col-md-6">
-          <label htmlFor="search">Ricerca</label>
-          <SearchInput
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onSubmit={handleSearchSubmit}
-          />
-        </div>
-        <div className="col-md-6">
+        <div className="col-md-2">
           <label htmlFor="price">Prezzo</label>
           <PriceRangeFilter
             min={minMaxPrice[0]}
@@ -186,7 +178,15 @@ function AlbumListPageContent({ format = "" }) {
             onChange={setPriceRange}
           />
         </div>
-        <div className="col-md-6 d-flex justify-content-end align-items-center">
+        <div className="col-md-4">
+          <label htmlFor="search">Ricerca</label>
+          <SearchInput
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onSubmit={handleSearchSubmit}
+          />
+        </div>
+        <div className="d-flex justify-content-end align-items-center">
           <span className="fw-semibold me-2 text-white text-shadow-orange">
             Ordina per:
           </span>
