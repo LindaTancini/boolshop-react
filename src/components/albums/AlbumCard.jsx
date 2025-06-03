@@ -79,6 +79,12 @@ export default function AlbumCard({ album, cart, setCart, wish, setWish }) {
               <span className="fw-semibold text-orange">Genere:</span>
               {album.genre.name}
             </p>
+
+            <p className="card-text mb-1">
+              <span className="fw-semibold text-orange">Formato:</span>
+              {album.format}
+            </p>
+
             <p className="card-text mb-1 album-price">
               <span className="fw-semibold text-orange">Prezzo:</span>
               {album.price} €

@@ -214,8 +214,8 @@ const PaymentPage = () => {
                 <input
                   type="text"
                   className="form-control"
-                  id="città"
-                  name="città"
+                  id="city"
+                  name="city"
                   placeholder="Milano"
                   value={payment.city || ""}
                   onChange={handleForm}
