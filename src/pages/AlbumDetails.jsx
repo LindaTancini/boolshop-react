@@ -54,16 +54,44 @@ function AlbumDetails() {
       });
   }, [slug]);
 
-  function addToWish() {
-    const wishElementExist = wish.find((w) => w.id === album.id);
-    console.log(wishElementExist);
-    if (wishElementExist) {
-      wish = wish.filter((w) => w.id !== album.id);
-      setWish(wish);
-    } else {
-      setWish([...wish, album]);
-    }
+  function addToWish(e) {
+    // e.stopPropagation();
+    e.preventDefault();
+    // const existingIndex = cart.findIndex((c) => c.id === album.id);
+    let newWish;
+
+    // if (existingIndex !== -1) {
+    //   newWish = wish.map((w, index) =>
+    //     index === existingIndex ? { ...w, quantity: w.quantity + 1 } : c
+    //   );
+    // } else {
+    newWish = [...wish, album];
+    // }
+
+    setWish(newWish);
+    // setToastMessage("Elemento aggiunto alla wishlist!");
+    setToastVisible(true);
+    // const wishElementExist = wish.find((w) => w.id === album.id);
+    // console.log(wishElementExist);
+    // if (wishElementExist) {
+    //   setWish(wish.filter((w) => w.id !== album.id));
+    //   setToastMessage("Elemento rimosso dalla wishlist!");
+    // } else {
+    //   setWish([...wish, album]);
+    //   setToastMessage("Elemento aggiunto alla wishlist!");
+    // }
+    // setToastVisible(true);
   }
+  // function addToWish() {
+  //   const wishElementExist = wish.find((w) => w.id === album.id);
+  //   console.log(wishElementExist);
+  //   if (wishElementExist) {
+  //     wish = wish.filter((w) => w.id !== album.id);
+  //     setWish(wish);
+  //   } else {
+  //     setWish([...wish, album]);
+  //   }
+  // }
 
   useEffect(() => {
     localStorage.setItem(slug, JSON.stringify(wish));
