@@ -128,7 +128,7 @@ function Header() {
               autoFocus={showSearch && location.pathname !== '/products'}
               tabIndex={showSearch && location.pathname !== '/products' ? 0 : -1}
             />
-            <button className="btn btn-outline-danger py-1 px-4 btn-search-bar" type="submit">
+            <button className="btn btn-outline-danger search-button-filter btn-search-bar" type="submit">
               Cerca
             </button>
           </form>
