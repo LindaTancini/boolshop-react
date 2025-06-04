@@ -106,3 +106,9 @@
 .icon-responsive {
   font-size: 2.2rem;
 }
+
+
+/* bg footer */
+.bg-footer-violet {
+  background-color: #6a47d1 !important;
+}

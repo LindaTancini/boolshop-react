@@ -33,7 +33,10 @@ function Header() {
         <div className="container">
           <div className="d-flex justify-content-between align-items-center w-100">
             {/* LOGO */}
-            <Link className="navbar-brand fw-bold fs-4 text-white" to="/">
+            <Link className="navbar-brand fw-bold fs-4 text-white d-flex align-items-center" to="/">
+            <div className="img-logo-container">
+              <img src="/logo/note_musicali.png" alt="Logo" className="w-100" />
+            </div>
               BOOLSHOP
             </Link>
             {/* TOGGLE RESPONSIVE MOBILE */}
@@ -112,7 +115,7 @@ function Header() {
       </header>
       {/* Mostra la barra di ricerca solo se showSearch è true e non siamo su /products */}
       <div
-        className={`search-bar-outer${showSearch && location.pathname !== '/products' ? ' show search-bar-animated' : ''}`}
+        className={`search-bar-outer${showSearch && location.pathname !== '/products' ? ' show search-bar-animated' : ''} mt-3`}
         aria-hidden={!(showSearch && location.pathname !== '/products')}
         tabIndex={showSearch && location.pathname !== '/products' ? 0 : -1}
         style={{ pointerEvents: showSearch && location.pathname !== '/products' ? 'auto' : 'none' }}
