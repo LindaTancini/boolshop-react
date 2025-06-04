@@ -125,30 +125,58 @@ const PaymentPage = () => {
     setDiscountLoading(true);
     setDiscountError("");
     setDiscountResult(null);
-    try {
-      const res = await axios.post(`http://localhost:3000/api/discount/check`, {
+    // try {
+    //   const res = await axios.post(`http://localhost:3000/api/discount/check`, {
+    //     code: discountCode,
+    //     orderTotal,
+    //     shippingCost,
+    //   });
+    //   setDiscountResult({ ...res.data, code: discountCode });
+    //   if (res.data.valid) {
+    //     setLastAppliedCode(discountCode);
+    //     setToastType("success");
+    //     setToastMessage(res.data.message);
+    //   } else {
+    //     setToastType("danger");
+    //     setToastMessage(res.data.message);
+    //   }
+    //   setToastVisible(true);
+    // } catch (err) {
+    //   setDiscountError("Errore nella verifica del codice sconto");
+    //   setToastType("danger");
+    //   setToastMessage("Errore nella verifica del codice sconto");
+    //   setToastVisible(true);
+    // } finally {
+    //   setDiscountLoading(false);
+    // }
+      axios.post(`http://localhost:3000/api/discount/check`, {
         code: discountCode,
         orderTotal,
         shippingCost,
-      });
-      setDiscountResult({ ...res.data, code: discountCode });
-      if (res.data.valid) {
-        setLastAppliedCode(discountCode);
-        setToastType("success");
-        setToastMessage(res.data.message);
-      } else {
+      })
+      .then(res => {
+        setDiscountResult({ ...res.data, code: discountCode });
+        if (res.data.valid) {
+          setLastAppliedCode(discountCode);
+          setToastType("success");
+          setToastMessage(res.data.message);
+        } else {
+          setToastType("danger");
+          setToastMessage(res.data.message);
+        }
+        setToastVisible(true);
+      })
+      .catch((err) => {
+        setDiscountError("Errore nella verifica del codice sconto");
         setToastType("danger");
-        setToastMessage(res.data.message);
-      }
-      setToastVisible(true);
-    } catch (err) {
-      setDiscountError("Errore nella verifica del codice sconto");
-      setToastType("danger");
-      setToastMessage("Errore nella verifica del codice sconto");
-      setToastVisible(true);
-    } finally {
-      setDiscountLoading(false);
-    }
+        setToastMessage("Errore nella verifica del codice sconto");
+        setToastVisible(true);
+        console.log(err);
+      })
+      .finally(()=> {
+        setDiscountLoading(false);
+      })
+
   };
 
   if (!cart.length) {
