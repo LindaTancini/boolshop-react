@@ -132,3 +132,8 @@
     0 3px 8px rgba(247, 143, 69, 0.5);
   transition: box-shadow 0.4s;
 }
+
+.img-logo-container{
+  height: 50px;
+  width: 50px;
+}

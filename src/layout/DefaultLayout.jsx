@@ -7,7 +7,7 @@ function DefaultLayout() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
-      <main className="flex-grow-1 mt-4 p-3">
+      <main className="flex-grow-1 mt-4 p-4">
         <div className="container">
           <Outlet />
         </div>
