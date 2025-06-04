@@ -100,21 +100,17 @@ const PaymentPage = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await sendOrderEmails();
-      setToastType("success");
-      setToastMessage("Ordine effettuato con successo!");
-      setToastVisible(true);
-      setCart([]);
-      setLoading(false);
-      navigate("/");
+      const response = await axios.post("http://localhost:3000/api/payment/create-checkout-session", { cart, payment, shippingCost, discountResult });
+      window.location.href = response.data.url;
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setToastType("danger");
-      setToastMessage("Errore nell'invio dell'email. Riprova.");
+      setToastMessage("Errore durante il pagamento.");
       setToastVisible(true);
       setLoading(false);
     }
   }
+
 
   // Funzione per inviare il codice sconto al backend
   const handleDiscountCheck = async (e) => {
@@ -135,7 +131,7 @@ const PaymentPage = () => {
         orderTotal,
         shippingCost,
       });
-      setDiscountResult(res.data);
+      setDiscountResult({ ...res.data, code: discountCode });
       if (res.data.valid) {
         setLastAppliedCode(discountCode);
         setToastType("success");
