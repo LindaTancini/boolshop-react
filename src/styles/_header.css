@@ -3,7 +3,7 @@
   background-color: #6a47d1 !important;
   box-shadow: 0 3px 8px rgba(247, 143, 69, 0.5);
 }
-.header-fixed{
+.header-fixed {
   position: fixed;
   z-index: 3;
 }
@@ -45,7 +45,7 @@
   width: 100%;
   background: rgba(58, 63, 114, 0.98);
   border-radius: 0 0 18px 18px;
-  box-shadow: 0 8px 24px rgba(106, 71, 209, 0.10);
+  box-shadow: 0 8px 24px rgba(106, 71, 209, 0.1);
   position: absolute;
   left: 0;
   top: 100%;
@@ -66,16 +66,17 @@
 }
 
 .search-bar-outer {
-  overflow: hidden;
-  background: var(--header-violet, #6a47d1);
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
   max-height: 0;
   opacity: 0;
-  box-shadow: none;
-  border-radius: 0;
   width: 100%;
-  position: relative;
   pointer-events: none;
+  position: fixed;
+  top: 38px;
+  left: 0;
+  z-index: 4;
+  box-shadow: 0 8px 24px rgba(106, 71, 209, 0.1);
+  border-radius: 0 0 18px 18px;
 }
 
 .search-bar-outer.show,
@@ -127,6 +128,7 @@
 }
 
 .expanded-header {
-  box-shadow: 0 8px 32px rgba(247, 143, 69, 0.18), 0 3px 8px rgba(247, 143, 69, 0.5);
+  box-shadow: 0 8px 32px rgba(247, 143, 69, 0.18),
+    0 3px 8px rgba(247, 143, 69, 0.5);
   transition: box-shadow 0.4s;
 }
