@@ -1,5 +1,5 @@
 //Importazioni
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import ContextLoader from "../contexts/contextLoader";
 import ContextError from "../contexts/contextError";
 import { useContext, useEffect, useState } from "react";
@@ -14,6 +14,7 @@ import Toast from "../components/Toast";
  */
 function AlbumDetails() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [album, setAlbum] = useState(null);
   const api = `http://127.0.0.1:3000/api/album/${slug}`;
   const [toastVisible, setToastVisible] = useState(false);
@@ -184,6 +185,14 @@ function AlbumDetails() {
             </div>
           </div>
         </div>
+      </div>
+      <div className="text-center mt-4">
+        <button
+          className="button-orange-outline"
+          onClick={() => navigate("/products")}
+        >
+          Torna al negozio
+        </button>
       </div>
       <Toast
         message="Elemento aggiunto al carrello!"
