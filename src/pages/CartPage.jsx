@@ -22,7 +22,7 @@ function CartPage() {
     showToast("Elemento rimosso dal carrello!", "success");
   };
 
-  const total = cart.reduce(
+  const total = (Array.isArray(cart) ? cart : []).reduce(
     (sum, item) => sum + parseFloat(item.price) * (item.quantity || 1),
     0
   );
@@ -74,7 +74,7 @@ function CartPage() {
           Il tuo Carrello
         </h2>
 
-        {cart.length === 0 ? (
+        {(Array.isArray(cart) ? cart : []).length === 0 ? (
           <p className="text-center">Il carrello è vuoto.</p>
         ) : (
           <>

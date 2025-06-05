@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Toast from "../Toast";
 import { openCartOffcanvas } from "../cartUtils";
+import CartContext from "../../contexts/CartContext";
 
 /**
  * Card singolo album con azioni carrello/wishlist.
@@ -14,8 +15,6 @@ import { openCartOffcanvas } from "../cartUtils";
  */
 export default function AlbumCard({
   album,
-  cart,
-  setCart,
   wish,
   setWish,
   viewMode = "grid",
@@ -23,19 +22,20 @@ export default function AlbumCard({
   const isList = viewMode === "list";
   const [toastVisible, setToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const {cart, setCart} = useContext(CartContext);
 
   function addToCart(e) {
     e.preventDefault();
 
-    const existingIndex = cart.findIndex((c) => c.id === album.id);
+    const existingIndex = (Array.isArray(cart) ? cart : []).findIndex((c) => c.id === album.id);
     let newCart;
 
     if (existingIndex !== -1) {
-      newCart = cart.map((c, index) =>
+      newCart = (Array.isArray(cart) ? cart : []).map((c, index) =>
         index === existingIndex ? { ...c, quantity: c.quantity + 1 } : c
       );
     } else {
-      newCart = [...cart, { ...album, quantity: 1 }];
+      newCart = (Array.isArray(cart) ? [...cart, { ...album, quantity: 1 }] : []);
     }
 
     setCart(newCart);
@@ -52,8 +52,8 @@ export default function AlbumCard({
     localStorage.setItem(album.slug, JSON.stringify(wish));
   }, [wish]);
 
-  const isInCart = cart.some((c) => c.id === album.id);
-  const isInWish = wish.some((w) => w.id === album.id);
+  const isInCart = (Array.isArray(cart) ? cart : []).some((c) => c.id === album.id); 
+  const isInWish = (Array.isArray(wish) ? wish : []).some((w) => w.id === album.id);
 
   function addToWish(e) {
     e.preventDefault();

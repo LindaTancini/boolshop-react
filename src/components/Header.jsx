@@ -222,12 +222,12 @@ function Header() {
         </div>
 
         <div className="offcanvas-body">
-          {cart.length === 0 ? (
+          {Array.isArray(cart) && cart.length === 0 ? (
             <p className="text-center text-muted">Il carrello è vuoto.</p>
           ) : (
             <>
               <ul className="list-group mb-3">
-                {cart.map((item, index) => (
+                  {Array.isArray(cart) && cart.map((item, index) => (
                   <li
                     key={index}
                     className="list-group-item bg-light rounded shadow-sm mb-3"
@@ -289,7 +289,7 @@ function Header() {
                 <span>Totale:</span>
                 <span>
                   €
-                  {cart
+                    {(Array.isArray(cart) ? cart : [])
                     .reduce(
                       (sum, item) =>
                         sum + parseFloat(item.price) * (item.quantity || 1),
