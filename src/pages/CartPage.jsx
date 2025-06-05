@@ -35,12 +35,13 @@ function CartPage() {
 
     setLoading(true);
     try {
+      const shippingCost = total > import.meta.env.VITE_FREE_SHIPPING_THRESHOLD ? 0 : import.meta.env.VITE_STANDARD_SHIPPING_COST;
       const response = await axios.post(
         "http://localhost:3000/api/payment/create-checkout-session",
         {
           cart,
           payment: {},
-          shippingCost: 0,
+          shippingCost,
           discountResult: {},
         }
       );
