@@ -123,23 +123,23 @@ function AlbumDetails() {
               <span className="album-detail-label">Prezzo:</span> {album.price}€
             </p>
             <p className="fs-5 mb-3">
-              <span className="album-detail-label">Artista:</span>
+              <span className="album-detail-label">Artista: </span>
               {album.artist.name}
             </p>
             <p className="fs-5 mb-3">
-              <span className="album-detail-label">Genere:</span>
+              <span className="album-detail-label">Genere: </span>
               {album.genre.name}
             </p>
             <p className="fs-5 mb-3">
-              <span className="album-detail-label">Quantità disponibile:</span>
+              <span className="album-detail-label">Quantità disponibile: </span>
               {album.quantity}
             </p>
             <p className="fs-5 mb-3">
-              <span className="album-detail-label">Formato:</span>
+              <span className="album-detail-label">Formato: </span>
               {album.format}
             </p>
             <p className="fs-5 mb-4">
-              <span className="album-detail-label">Data di rilascio:</span>
+              <span className="album-detail-label">Data di rilascio: </span>
               {new Date(album.date).toLocaleDateString("it-IT")}
             </p>
 
