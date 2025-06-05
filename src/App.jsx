@@ -15,7 +15,6 @@ import WishContext from "./contexts/WhishContext";
 import WishListPage from "./pages/WishListPage";
 import PaymentContext from "./contexts/paymentContext";
 import useLocalStorageState from "use-local-storage-state";
-import PaymentPage from "./pages/PaymentPage";
 import SuccessPage from "./pages/SuccessPage";
 
 function App() {
@@ -66,7 +65,7 @@ function App() {
                     <Route path="album/:slug" element={<AlbumDetails />} />
                     <Route path="wishlist" element={<WishListPage />} />
                     <Route path="cart" element={<CartPage />} />
-                    <Route path="payment" element={<PaymentPage />} />
+                    <Route path="/success" element={<SuccessPage />} />
                   </Route>
 
                   <Route path="/artists" element={<DefaultLayout />}>
@@ -74,7 +73,6 @@ function App() {
                     <Route path=":slug" element={<AnArtistPage />} />
                   </Route>
 
-                  <Route path="/success" element={<SuccessPage />} />
                 </Routes>
               </Router>
             </PaymentContext.Provider>
