@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
+
 const AnArtistPage = () => {
+    const navigate = useNavigate();
     const { slug } = useParams();
     const [artist, setArtist] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -56,7 +59,11 @@ const AnArtistPage = () => {
                     </p>
                 </div>
             </div>
-            <Link to="/artists" className="btn btn-primary mt-4">Torna all'elenco artisti</Link>
+            <button
+                className="button-orange-outline"
+                onClick={() => navigate("/artists")}
+            >Torna all'elenco artisti
+            </button>
         </div>
     );
 };

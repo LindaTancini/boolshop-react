@@ -66,11 +66,11 @@ const ArtistsPage = () => {
         {artists.map((artist) => (
           <li
             key={artist.id}
-            className="list-group-item d-flex justify-content-between align-items-center  artists"
+            className="list-group-item d-flex justify-content-between align-items-center artists-list artists"
           >
             <Link
               to={`/artists/${artist.slug}`}
-              className="no-link-color text-decoration-none fw-bold"
+              className="no-link-color text-decoration-none fw-bold artist"
             >
               {artist.name}
             </Link>
