@@ -47,3 +47,7 @@
   background: linear-gradient(145deg, #4a4f7a, #323a6d);
   color: #e2e4f0;
 }
+
+.list-group-item {
+  border-top-width: 1px !important;
+}
