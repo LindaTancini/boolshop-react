@@ -133,7 +133,12 @@
   transition: box-shadow 0.4s;
 }
 
-.img-logo-container{
+.img-logo-container {
   height: 50px;
   width: 50px;
+}
+
+.offcanvas-wider {
+  width: 500px !important;
+  max-width: 90vw !important;
 }
