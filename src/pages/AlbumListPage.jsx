@@ -173,7 +173,7 @@ function AlbumListPageContent({ format = "" }) {
         </div>
         */}
         <div className="col-md-3">
-          <label htmlFor="price" className="label-filter">Prezzo</label>
+          <label htmlFor="price" className="mb-1">Prezzo</label>
           <PriceRangeFilter
             min={minMaxPrice[0]}
             max={minMaxPrice[1]}
@@ -182,7 +182,7 @@ function AlbumListPageContent({ format = "" }) {
           />
         </div>
         <div className="col-md-3">
-          <label htmlFor="search">Ricerca</label>
+          <label htmlFor="search" className="label-filter">Ricerca</label>
           <SearchInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}

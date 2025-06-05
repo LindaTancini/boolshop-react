@@ -47,7 +47,7 @@ export default function SuccessPage() {
         }));
 
         const ordersString = items
-          .map((item) => `• ${item.name} (x${item.units}) - €${item.price}`)
+          .map((item) => `• ${item.name} (x${item.quantity}) - €${item.price}`)
           .join("\n");
 
         const cost_shipping = session.total_details?.amount_shipping
@@ -60,52 +60,9 @@ export default function SuccessPage() {
 
         emailjs.init(import.meta.env.VITE_EMAIL_USER_ID);
 
-        await emailjs.send(
-          import.meta.env.VITE_EMAIL_SERVICE_ID,
-          import.meta.env.VITE_EMAIL_SERVICE_TEMPLATE,
-          {
-            email: customerEmail,
-            order_id: sessionId,
-            orders: ordersString,
-            cost_shipping,
-            cost_tax,
-            cost_total,
-            nome,
-            cognome,
-            indirizzo,
-            cap,
-            city,
-            country,
-            telefono: customerPhone,
-            metodo: session.payment_method_types[0] || "",
-          },
-          import.meta.env.VITE_EMAIL_USER_ID
-        );
-
-        await emailjs.send(
-          import.meta.env.VITE_EMAIL_SERVICE_ID,
-          import.meta.env.VITE_EMAIL_SERVICE_TEMPLATE,
-          {
-            email: import.meta.env.VITE_OWNER_EMAIL,
-            order_id: sessionId,
-            orders: ordersString,
-            cost_shipping,
-            cost_tax,
-            cost_total,
-            nome,
-            cognome,
-            indirizzo,
-            cap,
-            city,
-            country,
-            telefono: customerPhone,
-            metodo: session.payment_method_types[0] || "",
-            user_email: customerEmail,
-          },
-          import.meta.env.VITE_EMAIL_USER_ID
-        );
-
-        console.log("Dati email inviati:", {
+        const templateParams = {
+          email: customerEmail,
+          order_id: sessionId,
           orders: ordersString,
           cost_shipping,
           cost_tax,
@@ -117,7 +74,30 @@ export default function SuccessPage() {
           city,
           country,
           telefono: customerPhone,
-        });
+          metodo: session.payment_method_types[0] || "",
+        };
+
+        // Invia email al cliente
+        await emailjs.send(
+          import.meta.env.VITE_EMAIL_SERVICE_ID,
+          import.meta.env.VITE_EMAIL_SERVICE_TEMPLATE,
+          templateParams,
+          import.meta.env.VITE_EMAIL_USER_ID
+        );
+
+        // Invia email al proprietario
+        await emailjs.send(
+          import.meta.env.VITE_EMAIL_SERVICE_ID,
+          import.meta.env.VITE_EMAIL_SERVICE_TEMPLATE,
+          {
+            ...templateParams,
+            email: import.meta.env.VITE_OWNER_EMAIL,
+            user_email: customerEmail,
+          },
+          import.meta.env.VITE_EMAIL_USER_ID
+        );
+
+        console.log("Dati email inviati:", templateParams);
 
         setCart([]);
         setStatus("success");
@@ -136,10 +116,7 @@ export default function SuccessPage() {
   }, [search]);
 
   return (
-    <div
-      className="container d-flex flex-column align-items-center justify-content-center"
-      style={{ height: "70vh" }}
-    >
+    <div className="container d-flex flex-column align-items-center justify-content-center" style={{ height: "70vh" }}>
       {status === "loading" && (
         <div className="text-center">
           <div className="spinner-border text-orange mb-3" role="status">
