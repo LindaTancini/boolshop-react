@@ -1,4 +1,4 @@
-//Importazioni
+// Importazioni
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layout/DefaultLayout";
 import HomePage from "./pages/HomePage";
@@ -13,17 +13,14 @@ import AlbumDetails from "./pages/AlbumDetails";
 import CartContext from "./contexts/CartContext";
 import WishContext from "./contexts/WhishContext";
 import WishListPage from "./pages/WishListPage";
-import PaymentPage from "./pages/PaymentPage";
 import PaymentContext from "./contexts/paymentContext";
 import useLocalStorageState from "use-local-storage-state";
+import PaymentPage from "./pages/PaymentPage";
+import SuccessPage from "./pages/SuccessPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  // const [cart, setCart] = useState(() => {
-  //   const saved = localStorage.getItem("cart");
-  //   return saved ? JSON.parse(saved) : [];
-  // });
 
   const [cart, setCart] = useLocalStorageState("cart", {
     defaultValue: [],
@@ -54,6 +51,7 @@ function App() {
     cognome: "",
     indirizzo: "",
   });
+
   return (
     <ContextError.Provider value={{ isError, setIsError }}>
       <ContextLoader.Provider value={{ isLoading, setIsLoading }}>
@@ -70,10 +68,13 @@ function App() {
                     <Route path="cart" element={<CartPage />} />
                     <Route path="payment" element={<PaymentPage />} />
                   </Route>
+
                   <Route path="/artists" element={<DefaultLayout />}>
                     <Route index element={<ArtistsPage />} />
                     <Route path=":slug" element={<AnArtistPage />} />
                   </Route>
+
+                  <Route path="/success" element={<SuccessPage />} />
                 </Routes>
               </Router>
             </PaymentContext.Provider>

@@ -1,26 +1,56 @@
+// frontend/src/pages/CartPage.jsx
 import { useContext, useState } from "react";
 import CartContext from "../contexts/CartContext";
-import { Link } from "react-router-dom";
+import axios from "axios";
 import Toast from "../components/Toast";
 
-/**
- * Pagina carrello. Mostra lista prodotti, modifica quantità, rimozione.
- */
 function CartPage() {
   const { cart, setCart } = useContext(CartContext);
   const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState("success");
+  const [loading, setLoading] = useState(false);
 
-  const removeItemCart = (indexToRemove) => {
-    setCart((cart) => cart.filter((_, index) => index !== indexToRemove));
+  const showToast = (message, type = "success") => {
+    setToastMessage(message);
+    setToastType(type);
     setToastVisible(true);
   };
-  //Logica totale ordine
+
+  const removeItemCart = (indexToRemove) => {
+    setCart((prev) => prev.filter((_, index) => index !== indexToRemove));
+    showToast("Elemento rimosso dal carrello!", "success");
+  };
+
   const total = cart.reduce(
     (sum, item) => sum + parseFloat(item.price) * (item.quantity || 1),
     0
   );
 
-  // Gestione modifica quantità
+  const handleProceedToCheckout = async () => {
+    if (cart.length === 0) {
+      showToast("Il carrello è vuoto.", "warning");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/payment/create-checkout-session",
+        {
+          cart,
+          payment: {},
+          shippingCost: 0,
+          discountResult: {},
+        }
+      );
+      window.location.href = response.data.url;
+    } catch (err) {
+      showToast("Errore durante il pagamento. Riprova più tardi.", "danger");
+      setLoading(false);
+    }
+  };
+
   const handleQuantityChange = (index, value) => {
     const newCart = cart.map((item, i) =>
       i === index
@@ -64,19 +94,15 @@ function CartPage() {
                     <div>
                       <h6 className="mb-1 text-orange">{c.name}</h6>
                       <p className="album-price mb-0">€ {c.price}</p>
-                      {/* Selettore quantità */}
                       <div className="d-flex align-items-center mt-2">
-                        <label
-                          htmlFor={`cart-qty-${i}`}
-                          className="me-2 mb-0"
-                        >
+                        <label htmlFor={`cart-qty-${i}`} className="me-2 mb-0">
                           Quantità:
                         </label>
                         <input
                           id={`cart-qty-${i}`}
                           type="number"
                           min={1}
-                          max={c.quantity || 99}
+                          max={c.maxQuantity || c.quantityDisponibile || 99}
                           value={c.quantity || 1}
                           onChange={(e) =>
                             handleQuantityChange(i, e.target.value)
@@ -101,24 +127,33 @@ function CartPage() {
               <h4 className="text-orange text-shadow-orange mb-3">
                 Totale: € {total.toFixed(2)}
               </h4>
-              <Link to="/payment" className="search-button-filter">
-                Procedi al pagamento
-              </Link>
+              <button
+                className="btn btn-orange btn-lg fw-bold px-5"
+                onClick={handleProceedToCheckout}
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <span className="spinner-border spinner-border-sm me-2"></span>
+                    Sto preparando Stripe...
+                  </>
+                ) : (
+                  "Procedi al pagamento"
+                )}
+              </button>
             </div>
           </>
         )}
       </div>
 
       <Toast
-        message="Elemento rimosso dal carrello!"
-        type="success"
+        message={toastMessage}
+        type={toastType}
         show={toastVisible}
         onClose={() => setToastVisible(false)}
       />
     </>
   );
 }
-
-CartPage.propTypes = {};
 
 export default CartPage;
