@@ -37,6 +37,7 @@ function AlbumDetails() {
       newCart = [...cart, { ...album, quantity: selectedQuantity }];
     }
     setCart(newCart);
+    setToastMessage("Elemento aggiunto al carrello!");
     setToastVisible(true);
   }
 
@@ -56,7 +57,7 @@ function AlbumDetails() {
       });
   }, [slug]);
 
-  
+
   const isInWish = wish.some((w) => w.id === album.id);
   function addToWish(e) {
     e.preventDefault();
