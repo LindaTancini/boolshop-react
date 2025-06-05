@@ -43,6 +43,10 @@
   box-shadow: 0 8px 20px rgba(106, 71, 209, 0.2);
 }
 
+.artists-list {
+  border: 1px solid #f78f45;
+}
+
 .artists {
   background: linear-gradient(145deg, #4a4f7a, #323a6d);
   color: #e2e4f0;
