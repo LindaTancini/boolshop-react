@@ -58,15 +58,15 @@ function AlbumDetails() {
   }, [slug]);
 
 
-  const isInWish = wish.some((w) => w.id === album.id);
+  const isInWish = album && wish.some((w) => w.id === album.id);
   function addToWish(e) {
     e.preventDefault();
     let newWish;
     newWish = [...wish, album];
-    if( isInWish ) {
+    if (isInWish) {
       setWish(wish.filter((w) => w.id !== album.id));
       setToastMessage("Elemento rimosso dalla wishlist!");
-    }else{
+    } else {
       setWish(newWish)
       setToastMessage("Elemento aggiunto alla wishlist!");
     }
