@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Toast from "../Toast";
+import { openCartOffcanvas } from "../cartUtils";
 
 /**
  * Card singolo album con azioni carrello/wishlist.
@@ -24,8 +25,8 @@ export default function AlbumCard({
   const [toastMessage, setToastMessage] = useState("");
 
   function addToCart(e) {
-    // e.stopPropagation();
     e.preventDefault();
+
     const existingIndex = cart.findIndex((c) => c.id === album.id);
     let newCart;
 
@@ -38,8 +39,9 @@ export default function AlbumCard({
     }
 
     setCart(newCart);
-    setToastMessage("Elemento aggiunto al carrello!");
-    setToastVisible(true);
+    openCartOffcanvas();
+    // setToastMessage("Elemento aggiunto al carrello!");
+    // setToastVisible(true);
   }
 
   useEffect(() => {
@@ -70,8 +72,8 @@ export default function AlbumCard({
       <Link to={`/album/${album.slug}`} className="text-decoration-none">
         <div
           className={`card custom-album-card ${isList
-              ? "flex-row align-items-center p-2 small-card-list"
-              : "h-100 p-3"
+            ? "flex-row align-items-center p-2 small-card-list"
+            : "h-100 p-3"
             }`}
         >
           <img

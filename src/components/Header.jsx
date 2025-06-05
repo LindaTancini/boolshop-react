@@ -1,28 +1,23 @@
-//Importazioni
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
-import { useContext } from "react";
 import CartContext from "../contexts/CartContext";
+import { openCartOffcanvas } from "./cartUtils";
 
 function Header() {
-  //Variabili di stato
+  // Variabili di stato
   const [isOpen, setIsOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false); // Stato per mostrare input
+  const [showSearch, setShowSearch] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const { cart, setCart } = useContext(CartContext);
 
   const navigate = useNavigate();
   const location = useLocation();
-  //Con Prev cambio lo stato in base al valore attuale
+
+  // Toggle del menu mobile
   const toggleMenu = () => setIsOpen((prev) => !prev);
-  //Setto inizialmente il valore in false per poi cambiarlo all'onclick
   const closeMenu = () => setIsOpen(false);
 
-  // const handleSearchClick = (e) => {
-  //   e.preventDefault();
-  //   setShowSearch((prev) => !prev);
-  // };
-
+  // Gestione submit della ricerca
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     navigate(`/products?search=${encodeURIComponent(searchValue)}`);
@@ -30,23 +25,25 @@ function Header() {
     setSearchValue("");
   };
 
+  // Rimuove un elemento dal carrello
   const removeItemCart = (indexToRemove) => {
     setCart((prev) => prev.filter((_, index) => index !== indexToRemove));
   };
 
+  // Cambia la quantità di un elemento nel carrello (con vincoli min/max)
   const handleQuantityChange = (index, value) => {
     const newCart = cart.map((item, i) =>
       i === index
         ? {
-            ...item,
-            quantity: Math.max(
-              1,
-              Math.min(
-                item.maxQuantity || item.quantityDisponibile || 99,
-                Number(value)
-              )
-            ),
-          }
+          ...item,
+          quantity: Math.max(
+            1,
+            Math.min(
+              item.maxQuantity || item.quantityDisponibile || 99,
+              Number(value)
+            )
+          ),
+        }
         : item
     );
     setCart(newCart);
@@ -55,9 +52,8 @@ function Header() {
   return (
     <>
       <header
-        className={`navbar navbar-expand-sm navbar-dark bg-header-violet w-100 p-0${
-          showSearch ? " expanded-header" : ""
-        } no-box-shadow header-fixed`}
+        className={`navbar navbar-expand-sm navbar-dark bg-header-violet w-100 p-0${showSearch ? " expanded-header" : ""
+          } no-box-shadow header-fixed`}
       >
         <div className="container">
           <div className="d-flex justify-content-between align-items-center w-100">
@@ -75,6 +71,7 @@ function Header() {
               </div>
               BOOLSHOP
             </Link>
+
             {/* TOGGLE RESPONSIVE MOBILE */}
             <button
               className="navbar-toggler"
@@ -85,6 +82,7 @@ function Header() {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
+
             {/* NAVBAR */}
             <div
               className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}
@@ -110,18 +108,20 @@ function Header() {
                     <i className="bi bi-mic"></i> ARTISTI
                   </NavLink>
                 </li>
-                <NavLink
-                  className="nav-link text-white d-flex align-items-center gap-1"
-                  to="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const offcanvas = new bootstrap.Offcanvas("#cartOffcanvas");
-                    offcanvas.show();
-                    closeMenu();
-                  }}
-                >
-                  <i className="bi bi-cart"></i>
-                </NavLink>
+
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link text-white d-flex align-items-center gap-1"
+                    to="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openCartOffcanvas();
+                      closeMenu();
+                    }}
+                  >
+                    <i className="bi bi-cart"></i>
+                  </NavLink>
+                </li>
 
                 <li className="nav-item">
                   <NavLink
@@ -136,9 +136,8 @@ function Header() {
                 {location.pathname !== "/products" && (
                   <li className="nav-item">
                     <NavLink
-                      className={`nav-link text-white d-flex align-items-center gap-1${
-                        showSearch ? " text-orange" : ""
-                      }`}
+                      className={`nav-link text-white d-flex align-items-center gap-1${showSearch ? " text-orange" : ""
+                        }`}
                       to="#"
                       onClick={(e) => {
                         e.preventDefault();
@@ -146,9 +145,8 @@ function Header() {
                       }}
                     >
                       <i
-                        className={`bi bi-search${
-                          showSearch ? " text-orange" : ""
-                        }`}
+                        className={`bi bi-search${showSearch ? " text-orange" : ""
+                          }`}
                       ></i>
                     </NavLink>
                   </li>
@@ -158,13 +156,13 @@ function Header() {
           </div>
         </div>
       </header>
-      {/* Mostra la barra di ricerca solo se showSearch è true e non siamo su /products */}
+
+      {/* Barra di ricerca (visibile solo quando showSearch è true e non siamo su /products) */}
       <div
-        className={`search-bar-outer${
-          showSearch && location.pathname !== "/products"
-            ? " show search-bar-animated"
-            : ""
-        } mt-3`}
+        className={`search-bar-outer${showSearch && location.pathname !== "/products"
+          ? " show search-bar-animated"
+          : ""
+          } mt-3`}
         aria-hidden={!(showSearch && location.pathname !== "/products")}
         tabIndex={showSearch && location.pathname !== "/products" ? 0 : -1}
         style={{
@@ -175,11 +173,10 @@ function Header() {
         <div className="container">
           <form
             onSubmit={handleSearchSubmit}
-            className={`d-flex justify-content-between align-items-center py-2 search-bar-form w-100${
-              showSearch && location.pathname !== "/products"
-                ? " search-bar-form-visible"
-                : ""
-            }`}
+            className={`d-flex justify-content-between align-items-center py-2 search-bar-form w-100${showSearch && location.pathname !== "/products"
+              ? " search-bar-form-visible"
+              : ""
+              }`}
           >
             <input
               type="text"
@@ -201,6 +198,8 @@ function Header() {
           </form>
         </div>
       </div>
+
+      {/* Offcanvas del carrello */}
       <div
         className="offcanvas offcanvas-end offcanvas-wider"
         tabIndex="-1"

@@ -7,6 +7,7 @@ import axios from "axios";
 import CartContext from "../contexts/CartContext";
 import WishContext from "../contexts/WhishContext";
 import Toast from "../components/Toast";
+import { openCartOffcanvas } from "../components/cartUtils";
 
 /**
  * Pagina di dettaglio album.
@@ -37,8 +38,9 @@ function AlbumDetails() {
       newCart = [...cart, { ...album, quantity: selectedQuantity }];
     }
     setCart(newCart);
-    setToastMessage("Elemento aggiunto al carrello!");
-    setToastVisible(true);
+    openCartOffcanvas();
+    // setToastMessage("Elemento aggiunto al carrello!");
+    // setToastVisible(true);
   }
 
   useEffect(() => {
