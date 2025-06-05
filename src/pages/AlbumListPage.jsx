@@ -102,7 +102,7 @@ function AlbumListPageContent({ format = "" }) {
         // La ricerca testuale viene applicata solo al submit
         const matchSearch = searchText
           ? album.name.toLowerCase().includes(searchText.toLowerCase()) ||
-            album.artist.name.toLowerCase().includes(searchText.toLowerCase())
+          album.artist.name.toLowerCase().includes(searchText.toLowerCase())
           : true;
         return matchFormat && matchGenre && matchPrice && matchSearch;
       })
@@ -189,7 +189,7 @@ function AlbumListPageContent({ format = "" }) {
             onSubmit={handleSearchSubmit}
           />
         </div>
-        <div className="d-flex justify-content-end align-items-center">
+        <div className="d-flex justify-content-start align-items-center">
           <span className="fw-semibold me-2 text-white text-shadow-orange">
             Ordina per:
           </span>
