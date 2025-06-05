@@ -54,7 +54,7 @@
 
 .img-hover-effect:hover,
 .img-hover-effect:focus {
-  transform: scale(1.05);
+  transform: scale(1.08);
   box-shadow: 0 12px 28px rgba(247, 143, 69, 0.5);
   outline: none;
   filter: drop-shadow(0 2px 6px rgba(106, 71, 209, 0.4));
