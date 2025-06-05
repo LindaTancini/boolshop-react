@@ -16,6 +16,7 @@ import WishListPage from "./pages/WishListPage";
 import PaymentContext from "./contexts/paymentContext";
 import useLocalStorageState from "use-local-storage-state";
 import SuccessPage from "./pages/SuccessPage";
+import ShowCartContext from "./contexts/showCartContext";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -51,10 +52,15 @@ function App() {
     indirizzo: "",
   });
 
+  const [showCart, setShowCart] = useState(false);
+
   return (
     <ContextError.Provider value={{ isError, setIsError }}>
       <ContextLoader.Provider value={{ isLoading, setIsLoading }}>
         <CartContext.Provider value={{ cart, setCart }}>
+          <ShowCartContext.Provider value={{showCart, setShowCart}}>
+
+
           <WishContext.Provider value={{ wish, setWish }}>
             <PaymentContext.Provider value={{ payment, setPayment }}>
               <Router>
@@ -77,6 +83,7 @@ function App() {
               </Router>
             </PaymentContext.Provider>
           </WishContext.Provider>
+          </ShowCartContext.Provider>
         </CartContext.Provider>
       </ContextLoader.Provider>
     </ContextError.Provider>
