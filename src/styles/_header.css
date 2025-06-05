@@ -12,6 +12,16 @@
   font-weight: 900;
 }
 
+.collapse.navbar-collapse.show {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 100vw;
+  z-index: 10;
+  padding: 1rem;
+  background-color: #6a47d1 !important;
+}
+
 .nav-link.text-white:hover,
 .nav-link.text-white:focus {
   color: #f78f45 !important;
@@ -45,10 +55,10 @@
   position: fixed;
   top: 60px;
   width: 100vw;
-  height: 36px;
+  height: 20px;
   font-size: 0.9rem;
   padding: 1rem;
-  z-index: 999;
+  z-index: 3;
   margin-left: -50vw;
   left: 50%;
 }
