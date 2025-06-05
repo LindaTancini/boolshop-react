@@ -18,6 +18,7 @@ function AlbumDetails() {
   const [album, setAlbum] = useState(null);
   const api = `http://127.0.0.1:3000/api/album/${slug}`;
   const [toastVisible, setToastVisible] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const { setIsLoading } = useContext(ContextLoader);
   const { setIsError } = useContext(ContextError);
@@ -55,44 +56,21 @@ function AlbumDetails() {
       });
   }, [slug]);
 
+  
+  const isInWish = wish.some((w) => w.id === album.id);
   function addToWish(e) {
-    // e.stopPropagation();
     e.preventDefault();
-    // const existingIndex = cart.findIndex((c) => c.id === album.id);
     let newWish;
-
-    // if (existingIndex !== -1) {
-    //   newWish = wish.map((w, index) =>
-    //     index === existingIndex ? { ...w, quantity: w.quantity + 1 } : c
-    //   );
-    // } else {
     newWish = [...wish, album];
-    // }
-
-    setWish(newWish);
-    // setToastMessage("Elemento aggiunto alla wishlist!");
+    if( isInWish ) {
+      setWish(wish.filter((w) => w.id !== album.id));
+      setToastMessage("Elemento rimosso dalla wishlist!");
+    }else{
+      setWish(newWish)
+      setToastMessage("Elemento aggiunto alla wishlist!");
+    }
     setToastVisible(true);
-    // const wishElementExist = wish.find((w) => w.id === album.id);
-    // console.log(wishElementExist);
-    // if (wishElementExist) {
-    //   setWish(wish.filter((w) => w.id !== album.id));
-    //   setToastMessage("Elemento rimosso dalla wishlist!");
-    // } else {
-    //   setWish([...wish, album]);
-    //   setToastMessage("Elemento aggiunto alla wishlist!");
-    // }
-    // setToastVisible(true);
   }
-  // function addToWish() {
-  //   const wishElementExist = wish.find((w) => w.id === album.id);
-  //   console.log(wishElementExist);
-  //   if (wishElementExist) {
-  //     wish = wish.filter((w) => w.id !== album.id);
-  //     setWish(wish);
-  //   } else {
-  //     setWish([...wish, album]);
-  //   }
-  // }
 
   useEffect(() => {
     localStorage.setItem(slug, JSON.stringify(wish));
@@ -180,7 +158,7 @@ function AlbumDetails() {
                 title="Aggiungi alla wishlist"
                 onClick={addToWish}
               >
-                <i className="fas fa-heart"></i>
+                <i className={`bi ${isInWish ? "bi-suit-heart-fill" : "bi-suit-heart"} icon-responsive ${isInWish ? "text-danger" : "text-orange"}`}></i>
               </button>
             </div>
           </div>
@@ -195,7 +173,7 @@ function AlbumDetails() {
         </button>
       </div>
       <Toast
-        message="Elemento aggiunto al carrello!"
+        message={toastMessage}
         type="success"
         show={toastVisible}
         onClose={() => setToastVisible(false)}

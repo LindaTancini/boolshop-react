@@ -42,35 +42,6 @@ export default function AlbumCard({
     setToastVisible(true);
   }
 
-  function addToWish(e) {
-    // e.stopPropagation();
-    e.preventDefault();
-    // const existingIndex = cart.findIndex((c) => c.id === album.id);
-    let newWish;
-
-    // if (existingIndex !== -1) {
-    //   newWish = wish.map((w, index) =>
-    //     index === existingIndex ? { ...w, quantity: w.quantity + 1 } : c
-    //   );
-    // } else {
-    newWish = [...wish, album];
-    // }
-
-    setWish(newWish);
-    setToastMessage("Elemento aggiunto alla wishlist!");
-    setToastVisible(true);
-    // const wishElementExist = wish.find((w) => w.id === album.id);
-    // console.log(wishElementExist);
-    // if (wishElementExist) {
-    //   setWish(wish.filter((w) => w.id !== album.id));
-    //   setToastMessage("Elemento rimosso dalla wishlist!");
-    // } else {
-    //   setWish([...wish, album]);
-    //   setToastMessage("Elemento aggiunto alla wishlist!");
-    // }
-    // setToastVisible(true);
-  }
-
   useEffect(() => {
     localStorage.setItem(album.slug, JSON.stringify(cart));
   }, [cart]);
@@ -82,7 +53,7 @@ export default function AlbumCard({
   const isInCart = cart.some((c) => c.id === album.id);
   const isInWish = wish.some((w) => w.id === album.id);
 
-  function handleWishClick(e) {
+  function addToWish(e) {
     e.preventDefault();
     if (isInWish) {
       setWish(wish.filter((w) => w.id !== album.id));
@@ -152,7 +123,7 @@ export default function AlbumCard({
               <button
                 className="btn wishlist-button-card"
                 title={isInWish ? "Rimuovi dalla wishlist" : "Aggiungi alla wishlist"}
-                onClick={handleWishClick}
+                onClick={addToWish}
               >
                 <i className={`bi ${isInWish ? "bi-suit-heart-fill" : "bi-suit-heart"} icon-responsive ${isInWish ? "text-danger" : "text-orange"}`}></i>
               </button>
