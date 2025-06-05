@@ -9,7 +9,8 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false); // Stato per mostrare input
   const [searchValue, setSearchValue] = useState("");
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
+
   const navigate = useNavigate();
   const location = useLocation();
   //Con Prev cambio lo stato in base al valore attuale
@@ -17,10 +18,10 @@ function Header() {
   //Setto inizialmente il valore in false per poi cambiarlo all'onclick
   const closeMenu = () => setIsOpen(false);
 
-  const handleSearchClick = (e) => {
-    e.preventDefault();
-    setShowSearch((prev) => !prev);
-  };
+  // const handleSearchClick = (e) => {
+  //   e.preventDefault();
+  //   setShowSearch((prev) => !prev);
+  // };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -29,12 +30,30 @@ function Header() {
     setSearchValue("");
   };
 
+  const removeItemCart = (indexToRemove) => {
+    setCart((prev) => prev.filter((_, index) => index !== indexToRemove));
+  };
+
+  const handleQuantityChange = (index, value) => {
+    const newCart = cart.map((item, i) =>
+      i === index
+        ? {
+          ...item,
+          quantity: Math.max(
+            1,
+            Math.min(item.maxQuantity || item.quantityDisponibile || 99, Number(value))
+          ),
+        }
+        : item
+    );
+    setCart(newCart);
+  };
+
   return (
     <>
       <header
-        className={`navbar navbar-expand-sm navbar-dark bg-header-violet w-100 p-0${
-          showSearch ? " expanded-header" : ""
-        } no-box-shadow header-fixed`}
+        className={`navbar navbar-expand-sm navbar-dark bg-header-violet w-100 p-0${showSearch ? " expanded-header" : ""
+          } no-box-shadow header-fixed`}
       >
         <div className="container">
           <div className="d-flex justify-content-between align-items-center w-100">
@@ -113,9 +132,8 @@ function Header() {
                 {location.pathname !== "/products" && (
                   <li className="nav-item">
                     <NavLink
-                      className={`nav-link text-white d-flex align-items-center gap-1${
-                        showSearch ? " text-orange" : ""
-                      }`}
+                      className={`nav-link text-white d-flex align-items-center gap-1${showSearch ? " text-orange" : ""
+                        }`}
                       to="#"
                       onClick={(e) => {
                         e.preventDefault();
@@ -123,9 +141,8 @@ function Header() {
                       }}
                     >
                       <i
-                        className={`bi bi-search${
-                          showSearch ? " text-orange" : ""
-                        }`}
+                        className={`bi bi-search${showSearch ? " text-orange" : ""
+                          }`}
                       ></i>
                     </NavLink>
                   </li>
@@ -137,11 +154,10 @@ function Header() {
       </header>
       {/* Mostra la barra di ricerca solo se showSearch è true e non siamo su /products */}
       <div
-        className={`search-bar-outer${
-          showSearch && location.pathname !== "/products"
+        className={`search-bar-outer${showSearch && location.pathname !== "/products"
             ? " show search-bar-animated"
             : ""
-        } mt-3`}
+          } mt-3`}
         aria-hidden={!(showSearch && location.pathname !== "/products")}
         tabIndex={showSearch && location.pathname !== "/products" ? 0 : -1}
         style={{
@@ -152,11 +168,10 @@ function Header() {
         <div className="container">
           <form
             onSubmit={handleSearchSubmit}
-            className={`d-flex justify-content-between align-items-center py-2 search-bar-form w-100${
-              showSearch && location.pathname !== "/products"
+            className={`d-flex justify-content-between align-items-center py-2 search-bar-form w-100${showSearch && location.pathname !== "/products"
                 ? " search-bar-form-visible"
                 : ""
-            }`}
+              }`}
           >
             <input
               type="text"
@@ -217,12 +232,32 @@ function Header() {
                           className="img-cart"
                         />
                       )}
-                      <div>
+                      {/* <div>
                         <strong className="text-orange">{item.name}</strong>
                         <div className="small text-muted">
                           Quantità: {item.quantity || 1}
                         </div>
+                      </div> */}
+                      <div className="d-flex align-items-center mt-2">
+                        <label htmlFor={`cart-qty-${index}`} className="me-2 mb-0">
+                          Quantità:
+                        </label>
+                        <input
+                          id={`cart-qty-${index}`}
+                          type="number"
+                          min={1}
+                          max={item.maxQuantity || item.quantityDisponibile || 99}
+                          value={item.quantity || 1}
+                          onChange={(e) =>
+                            handleQuantityChange(index, e.target.value)
+                          }
+                          className="form-control w-auto d-inline-block cart-quantity-input"
+                        />
                       </div>
+                      <div>
+                        <button onClick={() => removeItemCart(index)}>elimina</button>
+                      </div>
+
                     </div>
                     <div className="fw-bold text-orange">
                       € {(item.price * (item.quantity || 1)).toFixed(2)}
