@@ -129,14 +129,14 @@ export default function SuccessPage() {
       {status === "success" && (
         <div className="text-center">
           <h2 className="text-orange mb-3">✔️ Pagamento avvenuto con successo!</h2>
-          <p className="text-muted">{message}</p>
+          <p className="text-light">{message}</p>
         </div>
       )}
 
       {status === "error" && (
         <div className="text-center">
           <h2 className="text-danger mb-3">❌ Errore</h2>
-          <p className="text-muted">{message}</p>
+          <p className="text-light">{message}</p>
         </div>
       )}
     </div>
