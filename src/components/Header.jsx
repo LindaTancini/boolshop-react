@@ -38,12 +38,15 @@ function Header() {
     const newCart = cart.map((item, i) =>
       i === index
         ? {
-          ...item,
-          quantity: Math.max(
-            1,
-            Math.min(item.maxQuantity || item.quantityDisponibile || 99, Number(value))
-          ),
-        }
+            ...item,
+            quantity: Math.max(
+              1,
+              Math.min(
+                item.maxQuantity || item.quantityDisponibile || 99,
+                Number(value)
+              )
+            ),
+          }
         : item
     );
     setCart(newCart);
@@ -52,8 +55,9 @@ function Header() {
   return (
     <>
       <header
-        className={`navbar navbar-expand-sm navbar-dark bg-header-violet w-100 p-0${showSearch ? " expanded-header" : ""
-          } no-box-shadow header-fixed`}
+        className={`navbar navbar-expand-sm navbar-dark bg-header-violet w-100 p-0${
+          showSearch ? " expanded-header" : ""
+        } no-box-shadow header-fixed`}
       >
         <div className="container">
           <div className="d-flex justify-content-between align-items-center w-100">
@@ -132,8 +136,9 @@ function Header() {
                 {location.pathname !== "/products" && (
                   <li className="nav-item">
                     <NavLink
-                      className={`nav-link text-white d-flex align-items-center gap-1${showSearch ? " text-orange" : ""
-                        }`}
+                      className={`nav-link text-white d-flex align-items-center gap-1${
+                        showSearch ? " text-orange" : ""
+                      }`}
                       to="#"
                       onClick={(e) => {
                         e.preventDefault();
@@ -141,8 +146,9 @@ function Header() {
                       }}
                     >
                       <i
-                        className={`bi bi-search${showSearch ? " text-orange" : ""
-                          }`}
+                        className={`bi bi-search${
+                          showSearch ? " text-orange" : ""
+                        }`}
                       ></i>
                     </NavLink>
                   </li>
@@ -154,10 +160,11 @@ function Header() {
       </header>
       {/* Mostra la barra di ricerca solo se showSearch è true e non siamo su /products */}
       <div
-        className={`search-bar-outer${showSearch && location.pathname !== "/products"
+        className={`search-bar-outer${
+          showSearch && location.pathname !== "/products"
             ? " show search-bar-animated"
             : ""
-          } mt-3`}
+        } mt-3`}
         aria-hidden={!(showSearch && location.pathname !== "/products")}
         tabIndex={showSearch && location.pathname !== "/products" ? 0 : -1}
         style={{
@@ -168,10 +175,11 @@ function Header() {
         <div className="container">
           <form
             onSubmit={handleSearchSubmit}
-            className={`d-flex justify-content-between align-items-center py-2 search-bar-form w-100${showSearch && location.pathname !== "/products"
+            className={`d-flex justify-content-between align-items-center py-2 search-bar-form w-100${
+              showSearch && location.pathname !== "/products"
                 ? " search-bar-form-visible"
                 : ""
-              }`}
+            }`}
           >
             <input
               type="text"
@@ -213,6 +221,7 @@ function Header() {
             aria-label="Chiudi"
           ></button>
         </div>
+
         <div className="offcanvas-body">
           {cart.length === 0 ? (
             <p className="text-center text-muted">Il carrello è vuoto.</p>
@@ -222,50 +231,61 @@ function Header() {
                 {cart.map((item, index) => (
                   <li
                     key={index}
-                    className="list-group-item d-flex justify-content-between align-items-center mb-2"
+                    className="list-group-item bg-light rounded shadow-sm mb-3"
                   >
-                    <div className="d-flex align-items-center gap-2">
+                    <div className="d-flex align-items-start gap-3">
                       {item.imagePath && (
                         <img
                           src={item.imagePath}
                           alt={item.name}
-                          className="img-cart"
+                          className="img-cart rounded"
                         />
                       )}
-                      {/* <div>
-                        <strong className="text-orange">{item.name}</strong>
-                        <div className="small text-muted">
-                          Quantità: {item.quantity || 1}
-                        </div>
-                      </div> */}
-                      <div className="d-flex align-items-center mt-2">
-                        <label htmlFor={`cart-qty-${index}`} className="me-2 mb-0">
-                          Quantità:
-                        </label>
-                        <input
-                          id={`cart-qty-${index}`}
-                          type="number"
-                          min={1}
-                          max={item.maxQuantity || item.quantityDisponibile || 99}
-                          value={item.quantity || 1}
-                          onChange={(e) =>
-                            handleQuantityChange(index, e.target.value)
-                          }
-                          className="form-control w-auto d-inline-block cart-quantity-input"
-                        />
-                      </div>
-                      <div>
-                        <button onClick={() => removeItemCart(index)}>elimina</button>
-                      </div>
 
-                    </div>
-                    <div className="fw-bold text-orange">
-                      € {(item.price * (item.quantity || 1)).toFixed(2)}
+                      <div className="flex-grow-1">
+                        <div className="d-flex justify-content-between align-items-center mb-1">
+                          <strong className="text-orange">{item.name}</strong>
+                          <span className="fw-bold text-orange">
+                            € {(item.price * (item.quantity || 1)).toFixed(2)}
+                          </span>
+                        </div>
+
+                        <div className="d-flex align-items-center gap-2 mt-2">
+                          <label
+                            htmlFor={`cart-qty-${index}`}
+                            className="mb-0 small"
+                          >
+                            Quantità:
+                          </label>
+                          <input
+                            id={`cart-qty-${index}`}
+                            type="number"
+                            min={1}
+                            max={
+                              item.maxQuantity || item.quantityDisponibile || 99
+                            }
+                            value={item.quantity || 1}
+                            onChange={(e) =>
+                              handleQuantityChange(index, e.target.value)
+                            }
+                            className="form-control form-control-sm w-auto"
+                          />
+                          <button
+                            className="btn btn-sm btn-outline-danger ms-auto"
+                            onClick={() => removeItemCart(index)}
+                            title="Rimuovi"
+                          >
+                            <i className="bi bi-trash"></i>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </li>
                 ))}
               </ul>
+
               <hr />
+
               <div className="d-flex justify-content-between fw-bold text-orange text-shadow-orange mb-3 fs-5">
                 <span>Totale:</span>
                 <span>
@@ -279,6 +299,7 @@ function Header() {
                     .toFixed(2)}
                 </span>
               </div>
+
               <button
                 className="btn button-orange-outline w-100 fw-bold"
                 data-bs-dismiss="offcanvas"
