@@ -108,8 +108,8 @@ function AlbumListPageContent({ format = "" }) {
       })
       .sort((a, b) => {
         // Ordinamento istantaneo
-        if (filter === "Alfabetio, A-Z") return a.name.localeCompare(b.name);
-        if (filter === "Alfabetio, Z-A") return b.name.localeCompare(a.name);
+        if (filter === "Alfabeto, A-Z") return a.name.localeCompare(b.name);
+        if (filter === "Alfabeto, Z-A") return b.name.localeCompare(a.name);
         if (filter === "Data, Dal Più Nuovo")
           return new Date(b.date) - new Date(a.date);
         if (filter === "Data, Dal Più Vecchio")
