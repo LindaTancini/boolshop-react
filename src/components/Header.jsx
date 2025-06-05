@@ -158,9 +158,6 @@ function Header() {
           </div>
         </div>
       </header>
-      <div className="bg-dark d-flex align-items-center justify-content-center annuncio">
-        <p className="text-white">CODICE: FISSO5 per avere subito 5€ di sconto || Spedizione gratuita oltre 50 € </p>
-      </div>
       {/* Mostra la barra di ricerca solo se showSearch è true e non siamo su /products */}
       <div
         className={`search-bar-outer${
