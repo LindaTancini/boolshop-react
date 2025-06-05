@@ -129,7 +129,7 @@ function CartPage() {
                 Totale: € {total.toFixed(2)}
               </h4>
               <button
-                className="btn btn-orange btn-lg fw-bold px-5"
+                className="btn button-orange-outline btn-lg fw-bold px-5"
                 onClick={handleProceedToCheckout}
                 disabled={loading}
               >
