@@ -4,12 +4,22 @@
   .carousel-control-next {
     display: none;
   }
+
   .small-font {
     font-size: 0.8rem;
   }
 }
-/* DESKTOP */
 
+@media (max-width: 768px) {
+  .annuncio {
+    font-size: 0.75rem;
+    height: auto;
+    padding: 0.4rem 1rem;
+    text-align: center;
+  }
+}
+
+/* DESKTOP */
 @media (min-width: 768px) {
   .icon-responsive {
     font-size: 1.8rem;
