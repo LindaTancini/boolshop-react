@@ -49,7 +49,7 @@ function Footer() {
           <div className="col-md-6 text-center col-sm-12">
             <p className="mb-1">
               © 2025
-              <Link to="/" className="ms-2 text-decoration-none text-danger">
+              <Link to="/" className="ms-2 text-decoration-none text-black">
                 BOOLSHOP
               </Link>
             </p>
@@ -60,7 +60,7 @@ function Footer() {
               elettronica
             </p>
             <p className="mb-1 ">
-              <a href="#" className="text-decoration-none text-danger">
+              <a href="#" className="text-decoration-none text-black">
                 boolshop@boolando.it
               </a>
             </p>

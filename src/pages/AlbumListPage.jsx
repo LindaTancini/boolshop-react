@@ -102,14 +102,14 @@ function AlbumListPageContent({ format = "" }) {
         // La ricerca testuale viene applicata solo al submit
         const matchSearch = searchText
           ? album.name.toLowerCase().includes(searchText.toLowerCase()) ||
-            album.artist.name.toLowerCase().includes(searchText.toLowerCase())
+          album.artist.name.toLowerCase().includes(searchText.toLowerCase())
           : true;
         return matchFormat && matchGenre && matchPrice && matchSearch;
       })
       .sort((a, b) => {
         // Ordinamento istantaneo
-        if (filter === "Alfabetio, A-Z") return a.name.localeCompare(b.name);
-        if (filter === "Alfabetio, Z-A") return b.name.localeCompare(a.name);
+        if (filter === "Alfabeto, A-Z") return a.name.localeCompare(b.name);
+        if (filter === "Alfabeto, Z-A") return b.name.localeCompare(a.name);
         if (filter === "Data, Dal Più Nuovo")
           return new Date(b.date) - new Date(a.date);
         if (filter === "Data, Dal Più Vecchio")
@@ -173,7 +173,7 @@ function AlbumListPageContent({ format = "" }) {
         </div>
         */}
         <div className="col-md-3">
-          <label htmlFor="price" className="label-filter">Prezzo</label>
+          <label htmlFor="price" className="mb-1">Prezzo</label>
           <PriceRangeFilter
             min={minMaxPrice[0]}
             max={minMaxPrice[1]}
@@ -182,14 +182,14 @@ function AlbumListPageContent({ format = "" }) {
           />
         </div>
         <div className="col-md-3">
-          <label htmlFor="search">Ricerca</label>
+          <label htmlFor="search" className="label-filter">Ricerca</label>
           <SearchInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onSubmit={handleSearchSubmit}
           />
         </div>
-        <div className="d-flex justify-content-end align-items-center">
+        <div className="d-flex justify-content-start align-items-center">
           <span className="fw-semibold me-2 text-white text-shadow-orange">
             Ordina per:
           </span>

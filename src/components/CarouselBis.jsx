@@ -24,7 +24,7 @@ function CarouselBis({ albums }) {
             >
               <div className="row justify-content-center g-3">
                 {group.map((album) => (
-                  <div key={album.id} className="col-12 col-sm-6 col-md-4 px-2">
+                  <div key={album.id} className="col-12 col-sm-6 col-md-4 p-2">
                     <Link
                       to={`/album/${album.slug}`}
                       className="text-decoration-none"

@@ -106,7 +106,7 @@ function AlbumDetails() {
     <>
       <div className="container mt-5">
         <h2 className="mb-4 text-center fw-bold text-orange text-shadow-orange">
-          {album.title}
+          {album.name}
         </h2>
 
         <div className="d-flex flex-column flex-md-row align-items-center justify-content-center gap-4 text-center p-4 rounded shadow-lg bg-album-details-shadow">
