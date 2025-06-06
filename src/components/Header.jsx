@@ -119,7 +119,17 @@ function Header() {
                       closeMenu();
                     }}
                   >
-                    <i className="bi bi-cart"></i>
+                    <div className="position-relative">
+                      <i className="bi bi-cart"></i>
+                      {cart.length > 0 && (
+                        <span
+                          className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                          style={{ fontSize: "0.6rem" }}
+                        >
+                          {cart.reduce((sum, item) => sum + (item.quantity || 1), 0)}
+                        </span>
+                      )}
+                    </div>
                   </NavLink>
                 </li>
 
