@@ -28,14 +28,7 @@ function Footer() {
                   Artisti
                 </Link>
               </li>
-              <li>
-                <Link
-                  to="/genres"
-                  className="ms-2 text-decoration-none text-white"
-                >
-                  Generi
-                </Link>
-              </li>
+
               <li>
                 <Link
                   to="/Cart"
